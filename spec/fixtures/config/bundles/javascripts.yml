@@ -1,0 +1,10 @@
+--- !omap 
+- single_file: 
+    files: 
+    - spec/fixtures/javascripts/mootools
+    version: 3de3
+- multiple_files: 
+    files: 
+    - spec/fixtures/javascripts/mootools
+    - spec/fixtures/javascripts/jquery
+    version: 3de3
