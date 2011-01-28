@@ -17,6 +17,6 @@ describe Rapper do
   
   describe "bundling" do
     it "concatenates files"
-    it "compresses if configured to"
+    it "compresses, if configured to"
   end
 end

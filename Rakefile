@@ -7,8 +7,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "rapper"
   gem.homepage = "http://github.com/dolores/rapper"
   gem.license = "MIT"
-  gem.summary = %Q{Static asset bundler with proper versioning and compression.}
-  gem.description = %Q{Static asset bundler with proper versioning and compression. Built-in support for Merb and Sinatra.}
+  gem.summary = %Q{Static asset packager and compressor with versioning.}
+  gem.description = %Q{Static asset packager and compressor with versioning. Built-in support for CoffeeScript, Sass, Merb, and Sinatra.}
   gem.email = "tyson@doloreslabs.com"
   gem.authors = ["Chris van Pelt", "Tyson Tate"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,

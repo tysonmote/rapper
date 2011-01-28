@@ -1,6 +1,22 @@
 # rapper
 
-Static asset bundler with proper versioning and compression.
+Static asset packager and compressor with versioning. And Tribe Called Quest jokes that no one will get.
+
+Pre-alpha, of course.
+
+## To do
+
+* Set up configuration and definition conventions
+* Allow concatenating files
+* Allow compressing bundled JavaScript and CSS
+* Provide Merb view helpers
+* Provide Sinatra helpers
+
+## Near-future to do
+
+* Watch CoffeeScript for changes and automatically compile to JS
+* Watch Sass for changes and automatically convert
+* Provide Rails helpers
 
 ## Contributing to rapper
  
