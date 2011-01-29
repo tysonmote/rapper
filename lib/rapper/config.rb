@@ -1,9 +1,8 @@
 require 'yaml'
 
 module Rapper
+  # Rapper configuration and definition methods.
   module Config
-    
-    class InvalidEnvironment < StandardError; end
     
     attr_accessor :environment
     
@@ -20,7 +19,7 @@ module Rapper
       @config = YAML.load_file( config_path )
       @definitions = {}
       if env_config.nil?
-        raise InvalidEnvironment,
+        raise Rapper::Errors::InvalidEnvironment,
           "The '#{@environment}' environment is not defined in #{config_path}"
       end
       definition_path = File.join( env_config["definition_config_root"], "*.yml" )

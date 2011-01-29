@@ -17,7 +17,7 @@ describe Rapper do
     it "bombs out if given an undefined environment" do
       lambda do
         Rapper.setup( "spec/fixtures/config/assets.yml", "error" )
-      end.should raise_error( Rapper::Config::InvalidEnvironment )
+      end.should raise_error( Rapper::Errors::InvalidEnvironment )
     end
     
     it "uses the given environment's specific config" do
@@ -30,6 +30,12 @@ describe Rapper do
     end
     
     it "loads asset definitions"
+  end
+  
+  describe "logging" do
+    it "is off by default"
+    it "can log to stdout"
+    it "can log to a file"
   end
   
   describe "bundling" do

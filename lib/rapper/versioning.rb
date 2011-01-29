@@ -1,7 +1,10 @@
 require 'digest/md5'
 
 module Rapper
+  # Asset versioning methods.
   module Versioning
+    
+    private
     
     # Refresh the version hashes for the given asset types. If no arguments are
     # passed, version hashes for all asset types will be updated.
@@ -12,16 +15,14 @@ module Rapper
       log "Refreshing bundle versions for:", types.join( ", " )
       
       types.each do |type|
-        @definitions[type].each do |set, spec|
-          path = path_for( set, type, true ) ############### TODO
+        @definitions[type].each do |name, spec|
+          path = asset_path( type, name )
           version = version( path )
           log path, "=>", version
           spec["version"] = version
         end
       end
     end
-    
-    private
     
     # @param [String] file_path The path to a file to generate a version for.
     # 

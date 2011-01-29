@@ -1,31 +1,20 @@
 base: &base
   definition_config_root: spec/fixtures/config/bundles
-  definition_types:
-    javascripts:
-      source_root: spec/fixtures/javascripts
-      suffix: js
-    stylesheets:
-      source_root: spec/fixtures/stylesheets
-      suffix: css
-    validators:
-      source_root: spec/fixtures/validators
-      suffix: js
-
 development:
   <<: *base
   bundle: false
   compress: false
-  style: html5
+  tag_style: html5
   version: false
 test:
   <<: *base
   bundle: true
   compress: true
-  style: html5
+  tag_style: html5
   version: false
 production:
   <<: *base
   bundle: true
   compress: true
-  style: html5
+  tag_style: html5
   version: true

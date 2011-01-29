@@ -17,6 +17,7 @@ Pre-alpha, of course.
 * Watch CoffeeScript for changes and automatically compile to JS
 * Watch Sass for changes and automatically convert
 * Provide Rails helpers
+* Allow setting Rapper config settings on a per-asset basis
 
 ## Contributing to rapper
  

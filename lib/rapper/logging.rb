@@ -1,4 +1,5 @@
 module Rapper
+  # Basic logging support.
   module Logging
     
     private
