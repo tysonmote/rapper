@@ -10,5 +10,6 @@ module Rapper
     def log( *args )
       puts args.join( " " ) if env_config["log"] == "stdout"
     end
+    
   end
 end

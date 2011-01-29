@@ -17,6 +17,12 @@ development:
   compress: false
   style: html5
   version: false
+test:
+  <<: *base
+  bundle: true
+  compress: true
+  style: html5
+  version: false
 production:
   <<: *base
   bundle: true

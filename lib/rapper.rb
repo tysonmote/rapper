@@ -6,6 +6,7 @@ end
 
 module Rapper
   
+  # Pass all method calls to <code>Rapper::Engine</code>
   def self.method_missing( name, *args )
     Rapper::Engine.send( name, *args )
   end

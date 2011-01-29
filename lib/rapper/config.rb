@@ -3,6 +3,10 @@ require 'yaml'
 module Rapper
   module Config
     
+    class InvalidEnvironment < StandardError; end
+    
+    attr_accessor :environment
+    
     protected
     
     # Load the Rapper configuration from a YAML file and all asset definition
@@ -15,6 +19,10 @@ module Rapper
     def load_config( config_path )
       @config = YAML.load_file( config_path )
       @definitions = {}
+      if env_config.nil?
+        raise InvalidEnvironment,
+          "The '#{@environment}' environment is not defined in #{config_path}"
+      end
       definition_path = File.join( env_config["definition_config_root"], "*.yml" )
       Dir[definition_path].each do |definition|
         type = File.basename( definition, ".yml" )
