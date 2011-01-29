@@ -1,68 +1,34 @@
 require 'yaml'
 
-class Rapper
-  class << self
-    def setup( config_file, environment )
-      @environment = environment
-      load_config( config_file )
-    end
-    
-    # Update version hashes for the given bundle types (defaults to all types).
-    # This does not write the updated bundle definition files out.
-    def refresh_versions( *types )
-      types = types.empty? ? self.types : types
-      log "Refreshing bundle versions for:", types.join( ", " )
+Dir[File.expand_path( File.dirname( __FILE__ ) + "/rapper/*.rb" )].each do |file|
+  require file
+end
+
+module Rapper
+  
+  def self.method_missing( name, *args )
+    Rapper::Engine.send( name, *args )
+  end
+  
+  class Engine
+    class << self
       
-      types.each do |type|
-        @definitions[type].each do |set, spec|
-          path = path_for( set, type, true ) ############### TODO
-          version = version( path )
-          log path, "=>", version
-          spec["version"] = version
-        end
-      end
-    end
-    
-    # TODO: needs better name
-    def update_definitions( *types )
-      types = types.empty? ? self.types : types
+      include Rapper::Config
+      include Rapper::Logging
+      include Rapper::Utils
+      include Rapper::Versioning
       
-      types.each do |type|
-        path = config_path( type ) ############### TODO
-        log "Updating", path
-        File.open( path, "w" ) do |file|
-          file.puts @definitions[type].to_yaml
-        end
+      # Load the configuration YAML file and set the current environment.
+      # 
+      # @param [String] config_path Path to the configuration YAML file.
+      # 
+      # @param [String,Symbol] environment The current environment. This must
+      #   map to an environment configured in the Rapper configuration file.
+      def setup( config_path, environment )
+        @environment = environment
+        load_config( config_path )
       end
-    end
-    alias :update_definition :update_definitions
-    
-    private
-    
-    def env_config
-      @config[@environment]
-    end
-    alias :c :env_config
-    
-    def load_config( config_file )
-      @config = YAML.load_file( config_file )
-      @definitions ||= {}
-      Dir[File.join( c["definition_config_root"], "*.yml" )].each do |bundles_definition_file|
-        type = File.basename( bundles_definition_file, ".yml" )
-        @definitions[type] = YAML.load_file( bundles_definition_file )
-      end
-    end
-    
-    def types
-      @definitions.keys
-    end
-    
-    def version( file_path )
-      Digest::MD5.file( path ).to_s[0,4]
-    end
-    
-    def log( *args )
-      puts args.join( " " ) if c["log"] == "stdout"
+      
     end
   end
 end
