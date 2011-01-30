@@ -2,7 +2,7 @@ module Rapper
   # Rapper-wide utility methods.
   module Utils
     
-    private
+    protected
     
     # Given an asset type and asset name, return a path to that asset, locally.
     def asset_path( type, name )

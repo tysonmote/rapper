@@ -4,7 +4,7 @@ module Rapper
   # Asset versioning methods.
   module Versioning
     
-    private
+    protected
     
     # Refresh the version hashes for the given asset types. If no arguments are
     # passed, version hashes for all asset types will be updated.

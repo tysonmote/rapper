@@ -2,7 +2,7 @@ module Rapper
   # Basic logging support.
   module Logging
     
-    private
+    protected
     
     # Outputs all arguments (joined with spaces) to <code>stdout</code> if
     # "log" is set to "stdout" in the environment configuration.

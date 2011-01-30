@@ -29,6 +29,8 @@ module Rapper
       end
     end
     
+    private
+    
     # Update the asset definition files. (Typically done to after regenerating
     # versions.)
     # 
