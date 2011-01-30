@@ -1,5 +1,5 @@
 base: &base
-  definition_config_root: spec/fixtures/config/bundles
+  definition_root: spec/fixtures/config/bundles
 development:
   <<: *base
   bundle: false

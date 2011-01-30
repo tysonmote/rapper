@@ -22,7 +22,7 @@ module Rapper
         raise Rapper::Errors::InvalidEnvironment,
           "The '#{@environment}' environment is not defined in #{config_path}"
       end
-      definition_path = File.join( env_config["definition_config_root"], "*.yml" )
+      definition_path = File.join( env_config["definition_root"], "*.yml" )
       Dir[definition_path].each do |definition|
         type = File.basename( definition, ".yml" )
         @definitions[type] = YAML.load_file( definition )
