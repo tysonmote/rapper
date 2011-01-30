@@ -82,12 +82,118 @@ Basic logging support.
 </div>
 
 
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
 
+    <ul class="summary">
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#log-instance_method" title="#log (instance method)">- (Object) <strong>log</strong>(*args) </a>
+    
+
+    
+  </span>
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Outputs all arguments (joined with spaces) to <tt>stdout</tt> if
+&quot;log&quot; is set to &quot;stdout&quot; in the environment
+configuration.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="log-instance_method">
+  
+    - (<tt>Object</tt>) <strong>log</strong>(*args)  <span class="extras">(private)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Outputs all arguments (joined with spaces) to <tt>stdout</tt> if
+&quot;log&quot; is set to &quot;stdout&quot; in the environment
+configuration.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>&lt;String&gt;</tt>)</span>
+      
+      
+        <span class='name'>args</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Strings to be output.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+11
+12
+13</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/rapper/logging.rb', line 11</span>
+
+<span class='def def kw'>def</span> <span class='log identifier id'>log</span><span class='lparen token'>(</span> <span class='mult op'>*</span><span class='args identifier id'>args</span> <span class='rparen token'>)</span>
+  <span class='puts identifier id'>puts</span> <span class='args identifier id'>args</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span> <span class='string val'>&quot; &quot;</span> <span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='env_config identifier id'>env_config</span><span class='lbrack token'>[</span><span class='string val'>&quot;log&quot;</span><span class='rbrack token'>]</span> <span class='eq op'>==</span> <span class='string val'>&quot;stdout&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
 </div>
     
     <div id="footer">
-  Generated on Sat Jan 29 20:27:03 2011 by 
+  Generated on Sat Jan 29 20:42:59 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>

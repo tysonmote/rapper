@@ -82,12 +82,109 @@ Rapper-wide utility methods.
 </div>
 
 
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
 
+    <ul class="summary">
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#asset_path-instance_method" title="#asset_path (instance method)">- (Object) <strong>asset_path</strong>(type, name) </a>
+    
+
+    
+  </span>
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Given an asset type and asset name, return a path to that asset, locally.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="asset_path-instance_method">
+  
+    - (<tt>Object</tt>) <strong>asset_path</strong>(type, name)  <span class="extras">(private)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Given an asset type and asset name, return a path to that asset, locally.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/rapper/utils.rb', line 8</span>
+
+<span class='def def kw'>def</span> <span class='asset_path identifier id'>asset_path</span><span class='lparen token'>(</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='@definitions ivar id'>@definitions</span><span class='lbrack token'>[</span><span class='type identifier id'>type</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+    <span class='raise identifier id'>raise</span> <span class='Rapper constant id'>Rapper</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='colon2 op'>::</span><span class='InvalidDefinitionType constant id'>InvalidDefinitionType</span><span class='comma token'>,</span>
+      <span class='dstring node'>&quot;'#{type}' is not a defined asset type.&quot;</span>
+  <span class='end end kw'>end</span>
+  
+  <span class='lbrack token'>[</span>
+    <span class='@definitions ivar id'>@definitions</span><span class='lbrack token'>[</span><span class='type identifier id'>type</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='string val'>&quot;source_root&quot;</span><span class='rbrack token'>]</span><span class='comma token'>,</span>
+    <span class='dstring node'>&quot;#{name}.#{@definitions[type][&quot;suffix&quot;]}&quot;</span>
+  <span class='rbrack token'>]</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span> <span class='string val'>&quot;/&quot;</span> <span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
 </div>
     
     <div id="footer">
-  Generated on Sat Jan 29 20:27:04 2011 by 
+  Generated on Sat Jan 29 20:43:00 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>
