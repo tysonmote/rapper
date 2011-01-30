@@ -180,7 +180,7 @@ Strings to be output.
       <pre class="code"><span class="info file"># File 'lib/rapper/logging.rb', line 11</span>
 
 <span class='def def kw'>def</span> <span class='log identifier id'>log</span><span class='lparen token'>(</span> <span class='mult op'>*</span><span class='args identifier id'>args</span> <span class='rparen token'>)</span>
-  <span class='puts identifier id'>puts</span> <span class='args identifier id'>args</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span> <span class='string val'>&quot; &quot;</span> <span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='env_config identifier id'>env_config</span><span class='lbrack token'>[</span><span class='string val'>&quot;log&quot;</span><span class='rbrack token'>]</span> <span class='eq op'>==</span> <span class='string val'>&quot;stdout&quot;</span>
+  <span class='puts identifier id'>puts</span> <span class='args identifier id'>args</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span> <span class='string val'>&quot; &quot;</span> <span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='get_config identifier id'>get_config</span><span class='lparen token'>(</span> <span class='string val'>&quot;log&quot;</span> <span class='rparen token'>)</span> <span class='eq op'>==</span> <span class='string val'>&quot;stdout&quot;</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -193,7 +193,7 @@ Strings to be output.
 </div>
     
     <div id="footer">
-  Generated on Sat Jan 29 23:49:11 2011 by 
+  Generated on Sun Jan 30 03:27:16 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>
