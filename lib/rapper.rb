@@ -24,6 +24,7 @@ module Rapper
       include Rapper::Config
       include Rapper::Logging
       include Rapper::Utils
+      include Rapper::Compressors
       include Rapper::Versioning
       
       # Load the configuration YAML file and set the current environment.
