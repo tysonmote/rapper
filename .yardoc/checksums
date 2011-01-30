@@ -1,0 +1,6 @@
+lib/rapper/versioning.rb dd3c71a859f2b9b67ed267e93cc18b5fa468eb70
+lib/rapper/utils.rb e7a50e58246a6c41e64ab776f97a02dca2e4c0e5
+lib/rapper/logging.rb 2c03b7266a9cea227d52a757efe04d81ad11a508
+lib/rapper/errors.rb 47bb30f30af68033efc8153d878c3bcdd05071c9
+lib/rapper.rb 09f56ca6bfe0d6b7bf1bc863bd529e7946d92391
+lib/rapper/config.rb e1dcf23151f26d1e5881e6fbf26e66c942b6ae2b
