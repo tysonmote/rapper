@@ -4,7 +4,7 @@ module Rapper
   # Rapper configuration and definition methods.
   module Config
     
-    attr_accessor :environment
+    attr_accessor :environment, :config, :definitions
     
     protected
     

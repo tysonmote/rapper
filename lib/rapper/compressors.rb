@@ -1,4 +1,5 @@
 require File.expand_path( File.dirname( __FILE__ ) + "/../yui/css_compressor.rb" )
+require "closure-compiler"
 
 module Rapper
   module Compressors
