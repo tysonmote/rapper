@@ -5,19 +5,15 @@ development:
   bundle: false
   compress: false
   tag_style: html5
-  version: false
+  versions: false
 test:
   <<: *base
   bundle: true
   compress: true
   tag_style: html
-  version: false
+  versions: false
   closure_compiler:
     compilation_level: ADVANCED_OPTIMIZATIONS
     formatting: pretty_print
-production:
+test_empty:
   <<: *base
-  bundle: true
-  compress: true
-  tag_style: xhtml
-  version: true

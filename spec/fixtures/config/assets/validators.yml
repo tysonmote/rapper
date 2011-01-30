@@ -1,4 +1,4 @@
---- !!omap 
+--- !omap 
 - source_root: spec/fixtures/validators
 - destination_root: spec/fixtures/validators
 - suffix: js

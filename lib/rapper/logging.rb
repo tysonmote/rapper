@@ -9,7 +9,7 @@ module Rapper
     # 
     # @param [<String>] args Strings to be output.
     def log( *args )
-      puts args.join( " " ) if env_config["log"] == "stdout"
+      puts args.join( " " ) if get_config( "log" ) == "stdout"
     end
     
   end

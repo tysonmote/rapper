@@ -63,9 +63,22 @@ describe Rapper do
       Rapper.env_config["version"].should be_false
     end
     
+    it "uses default config when environment config isn't set for the setting" do
+      Rapper.setup( "spec/fixtures/config/assets.yml", "test_empty" )
+      # private
+      Rapper.send( :get_config, "bundle" ).should be_true
+      Rapper.send( :get_config, "compress" ).should be_true
+      Rapper.send( :get_config, "versions" ).should be_true
+    end
+    
     it "loads asset definitions" do
       Rapper.setup( "spec/fixtures/config/assets.yml", "test" )
       Rapper.send( :asset_types ).sort.should == ["javascripts", "stylesheets", "validators"]
+      Rapper.definitions["stylesheets"]["source_root"].should == "spec/fixtures/stylesheets"
+      Rapper.definitions["stylesheets"]["suffix"].should == "css"
+      # Using a YAML::OMap here, so it looks a bit weird
+      Rapper.definitions["stylesheets"]["assets"].first.key?( "master" ).should be_true
+      Rapper.definitions["stylesheets"]["assets"].first["files"].should == ["reset", "base", "layout"]
     end
   end
   

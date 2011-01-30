@@ -29,13 +29,30 @@ module Rapper
       end
     end
     
-    private
+    protected
     
-    # Update the asset definition files. (Typically done to after regenerating
+    # Get the config setting for the given key.
+    # 
+    # @param [String] key Configuration key.
+    # 
+    # @return [String,Hash] If the current environment's config defines this
+    #   setting, return that value. If not, return the default setting. If the
+    #   default setting is a hash, return the default merged with the
+    #   environment's setting.
+    def get_config( key )
+      if default_config[key].is_a?( Hash )
+        default_config[key].merge( env_config[key] )
+      else
+        env_config[key] || default_config[key]
+      end
+    end
+    
+    # Update the asset definition files. (Typically done after regenerating
     # versions.)
     # 
     # @param [<String>] types Asset types to update the definition files for.
-    def update_asset_definitions( *types )
+    #   Defaults to all types.
+    def update_definitions( *types )
       types = types.empty? ? asset_types : types
       
       types.each do |type|
@@ -44,6 +61,19 @@ module Rapper
           file.puts @definitions[type].to_yaml
         end
       end
+    end
+    
+    private
+    
+    # @return [Hash] Default rapper configuration.
+    def default_config
+      {
+        "definition_root" => ".",
+        "bundle" => true,
+        "compress" => true,
+        "tag_style" => "html5",
+        "versions" => true
+      }
     end
     
     # @return [Hash] The configuration for the currently set environment.
