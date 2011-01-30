@@ -69,7 +69,7 @@
   
     
       <dt class="r2">Extended by:</dt>
-      <dd class="r2"><span class='object_link'><a href="Config.html" title="Rapper::Config (module)">Config</a></span>, <span class='object_link'><a href="Logging.html" title="Rapper::Logging (module)">Logging</a></span>, <span class='object_link'><a href="Utils.html" title="Rapper::Utils (module)">Utils</a></span>, <span class='object_link'><a href="Versioning.html" title="Rapper::Versioning (module)">Versioning</a></span></dd>
+      <dd class="r2"><span class='object_link'><a href="Compressors.html" title="Rapper::Compressors (module)">Compressors</a></span>, <span class='object_link'><a href="Config.html" title="Rapper::Config (module)">Config</a></span>, <span class='object_link'><a href="Logging.html" title="Rapper::Logging (module)">Logging</a></span>, <span class='object_link'><a href="Utils.html" title="Rapper::Utils (module)">Utils</a></span>, <span class='object_link'><a href="Versioning.html" title="Rapper::Versioning (module)">Versioning</a></span></dd>
       
     
   
@@ -96,6 +96,10 @@ The main Rapper class. Handles, well, everything.
   
 </div>
 
+  
+  
+  
+  
   
   
   
@@ -214,8 +218,18 @@ Watch the asset component files and rebuild the asset when they change.
   
   
   
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Compressors.html" title="Rapper::Compressors (module)">Compressors</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Compressors.html#compress_css-instance_method" title="Rapper::Compressors#compress_css (method)">compress_css</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
   <h3 class="inherited">Methods included from <span class='object_link'><a href="Utils.html" title="Rapper::Utils (module)">Utils</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="Utils.html#asset_path-instance_method" title="Rapper::Utils#asset_path (method)">asset_path</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="Utils.html#asset_path-instance_method" title="Rapper::Utils#asset_path (method)">asset_path</a></span>, <span class='object_link'><a href="Utils.html#join_files-instance_method" title="Rapper::Utils#join_files (method)">join_files</a></span></p>
 
   
   
@@ -266,12 +280,12 @@ TODO: <tt>package()</tt>?
       <pre class="lines">
 
 
-41
 42
-43</pre>
+43
+44</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper.rb', line 42</span>
 
 <span class='def def kw'>def</span> <span class='bundle identifier id'>bundle</span><span class='lparen token'>(</span> <span class='mult op'>*</span><span class='types identifier id'>types</span> <span class='rparen token'>)</span>
   <span class='comment val'># Bundle the assets according to the config and definitions.</span>
@@ -345,13 +359,13 @@ Rapper configuration file.
       <pre class="lines">
 
 
-35
 36
 37
-38</pre>
+38
+39</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper.rb', line 36</span>
 
 <span class='def def kw'>def</span> <span class='setup identifier id'>setup</span><span class='lparen token'>(</span> <span class='config_path identifier id'>config_path</span><span class='comma token'>,</span> <span class='environment identifier id'>environment</span> <span class='rparen token'>)</span>
   <span class='@environment ivar id'>@environment</span> <span class='assign token'>=</span> <span class='environment identifier id'>environment</span>
@@ -387,12 +401,12 @@ Watch the asset component files and rebuild the asset when they change.
       <pre class="lines">
 
 
-46
 47
-48</pre>
+48
+49</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper.rb', line 47</span>
 
 <span class='def def kw'>def</span> <span class='watch identifier id'>watch</span><span class='lparen token'>(</span> <span class='mult op'>*</span><span class='types identifier id'>types</span> <span class='rparen token'>)</span>
   <span class='comment val'># TODO: Callbacks? Forking? How do we do this?</span>
@@ -408,7 +422,7 @@ Watch the asset component files and rebuild the asset when they change.
 </div>
     
     <div id="footer">
-  Generated on Sat Jan 29 20:51:09 2011 by 
+  Generated on Sat Jan 29 23:49:11 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>

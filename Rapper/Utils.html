@@ -114,6 +114,30 @@ Given an asset type and asset name, return a path to that asset, locally.
 </li>
 
       
+        <li class="protected ">
+  <span class="summary_signature">
+    
+      <a href="#join_files-instance_method" title="#join_files (instance method)">- (Object) <strong>join_files</strong>(source_files, destination_file) </a>
+    
+
+    
+  </span>
+  
+  
+  <span class="note title protected">protected</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Contatenate one or more files.
+</p>
+</div></span>
+  
+</li>
+
+      
     </ul>
   
 
@@ -179,12 +203,92 @@ Given an asset type and asset name, return a path to that asset, locally.
 </table>
 </div>
     
+      <div class="method_details ">
+  <p class="signature " id="join_files-instance_method">
+  
+    - (<tt>Object</tt>) <strong>join_files</strong>(source_files, destination_file)  <span class="extras">(protected)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Contatenate one or more files. Uses <tt>cat</tt>.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>, <tt>String</tt>)</span>
+      
+      
+        <span class='name'>source_files</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+A path or array of paths to files to concatenate.
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>destination_file</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Destination for concatenated output.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+26
+27
+28
+29</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/rapper/utils.rb', line 26</span>
+
+<span class='def def kw'>def</span> <span class='join_files identifier id'>join_files</span><span class='lparen token'>(</span> <span class='source_files identifier id'>source_files</span><span class='comma token'>,</span> <span class='destination_file identifier id'>destination_file</span> <span class='rparen token'>)</span>
+  <span class='source_files identifier id'>source_files</span> <span class='assign token'>=</span> <span class='Array constant id'>Array</span><span class='lparen token'>(</span> <span class='source_files identifier id'>source_files</span> <span class='rparen token'>)</span><span class='dot token'>.</span><span class='uniq identifier id'>uniq</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span> <span class='string val'>&quot; &quot;</span> <span class='rparen token'>)</span>
+  <span class='system identifier id'>system</span> <span class='dstring node'>&quot;cat #{source_files} &gt; #{destination_file}&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
 
 </div>
     
     <div id="footer">
-  Generated on Sat Jan 29 20:51:10 2011 by 
+  Generated on Sat Jan 29 23:49:11 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>

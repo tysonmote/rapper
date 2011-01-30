@@ -468,7 +468,7 @@ The path to the configuration YAML file.
     <span class='raise identifier id'>raise</span> <span class='Rapper constant id'>Rapper</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='colon2 op'>::</span><span class='InvalidEnvironment constant id'>InvalidEnvironment</span><span class='comma token'>,</span>
       <span class='dstring node'>&quot;The '#{@environment}' environment is not defined in #{config_path}&quot;</span>
   <span class='end end kw'>end</span>
-  <span class='definition_path identifier id'>definition_path</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span> <span class='env_config identifier id'>env_config</span><span class='lbrack token'>[</span><span class='string val'>&quot;definition_config_root&quot;</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;*.yml&quot;</span> <span class='rparen token'>)</span>
+  <span class='definition_path identifier id'>definition_path</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span> <span class='env_config identifier id'>env_config</span><span class='lbrack token'>[</span><span class='string val'>&quot;definition_root&quot;</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;*.yml&quot;</span> <span class='rparen token'>)</span>
   <span class='Dir constant id'>Dir</span><span class='lbrack token'>[</span><span class='definition_path identifier id'>definition_path</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='definition identifier id'>definition</span><span class='bitor op'>|</span>
     <span class='type identifier id'>type</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='basename identifier id'>basename</span><span class='lparen token'>(</span> <span class='definition identifier id'>definition</span><span class='comma token'>,</span> <span class='string val'>&quot;.yml&quot;</span> <span class='rparen token'>)</span>
     <span class='@definitions ivar id'>@definitions</span><span class='lbrack token'>[</span><span class='type identifier id'>type</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='YAML constant id'>YAML</span><span class='dot token'>.</span><span class='load_file identifier id'>load_file</span><span class='lparen token'>(</span> <span class='definition identifier id'>definition</span> <span class='rparen token'>)</span>
@@ -561,7 +561,7 @@ Asset types to update the definition files for.
 </div>
     
     <div id="footer">
-  Generated on Sat Jan 29 20:51:09 2011 by 
+  Generated on Sat Jan 29 23:49:11 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>

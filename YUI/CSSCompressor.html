@@ -1,0 +1,895 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: YUI::CSSCompressor</title>
+<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (C)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../YUI.html" title="YUI (module)">YUI</a></span></span>
+     &raquo; 
+    <span class="title">CSSCompressor</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: YUI::CSSCompressor
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">YUI::CSSCompressor</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/yui/css_compressor.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+Compress CSS rules using a variety of techniques
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+
+  <h2>Class Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#input_size-class_method" title="input_size (class method)">+ (Object) <strong>input_size</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute input_size.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#output_size-class_method" title="output_size (class method)">+ (Object) <strong>output_size</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute output_size.
+</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#compress-class_method" title="compress (class method)">+ (String) <strong>compress</strong>(css, line_length = 0) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Compress CSS using the Ruby port of the YUI Compressor (by &lt;a
+href=&quot;https://github.com/rhulse&quot;&gt;Richard Hulse&lt;/a&gt;).
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#process_comments_and_strings-class_method" title="process_comments_and_strings (class method)">+ (Object) <strong>process_comments_and_strings</strong>(css_text) </a>
+    
+
+    
+  </span>
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#restore_preserved_comments_and_strings-class_method" title="restore_preserved_comments_and_strings (class method)">+ (Object) <strong>restore_preserved_comments_and_strings</strong>(clean_css) </a>
+    
+
+    
+  </span>
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  <div id="class_attr_details" class="attr_details">
+    <h2>Class Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <span id="input_size-class_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="input_size-class_method">
+  
+    + (<tt>Object</tt>) <strong>input_size</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute input_size
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yui/css_compressor.rb', line 51</span>
+
+<span class='def def kw'>def</span> <span class='input_size identifier id'>input_size</span>
+  <span class='@input_size ivar id'>@input_size</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <span id="output_size-class_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="output_size-class_method">
+  
+    + (<tt>Object</tt>) <strong>output_size</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute output_size
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yui/css_compressor.rb', line 51</span>
+
+<span class='def def kw'>def</span> <span class='output_size identifier id'>output_size</span>
+  <span class='@output_size ivar id'>@output_size</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="compress-class_method">
+  
+    + (<tt>String</tt>) <strong>compress</strong>(css, line_length = 0) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Compress CSS using the Ruby port of the YUI Compressor (by &lt;a
+href=&quot;https://github.com/rhulse&quot;&gt;Richard Hulse&lt;/a&gt;).
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>css</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The CSS to be compressed.
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <span class='name'>line_length</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>
+(optional) Number of columns to wrap to. Default is no wrapping.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Compressed CSS.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yui/css_compressor.rb', line 62</span>
+
+<span class='def def kw'>def</span> <span class='compress identifier id'>compress</span><span class='lparen token'>(</span><span class='css identifier id'>css</span><span class='comma token'>,</span> <span class='line_length identifier id'>line_length</span><span class='assign token'>=</span><span class='integer val'>0</span><span class='rparen token'>)</span>
+  <span class='@preservedTokens ivar id'>@preservedTokens</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+  <span class='@comments ivar id'>@comments</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+  <span class='@output_size ivar id'>@output_size</span> <span class='assign token'>=</span> <span class='integer val'>0</span>
+  <span class='@input_size ivar id'>@input_size</span> <span class='assign token'>=</span> <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='length identifier id'>length</span>
+  
+  <span class='css identifier id'>css</span> <span class='assign token'>=</span> <span class='process_comments_and_strings identifier id'>process_comments_and_strings</span><span class='lparen token'>(</span><span class='css identifier id'>css</span><span class='rparen token'>)</span>
+  
+  <span class='comment val'># Normalize all whitespace strings to single spaces. Easier to work with that way.</span>
+  <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span><span class='regexp val'>/\s+/</span><span class='comma token'>,</span> <span class='string val'>' '</span><span class='rparen token'>)</span>
+  
+  <span class='comment val'># Remove the spaces before the things that should not have spaces before them.</span>
+  <span class='comment val'># But, be careful not to turn &quot;p :link {...}&quot; into &quot;p:link{...}&quot;</span>
+  <span class='comment val'># Swap out any pseudo-class colons with the token, and then swap back.</span>
+  <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span><span class='regexp val'>/(?:^|\})[^\{:]+\s+:+[^\{]*\{/</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='match identifier id'>match</span><span class='bitor op'>|</span>
+    <span class='match identifier id'>match</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='string val'>':'</span><span class='comma token'>,</span> <span class='string val'>'___PSEUDOCLASSCOLON___'</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+  <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span><span class='regexp val'>/\s+([!\{\};:&gt;+\(\)\],])/</span><span class='comma token'>,</span> <span class='string val'>'\1'</span><span class='rparen token'>)</span>
+  <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span><span class='regexp val'>/([!\{\}:;&gt;+\(\[,])\s+/</span><span class='comma token'>,</span> <span class='string val'>'\1'</span><span class='rparen token'>)</span>
+  <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span><span class='string val'>'___PSEUDOCLASSCOLON___'</span><span class='comma token'>,</span> <span class='string val'>':'</span><span class='rparen token'>)</span>
+  
+  <span class='comment val'># special case for IE</span>
+  <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span><span class='regexp val'>/:first-(line|letter)(\{|,)/</span><span class='comma token'>,</span> <span class='string val'>':first-\1 \2'</span><span class='rparen token'>)</span>
+  
+  <span class='comment val'># no space after the end of a preserved comment</span>
+  <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span><span class='regexp val'>/\*\/ /</span><span class='comma token'>,</span> <span class='string val'>'*/'</span><span class='rparen token'>)</span>
+  
+  <span class='comment val'># If there is a @charset, then only allow one, and push to the top of the file.</span>
+  <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span><span class='regexp val'>/^(.*)(@charset &quot;[^&quot;]*&quot;;)/i</span><span class='comma token'>,</span> <span class='string val'>'\2\1'</span><span class='rparen token'>)</span>
+  <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span><span class='regexp val'>/^(\s*@charset [^;]+;\s*)+/i</span><span class='comma token'>,</span> <span class='string val'>'\1'</span><span class='rparen token'>)</span>
+  
+  <span class='comment val'># Put the space back in some cases, to support stuff like</span>
+  <span class='comment val'># @media screen and (-webkit-min-device-pixel-ratio:0){</span>
+  <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span><span class='regexp val'>/\band\(/i</span><span class='comma token'>,</span> <span class='string val'>&quot;and (&quot;</span><span class='rparen token'>)</span>
+  
+  <span class='comment val'># remove unnecessary semicolons</span>
+  <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span><span class='regexp val'>/;+\}/</span><span class='comma token'>,</span> <span class='string val'>'}'</span><span class='rparen token'>)</span>
+  
+  <span class='comment val'># Replace 0(%, em, ex, px, in, cm, mm, pt, pc) with just 0.</span>
+  <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span><span class='regexp val'>/([\s:])([+-]?0)(?:%|em|ex|px|in|cm|mm|pt|pc)/i</span><span class='comma token'>,</span> <span class='string val'>'\1\2'</span><span class='rparen token'>)</span>
+  
+  <span class='comment val'># Replace 0 0 0 0; with 0.</span>
+  <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span><span class='regexp val'>/:(?:0 )+0(;|\})/</span><span class='comma token'>,</span> <span class='string val'>':0\1'</span><span class='rparen token'>)</span>
+  
+  <span class='comment val'># Restore background-position:0 0; if required</span>
+  <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span><span class='regexp val'>/background-position:0(;|\})/i</span><span class='comma token'>,</span> <span class='string val'>'background-position:0 0\1'</span><span class='rparen token'>)</span>
+  
+  <span class='comment val'># Replace 0.6 with .6, but only when preceded by : or a space.</span>
+  <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span><span class='regexp val'>/(:|\s)0+\.(\d+)/</span><span class='comma token'>,</span> <span class='string val'>'\1.\2'</span><span class='rparen token'>)</span>
+  
+  <span class='comment val'># Shorten colors from rgb(51,102,153) to #336699</span>
+  <span class='comment val'># This makes it more likely that it'll get further compressed in the next step.</span>
+  <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span><span class='regexp val'>/rgb\s*\(\s*([0-9,\s]+)\s*\)/</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='match identifier id'>match</span><span class='bitor op'>|</span>
+    <span class='string val'>'#'</span> <span class='lshft op'>&lt;&lt;</span> <span class='$1 nth_ref id'>$1</span><span class='dot token'>.</span><span class='scan identifier id'>scan</span><span class='lparen token'>(</span><span class='regexp val'>/\d+/</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='map identifier id'>map</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='n identifier id'>n</span><span class='bitor op'>|</span> <span class='n identifier id'>n</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='lparen token'>(</span><span class='integer val'>16</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='rjust identifier id'>rjust</span><span class='lparen token'>(</span><span class='integer val'>2</span><span class='comma token'>,</span> <span class='string val'>'0'</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='join identifier id'>join</span>
+  <span class='end end kw'>end</span>
+  
+  <span class='comment val'># Shorten colors from #AABBCC to #ABC. Note that we want to make sure</span>
+  <span class='comment val'># the color is not preceded by either &quot;, &quot; or =. Indeed, the property</span>
+  <span class='comment val'>#     filter: chroma(color=&quot;#FFFFFF&quot;);</span>
+  <span class='comment val'># would become</span>
+  <span class='comment val'>#     filter: chroma(color=&quot;#FFF&quot;);</span>
+  <span class='comment val'># which makes the filter break in IE.</span>
+  <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span><span class='regexp val'>/([^&quot;'=\s])(\s?)\s*#([0-9a-f])\3([0-9a-f])\4([0-9a-f])\5/i</span><span class='comma token'>,</span> <span class='string val'>'\1\2#\3\4\5'</span><span class='rparen token'>)</span>
+  
+  <span class='comment val'># shorter opacity IE filter</span>
+  <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span><span class='regexp val'>/progid:DXImageTransform\.Microsoft\.Alpha\(Opacity=/i</span><span class='comma token'>,</span> <span class='string val'>&quot;alpha(opacity=&quot;</span><span class='rparen token'>)</span>
+  
+  <span class='comment val'># Remove empty rules.</span>
+  <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span><span class='regexp val'>/[^\};\{\/]+\{\}/</span><span class='comma token'>,</span> <span class='string val'>''</span><span class='rparen token'>)</span>
+  
+  <span class='if if kw'>if</span> <span class='lparen token'>(</span><span class='line_length identifier id'>line_length</span> <span class='gt op'>&gt;</span> <span class='integer val'>0</span><span class='rparen token'>)</span>
+    <span class='comment val'># Some source control tools don't like it when files containing lines longer</span>
+    <span class='comment val'># than, say 8000 characters, are checked in. The linebreak option is used in</span>
+    <span class='comment val'># that case to split long lines after a specific column.</span>
+    <span class='startIndex identifier id'>startIndex</span> <span class='assign token'>=</span> <span class='integer val'>0</span>
+    <span class='index identifier id'>index</span> <span class='assign token'>=</span> <span class='integer val'>0</span>
+    <span class='length identifier id'>length</span> <span class='assign token'>=</span> <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='length identifier id'>length</span>
+    <span class='while while kw'>while</span> <span class='lparen token'>(</span><span class='index identifier id'>index</span> <span class='lt op'>&lt;</span> <span class='length identifier id'>length</span><span class='rparen token'>)</span>
+      <span class='index identifier id'>index</span> <span class='opasgn op'>+=</span> <span class='integer val'>1</span>
+      <span class='if if kw'>if</span> <span class='lparen token'>(</span><span class='css identifier id'>css</span><span class='lbrack token'>[</span><span class='index identifier id'>index</span> <span class='minus op'>-</span> <span class='integer val'>1</span><span class='comma token'>,</span><span class='integer val'>1</span><span class='rbrack token'>]</span> <span class='eqq op'>===</span> <span class='string val'>'}'</span> <span class='andop op'>&amp;&amp;</span> <span class='index identifier id'>index</span> <span class='minus op'>-</span> <span class='startIndex identifier id'>startIndex</span> <span class='gt op'>&gt;</span> <span class='line_length identifier id'>line_length</span><span class='rparen token'>)</span>
+        <span class='css identifier id'>css</span> <span class='assign token'>=</span> <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='slice identifier id'>slice</span><span class='lparen token'>(</span><span class='integer val'>0</span><span class='comma token'>,</span> <span class='index identifier id'>index</span><span class='rparen token'>)</span> <span class='plus op'>+</span> <span class='string val'>&quot;\n&quot;</span> <span class='plus op'>+</span> <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='slice identifier id'>slice</span><span class='lparen token'>(</span><span class='index identifier id'>index</span><span class='comma token'>,</span> <span class='length identifier id'>length</span><span class='rparen token'>)</span>
+        <span class='startIndex identifier id'>startIndex</span> <span class='assign token'>=</span> <span class='index identifier id'>index</span>
+      <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+  
+  <span class='comment val'># Replace multiple semi-colons in a row by a single one</span>
+  <span class='comment val'># See SF bug #1980989</span>
+  <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span><span class='regexp val'>/[;]+/</span><span class='comma token'>,</span> <span class='string val'>';'</span><span class='rparen token'>)</span>
+  
+  <span class='comment val'>#restore preserved comments and strings</span>
+  <span class='css identifier id'>css</span> <span class='assign token'>=</span> <span class='restore_preserved_comments_and_strings identifier id'>restore_preserved_comments_and_strings</span><span class='lparen token'>(</span><span class='css identifier id'>css</span><span class='rparen token'>)</span>
+  
+  <span class='comment val'># top and tail whitespace</span>
+  <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='strip! fid id'>strip!</span>
+  
+  <span class='@output_size ivar id'>@output_size</span> <span class='assign token'>=</span> <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='length identifier id'>length</span>
+  <span class='css identifier id'>css</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="process_comments_and_strings-class_method">
+  
+    + (<tt>Object</tt>) <strong>process_comments_and_strings</strong>(css_text)  <span class="extras">(private)</span>
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yui/css_compressor.rb', line 164</span>
+
+<span class='def def kw'>def</span> <span class='process_comments_and_strings identifier id'>process_comments_and_strings</span><span class='lparen token'>(</span><span class='css_text identifier id'>css_text</span><span class='rparen token'>)</span>
+  <span class='css identifier id'>css</span> <span class='assign token'>=</span> <span class='css_text identifier id'>css_text</span><span class='dot token'>.</span><span class='clone identifier id'>clone</span>
+  
+  <span class='startIndex identifier id'>startIndex</span> <span class='assign token'>=</span> <span class='integer val'>0</span>
+  <span class='endIndex identifier id'>endIndex</span> <span class='assign token'>=</span> <span class='integer val'>0</span>
+  <span class='i identifier id'>i</span> <span class='assign token'>=</span> <span class='integer val'>0</span>
+  <span class='max identifier id'>max</span> <span class='assign token'>=</span> <span class='integer val'>0</span>
+  <span class='token identifier id'>token</span> <span class='assign token'>=</span> <span class='string val'>''</span>
+  <span class='totallen identifier id'>totallen</span> <span class='assign token'>=</span> <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='length identifier id'>length</span>
+  <span class='placeholder identifier id'>placeholder</span> <span class='assign token'>=</span> <span class='string val'>''</span>
+  
+  <span class='comment val'># collect all comment blocks</span>
+  <span class='while while kw'>while</span> <span class='lparen token'>(</span><span class='startIndex identifier id'>startIndex</span> <span class='assign token'>=</span> <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='index identifier id'>index</span><span class='lparen token'>(</span><span class='regexp val'>/\/\*/</span><span class='comma token'>,</span> <span class='startIndex identifier id'>startIndex</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+    <span class='endIndex identifier id'>endIndex</span> <span class='assign token'>=</span> <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='index identifier id'>index</span><span class='lparen token'>(</span><span class='regexp val'>/\*\//</span><span class='comma token'>,</span> <span class='startIndex identifier id'>startIndex</span> <span class='plus op'>+</span> <span class='integer val'>2</span><span class='rparen token'>)</span>
+    <span class='unless unless kw'>unless</span> <span class='endIndex identifier id'>endIndex</span>
+      <span class='endIndex identifier id'>endIndex</span> <span class='assign token'>=</span> <span class='totallen identifier id'>totallen</span>
+    <span class='end end kw'>end</span>
+    <span class='token identifier id'>token</span> <span class='assign token'>=</span> <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='slice identifier id'>slice</span><span class='lparen token'>(</span><span class='startIndex identifier id'>startIndex</span><span class='plus op'>+</span><span class='float val'>2</span><span class='dot2 op'>..</span><span class='endIndex identifier id'>endIndex</span><span class='minus op'>-</span><span class='integer val'>1</span><span class='rparen token'>)</span>
+    <span class='@comments ivar id'>@comments</span><span class='dot token'>.</span><span class='push identifier id'>push</span><span class='lparen token'>(</span><span class='token identifier id'>token</span><span class='rparen token'>)</span>
+    <span class='css identifier id'>css</span> <span class='assign token'>=</span> <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='slice identifier id'>slice</span><span class='lparen token'>(</span><span class='integer val'>0</span><span class='dot2 op'>..</span><span class='startIndex identifier id'>startIndex</span><span class='plus op'>+</span><span class='integer val'>1</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='plus op'>+</span> <span class='string val'>&quot;___YUICSSMIN_PRESERVE_CANDIDATE_COMMENT_&quot;</span> <span class='plus op'>+</span> <span class='lparen token'>(</span><span class='@comments ivar id'>@comments</span><span class='dot token'>.</span><span class='length identifier id'>length</span> <span class='minus op'>-</span> <span class='integer val'>1</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='plus op'>+</span> <span class='string val'>&quot;___&quot;</span> <span class='plus op'>+</span> <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='slice identifier id'>slice</span><span class='lparen token'>(</span><span class='endIndex identifier id'>endIndex</span><span class='comma token'>,</span> <span class='totallen identifier id'>totallen</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
+    <span class='startIndex identifier id'>startIndex</span> <span class='opasgn op'>+=</span> <span class='integer val'>2</span>
+  <span class='end end kw'>end</span>
+  
+  <span class='comment val'># preserve strings so their content doesn't get accidentally minified</span>
+  <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span><span class='regexp val'>/(&quot;([^\\&quot;]|\\.|\\)*&quot;)|('([^\\']|\\.|\\)*')/</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='match identifier id'>match</span><span class='bitor op'>|</span>
+    <span class='quote identifier id'>quote</span> <span class='assign token'>=</span> <span class='match identifier id'>match</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='comma token'>,</span><span class='integer val'>1</span><span class='rbrack token'>]</span>
+    <span class='string identifier id'>string</span> <span class='assign token'>=</span> <span class='match identifier id'>match</span><span class='dot token'>.</span><span class='slice identifier id'>slice</span><span class='lparen token'>(</span><span class='float val'>1</span><span class='dot2 op'>..</span><span class='integer val'>-2</span><span class='rparen token'>)</span>
+    
+    <span class='comment val'># maybe the string contains a comment-like substring?</span>
+    <span class='comment val'># one, maybe more? put'em back then</span>
+    <span class='if if kw'>if</span> <span class='string identifier id'>string</span> <span class='match op'>=~</span> <span class='regexp val'>/___YUICSSMIN_PRESERVE_CANDIDATE_COMMENT_/</span>
+      <span class='@comments ivar id'>@comments</span><span class='dot token'>.</span><span class='each_index identifier id'>each_index</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='index identifier id'>index</span><span class='bitor op'>|</span>
+        <span class='string identifier id'>string</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span><span class='dregexp node'>/___YUICSSMIN_PRESERVE_CANDIDATE_COMMENT_#{index.to_s}___/</span><span class='comma token'>,</span> <span class='@comments ivar id'>@comments</span><span class='lbrack token'>[</span><span class='index identifier id'>index</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+      <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+    
+    <span class='comment val'># minify alpha opacity in filter strings</span>
+    <span class='string identifier id'>string</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span><span class='regexp val'>/progid:DXImageTransform\.Microsoft\.Alpha\(Opacity=/i</span><span class='comma token'>,</span> <span class='string val'>&quot;alpha(opacity=&quot;</span><span class='rparen token'>)</span>
+    <span class='@preservedTokens ivar id'>@preservedTokens</span><span class='dot token'>.</span><span class='push identifier id'>push</span><span class='lparen token'>(</span><span class='string identifier id'>string</span><span class='rparen token'>)</span>
+    
+    <span class='quote identifier id'>quote</span> <span class='plus op'>+</span> <span class='string val'>&quot;___YUICSSMIN_PRESERVED_TOKEN_&quot;</span> <span class='plus op'>+</span> <span class='lparen token'>(</span><span class='@preservedTokens ivar id'>@preservedTokens</span><span class='dot token'>.</span><span class='length identifier id'>length</span> <span class='minus op'>-</span> <span class='integer val'>1</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='plus op'>+</span> <span class='string val'>&quot;___&quot;</span> <span class='plus op'>+</span> <span class='quote identifier id'>quote</span>
+  <span class='end end kw'>end</span>
+  
+  <span class='comment val'># used to jump one index in loop</span>
+  <span class='ie5_hack identifier id'>ie5_hack</span> <span class='assign token'>=</span> <span class='false false kw'>false</span>
+  <span class='comment val'># strings are safe, now wrestle the comments</span>
+  <span class='@comments ivar id'>@comments</span><span class='dot token'>.</span><span class='each_index identifier id'>each_index</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='index identifier id'>index</span><span class='bitor op'>|</span>
+    <span class='if if kw'>if</span> <span class='ie5_hack identifier id'>ie5_hack</span>
+      <span class='ie5_hack identifier id'>ie5_hack</span> <span class='assign token'>=</span> <span class='false false kw'>false</span>
+      <span class='next next kw'>next</span>
+    <span class='end end kw'>end</span>
+    
+    <span class='token identifier id'>token</span> <span class='assign token'>=</span> <span class='@comments ivar id'>@comments</span><span class='lbrack token'>[</span><span class='index identifier id'>index</span><span class='rbrack token'>]</span>
+    <span class='placeholder identifier id'>placeholder</span> <span class='assign token'>=</span> <span class='string val'>&quot;___YUICSSMIN_PRESERVE_CANDIDATE_COMMENT_&quot;</span> <span class='plus op'>+</span> <span class='index identifier id'>index</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='plus op'>+</span> <span class='string val'>&quot;___&quot;</span>
+    
+    <span class='comment val'># ! in the first position of the comment means preserve</span>
+    <span class='comment val'># so push to the preserved tokens keeping the !</span>
+    <span class='if if kw'>if</span> <span class='lparen token'>(</span><span class='token identifier id'>token</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='comma token'>,</span><span class='integer val'>1</span><span class='rbrack token'>]</span> <span class='eqq op'>===</span> <span class='string val'>&quot;!&quot;</span><span class='rparen token'>)</span>
+      <span class='@preservedTokens ivar id'>@preservedTokens</span><span class='dot token'>.</span><span class='push identifier id'>push</span><span class='lparen token'>(</span><span class='token identifier id'>token</span><span class='rparen token'>)</span>
+      <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span> <span class='dregexp node'>/#{placeholder}/i</span><span class='comma token'>,</span>  <span class='string val'>&quot;___YUICSSMIN_PRESERVED_TOKEN_&quot;</span> <span class='plus op'>+</span> <span class='lparen token'>(</span><span class='@preservedTokens ivar id'>@preservedTokens</span><span class='dot token'>.</span><span class='length identifier id'>length</span> <span class='minus op'>-</span> <span class='integer val'>1</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='plus op'>+</span> <span class='string val'>&quot;___&quot;</span><span class='rparen token'>)</span>
+      <span class='next next kw'>next</span>
+    <span class='end end kw'>end</span>
+    
+    <span class='comment val'># \ in the last position looks like hack for Mac/IE5</span>
+    <span class='comment val'># shorten that to /*\*/ and the next one to /**/</span>
+    <span class='if if kw'>if</span> <span class='lparen token'>(</span><span class='token identifier id'>token</span><span class='lbrack token'>[</span><span class='integer val'>-1</span><span class='comma token'>,</span><span class='integer val'>1</span><span class='rbrack token'>]</span> <span class='eqq op'>===</span> <span class='string val'>&quot;\\&quot;</span><span class='rparen token'>)</span>
+      <span class='@preservedTokens ivar id'>@preservedTokens</span><span class='dot token'>.</span><span class='push identifier id'>push</span><span class='lparen token'>(</span><span class='string val'>&quot;\\&quot;</span><span class='rparen token'>)</span>
+      <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span> <span class='dregexp node'>/#{placeholder}/</span><span class='comma token'>,</span>  <span class='string val'>&quot;___YUICSSMIN_PRESERVED_TOKEN_&quot;</span> <span class='plus op'>+</span> <span class='lparen token'>(</span><span class='@preservedTokens ivar id'>@preservedTokens</span><span class='dot token'>.</span><span class='length identifier id'>length</span> <span class='minus op'>-</span> <span class='integer val'>1</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='plus op'>+</span> <span class='string val'>&quot;___&quot;</span><span class='rparen token'>)</span>
+      <span class='comment val'># keep the next comment but remove its content</span>
+      <span class='@preservedTokens ivar id'>@preservedTokens</span><span class='dot token'>.</span><span class='push identifier id'>push</span><span class='lparen token'>(</span><span class='string val'>&quot;&quot;</span><span class='rparen token'>)</span>
+      <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span><span class='dregexp node'>/___YUICSSMIN_PRESERVE_CANDIDATE_COMMENT_#{index+1}___/</span><span class='comma token'>,</span>  <span class='string val'>&quot;___YUICSSMIN_PRESERVED_TOKEN_&quot;</span> <span class='plus op'>+</span> <span class='lparen token'>(</span><span class='@preservedTokens ivar id'>@preservedTokens</span><span class='dot token'>.</span><span class='length identifier id'>length</span> <span class='minus op'>-</span> <span class='integer val'>1</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='plus op'>+</span> <span class='string val'>&quot;___&quot;</span><span class='rparen token'>)</span>
+      <span class='ie5_hack identifier id'>ie5_hack</span> <span class='assign token'>=</span> <span class='true true kw'>true</span>
+      <span class='next next kw'>next</span>
+    <span class='end end kw'>end</span>
+    
+    <span class='comment val'># keep empty comments after child selectors (IE7 hack)</span>
+    <span class='comment val'># e.g. html &gt;/**/ body</span>
+    <span class='if if kw'>if</span> <span class='lparen token'>(</span><span class='lparen token'>(</span><span class='token identifier id'>token</span><span class='dot token'>.</span><span class='length identifier id'>length</span> <span class='eqq op'>===</span> <span class='integer val'>0</span><span class='rparen token'>)</span> <span class='andop op'>&amp;&amp;</span> <span class='lparen token'>(</span><span class='startIndex identifier id'>startIndex</span> <span class='assign token'>=</span> <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='index identifier id'>index</span><span class='lparen token'>(</span> <span class='dregexp node'>/#{placeholder}/</span><span class='rparen token'>)</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+      <span class='if if kw'>if</span> <span class='lparen token'>(</span><span class='startIndex identifier id'>startIndex</span> <span class='gt op'>&gt;</span> <span class='integer val'>2</span><span class='rparen token'>)</span>
+        <span class='if if kw'>if</span> <span class='lparen token'>(</span><span class='css identifier id'>css</span><span class='lbrack token'>[</span><span class='startIndex identifier id'>startIndex</span> <span class='minus op'>-</span> <span class='integer val'>3</span><span class='comma token'>,</span><span class='integer val'>1</span><span class='rbrack token'>]</span> <span class='eqq op'>===</span> <span class='string val'>'&gt;'</span><span class='rparen token'>)</span>
+          <span class='@preservedTokens ivar id'>@preservedTokens</span><span class='dot token'>.</span><span class='push identifier id'>push</span><span class='lparen token'>(</span><span class='string val'>&quot;&quot;</span><span class='rparen token'>)</span>
+          <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span><span class='dregexp node'>/#{placeholder}/</span><span class='comma token'>,</span>  <span class='string val'>&quot;___YUICSSMIN_PRESERVED_TOKEN_&quot;</span> <span class='plus op'>+</span> <span class='lparen token'>(</span><span class='@preservedTokens ivar id'>@preservedTokens</span><span class='dot token'>.</span><span class='length identifier id'>length</span> <span class='minus op'>-</span> <span class='integer val'>1</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='plus op'>+</span> <span class='string val'>&quot;___&quot;</span><span class='rparen token'>)</span>
+        <span class='end end kw'>end</span>
+      <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+    
+    <span class='comment val'># in all other cases kill the comment</span>
+    <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='gsub! fid id'>gsub!</span><span class='lparen token'>(</span> <span class='dregexp node'>/\/\*#{placeholder}\*\//</span><span class='comma token'>,</span> <span class='string val'>&quot;&quot;</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+  
+  <span class='css identifier id'>css</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="restore_preserved_comments_and_strings-class_method">
+  
+    + (<tt>Object</tt>) <strong>restore_preserved_comments_and_strings</strong>(clean_css)  <span class="extras">(private)</span>
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/yui/css_compressor.rb', line 257</span>
+
+<span class='def def kw'>def</span> <span class='restore_preserved_comments_and_strings identifier id'>restore_preserved_comments_and_strings</span><span class='lparen token'>(</span><span class='clean_css identifier id'>clean_css</span><span class='rparen token'>)</span>
+  <span class='css identifier id'>css</span> <span class='assign token'>=</span> <span class='clean_css identifier id'>clean_css</span><span class='dot token'>.</span><span class='clone identifier id'>clone</span>
+  <span class='css_length identifier id'>css_length</span> <span class='assign token'>=</span> <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='length identifier id'>length</span>
+  <span class='@preservedTokens ivar id'>@preservedTokens</span><span class='dot token'>.</span><span class='each_index identifier id'>each_index</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='index identifier id'>index</span><span class='bitor op'>|</span>
+    <span class='comment val'># slice these back into place rather than regex, because</span>
+    <span class='comment val'># complex nested strings cause the replacement to fail</span>
+    <span class='placeholder identifier id'>placeholder</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;___YUICSSMIN_PRESERVED_TOKEN_#{index}___&quot;</span>
+    <span class='startIndex identifier id'>startIndex</span> <span class='assign token'>=</span> <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='index identifier id'>index</span><span class='lparen token'>(</span><span class='placeholder identifier id'>placeholder</span><span class='comma token'>,</span> <span class='integer val'>0</span><span class='rparen token'>)</span>
+    <span class='next next kw'>next</span> <span class='unless unless_mod kw'>unless</span> <span class='startIndex identifier id'>startIndex</span> <span class='comment val'># skip if nil</span>
+    <span class='endIndex identifier id'>endIndex</span> <span class='assign token'>=</span> <span class='startIndex identifier id'>startIndex</span> <span class='plus op'>+</span> <span class='placeholder identifier id'>placeholder</span><span class='dot token'>.</span><span class='length identifier id'>length</span>
+    
+    <span class='css identifier id'>css</span> <span class='assign token'>=</span> <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='slice identifier id'>slice</span><span class='lparen token'>(</span><span class='integer val'>0</span><span class='dot2 op'>..</span><span class='startIndex identifier id'>startIndex</span><span class='minus op'>-</span><span class='integer val'>1</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='plus op'>+</span> <span class='@preservedTokens ivar id'>@preservedTokens</span><span class='lbrack token'>[</span><span class='index identifier id'>index</span><span class='rbrack token'>]</span> <span class='plus op'>+</span> <span class='css identifier id'>css</span><span class='dot token'>.</span><span class='slice identifier id'>slice</span><span class='lparen token'>(</span><span class='endIndex identifier id'>endIndex</span><span class='comma token'>,</span> <span class='css_length identifier id'>css_length</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
+  <span class='end end kw'>end</span>
+  
+  <span class='css identifier id'>css</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sat Jan 29 23:49:11 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.4 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>
