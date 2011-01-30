@@ -3,14 +3,48 @@ require File.expand_path( File.dirname( __FILE__ ) + "/../yui/css_compressor.rb"
 module Rapper
   module Compressors
     
-    # Use Richard Hulse's port of the YUI CSS Compressor to compress the given
-    # CSS string.
+    # Use Richard Hulse's port of the YUI CSS Compressor to compress the
+    # contents of a source file to a destination file.
     # 
-    # @param [String] css CSS to be compressed.
+    # @param [String] source Path to source CSS file.
     # 
-    # @return [String] Compressed CSS.
-    def compress_css( css )
-      YUI::CSSCompressor.compress( css )
+    # @param [String] destination Path to destination CSS file.
+    #   written to.
+    def compress_css( source, destination )
+      source = readable_file( source )
+      destination = writable_file( source )
+      
+      destination.write( YUI::CSSCompressor.compress( source.read ) )
+      destination.write "\n"
+      
+      source.close && destination.close
+    end
+    
+    # Use Google's Closure Compiler to compress the JavaScript from a source
+    # file to a destination file.
+    # 
+    # @param [String] source Path to source JavaScript file.
+    # 
+    # @param [String] destination Path to destination JavaScript file.
+    def compress_js( source, destination, opts={} )
+      source = readable_file( source )
+      destination = writable_file( source )
+      closure = Closure::Compiler.new( opts )
+      
+      destination.write( closure.compile( destination ) )
+      destination.write "\n"
+      
+      source.close && destination.close
+    end
+    
+    private
+    
+    def readable_file( path )
+      File.new( path, 'r' )
+    end
+    
+    def writable_file( path )
+      File.new( path, 'w', 0644 )
     end
     
   end

@@ -20,7 +20,7 @@ Jeweler::Tasks.new do |gem|
   gem.authors = ["Tyson Tate", "Chris van Pelt"]
   
   # Runtime dependencies
-  gem.add_runtime_dependency "yui-compressor", "~> 0.9.3"
+  gem.add_runtime_dependency "closure-compiler", "~> 1.0.0"
   
   # Development dependencies
   gem.add_development_dependency "rspec", "~> 1.3.1"

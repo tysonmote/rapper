@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem "yui-compressor", ">=0.9.3"
+gem "closure-compiler", "~> 1.0.0"
 
 group :development do
   gem "rspec", "~> 1.3.1"

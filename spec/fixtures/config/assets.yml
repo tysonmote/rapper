@@ -12,6 +12,9 @@ test:
   compress: true
   tag_style: html
   version: false
+  closure_compiler:
+    compilation_level: ADVANCED_OPTIMIZATIONS
+    formatting: pretty_print
 production:
   <<: *base
   bundle: true
