@@ -1,9 +1,0 @@
-source_root: spec/fixtures/validators
-destination_root: spec/fixtures/validators
-suffix: js
-assets:
-  --- !omap 
-  - string: 
-      files: 
-      - spec/fixtures/javascripts/string_1
-      version: fh83

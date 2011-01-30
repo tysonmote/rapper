@@ -1,0 +1,10 @@
+--- !!omap 
+- source_root: spec/fixtures/validators
+- destination_root: spec/fixtures/validators
+- suffix: js
+- assets:
+  - master: 
+    files: 
+    - spec/fixtures/javascripts/foo
+    - spec/fixtures/javascripts/bar
+    version: 3de3

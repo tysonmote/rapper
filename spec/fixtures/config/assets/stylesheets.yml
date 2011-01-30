@@ -1,0 +1,11 @@
+--- !!omap 
+- source_root: spec/fixtures/stylesheets
+- destination_root: spec/fixtures/stylesheets
+- suffix: css
+- assets:
+  - master: 
+    files: 
+    - reset
+    - base
+    - layout
+    version: 3de3

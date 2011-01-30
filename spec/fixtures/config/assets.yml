@@ -1,5 +1,5 @@
 base: &base
-  definition_root: spec/fixtures/config/bundles
+  definition_root: spec/fixtures/config/assets
 development:
   <<: *base
   bundle: false
@@ -10,11 +10,11 @@ test:
   <<: *base
   bundle: true
   compress: true
-  tag_style: html5
+  tag_style: html
   version: false
 production:
   <<: *base
   bundle: true
   compress: true
-  tag_style: html5
+  tag_style: xhtml
   version: true
