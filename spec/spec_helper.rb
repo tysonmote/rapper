@@ -13,6 +13,6 @@ Spec::Runner.configure do |config|
   end
   
   config.after :each do
-    Dir[ "tmp/*" ].each { |f| FileUtils.rm( f ) }
+    # Dir[ "tmp/*" ].each { |f| FileUtils.rm( f ) }
   end
 end

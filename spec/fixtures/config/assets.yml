@@ -11,7 +11,3 @@ test:
     formatting: pretty_print
 test_empty:
   <<: *base
-test_concatenation:
-  definition_root: spec/fixtures/config/assets/concatenation
-  bundle: true
-  compress: false

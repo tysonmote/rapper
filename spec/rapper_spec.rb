@@ -92,20 +92,44 @@ describe Rapper do
     it "can log to a file"
   end
   
-  describe "bundling" do    
-    it "concatenates files" do
-      Rapper.setup( "spec/fixtures/config/assets.yml", "test_concatenation" )
-      Rapper.package
-      
-      File.read( "tmp/base.css" ).should == "body {\n  margin: 0px 0px 0px 0px;\n  color: #333333;\n}\n* {\n  margin: 0px 0px 0px 0px;\n  color: #ffffff;\n}\n"
-      File.read( "tmp/base_reversed.css" ).should == "* {\n  margin: 0px 0px 0px 0px;\n  color: #ffffff;\n}\nbody {\n  margin: 0px 0px 0px 0px;\n  color: #333333;\n}\n"
+  describe "packaging test cases" do
+    def file_names( path )
+      Dir[path].map do |path|
+        File.basename( path )
+      end
     end
     
+    Dir["spec/test_cases/*"].each do |folder|
+      next unless File.directory?( folder )
+      name = folder.split( "/" ).last
+      results_paths = "tmp/*.*"
+      expecteds_paths = "#{folder}/expected/*.*"
+      
+      it "passes the '#{name}' test case" do
+        Rapper.setup( "#{folder}/assets.yml", "test" )
+        Rapper.package
+        
+        # Produces the same exact individual files
+        file_names( results_paths ).should == file_names( expecteds_paths )
+        # Contents are all the same
+        results = Dir[results_paths]
+        expecteds = Dir[expecteds_paths]
+        
+        results.each_index do |i|
+          unless File.read( results[i] ) == File.read( expecteds[i] )
+            # p File.read( results[i] )
+            raise "#{results[i]} did not match #{expecteds[i]}"
+          end
+        end
+      end
+    end
+  end
+  
+  describe "bundling" do
     it "raises an error if a file doesn't exist"
   end
   
   describe "compressing" do
-    it "compresses, if configured to"
     it "can be turned off"
   end
   
