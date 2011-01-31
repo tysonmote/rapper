@@ -43,11 +43,11 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 module YUI
-  
-  # Compress CSS rules using a variety of techniques
-  class CSSCompressor
+  # Methods for working with CSS.
+  class CSS
     
     class << self
+      
       attr_reader :input_size, :output_size
       
       # Compress CSS using the Ruby port of the YUI Compressor (by
@@ -161,6 +161,8 @@ module YUI
       
       private
       
+      # Process comments (preserve special comments, nuke the rest) and strings
+      # (preserve them).
       def process_comments_and_strings(css_text)
         css = css_text.clone
         
@@ -254,6 +256,7 @@ module YUI
         css
       end
       
+      # Restore @preservedTokens back in to the css.
       def restore_preserved_comments_and_strings(clean_css)
         css = clean_css.clone
         css_length = css.length

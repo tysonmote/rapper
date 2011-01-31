@@ -2,6 +2,7 @@ require File.expand_path( File.dirname( __FILE__ ) + "/../yui/css_compressor.rb"
 require "closure-compiler"
 
 module Rapper
+  # Compression methods for various types of assets.
   module Compressors
     
     # Use Richard Hulse's port of the YUI CSS Compressor to compress the
@@ -15,7 +16,7 @@ module Rapper
       source = readable_file( source )
       destination = writable_file( source )
       
-      destination.write( YUI::CSSCompressor.compress( source.read ) )
+      destination.write( YUI::CSS.compress( source.read ) )
       destination.write "\n"
       
       source.close && destination.close
@@ -36,16 +37,6 @@ module Rapper
       destination.write "\n"
       
       source.close && destination.close
-    end
-    
-    private
-    
-    def readable_file( path )
-      File.new( path, 'r' )
-    end
-    
-    def writable_file( path )
-      File.new( path, 'w', 0644 )
     end
     
   end

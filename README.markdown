@@ -36,11 +36,11 @@ Rapper is configured using a YAML file. Example:
 
 Set up rapper with the config file and current environment:
 
-    Rapper.setup( "config/assets.yml", "development" )
+    engine = Rapper::Engine.new( "config/assets.yml", "development" )
 
 And away you go!
 
-    Rapper.package
+    engine.package
 
 ## Rapper definitions
 

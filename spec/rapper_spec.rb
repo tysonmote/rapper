@@ -20,7 +20,7 @@ describe Closure::Compiler do
     end
 end
 
-describe YUI::CSSCompressor do
+describe YUI::CSS do
   # https://github.com/rhulse/ruby-css-toolkit/blob/master/test/yui_compressor_test.rb
   
   test_files = Dir[File.join( File.dirname( __FILE__ ), '/fixtures/yui_css/*.css' )]
@@ -30,7 +30,7 @@ describe YUI::CSSCompressor do
     test_name = File.basename( file, ".css" )
     
     it "passes the \"#{test_name}\" test case" do
-      YUI::CSSCompressor.compress( test_css ).should == expected_css
+      YUI::CSS.compress( test_css ).should == expected_css
     end
   end
 end
@@ -39,50 +39,50 @@ describe Rapper do
   describe "setup" do
     it "loads configuration and environment" do
       lambda do
-        Rapper.setup( "spec/fixtures/config/assets.yml", "test" )
+        Rapper::Engine.new( "spec/fixtures/config/assets.yml", "test" )
       end.should_not raise_error
     end
     
     it "bombs out if given a bad configuration file" do
       lambda do
-        Rapper.setup( "spec/fixtures/config/fake.yml", "test" )
+        Rapper::Engine.new( "spec/fixtures/config/fake.yml", "test" )
       end.should raise_error( Errno::ENOENT )
     end
     
     it "bombs out if given an invalid environment" do
       lambda do
-        Rapper.setup( "spec/fixtures/config/assets.yml", "error" )
+        Rapper::Engine.new( "spec/fixtures/config/assets.yml", "error" )
       end.should raise_error( Rapper::Errors::InvalidEnvironment )
     end
     
     it "uses the given environment's specific config" do
-      Rapper.setup( "spec/fixtures/config/assets.yml", "test" )
-      Rapper.environment.should == "test"
+      rapper = Rapper::Engine.new( "spec/fixtures/config/assets.yml", "test" )
+      rapper.environment.should == "test"
       # private
-      Rapper.env_config["bundle"].should be_true
-      Rapper.env_config["compress"].should be_true
-      Rapper.env_config["version"].should be_false
+      rapper.send( :env_config )["bundle"].should be_true
+      rapper.send( :env_config )["compress"].should be_true
+      rapper.send( :env_config )["version"].should be_false
     end
     
     it "uses default config when environment config isn't set for the setting" do
-      Rapper.setup( "spec/fixtures/config/assets.yml", "test_empty" )
+      rapper = Rapper::Engine.new( "spec/fixtures/config/assets.yml", "test_empty" )
       # private
-      Rapper.send( :get_config, "bundle" ).should be_true
-      Rapper.send( :get_config, "compress" ).should be_true
-      Rapper.send( :get_config, "versions" ).should be_true
-      Rapper.send( :get_config, "closure_compiler" ).should == {
+      rapper.send( :get_config, "bundle" ).should be_true
+      rapper.send( :get_config, "compress" ).should be_true
+      rapper.send( :get_config, "versions" ).should be_true
+      rapper.send( :get_config, "closure_compiler" ).should == {
         "compilation_level" => "SIMPLE_OPTIMIZATIONS"
       }
     end
     
     it "loads asset definitions" do
-      Rapper.setup( "spec/fixtures/config/assets.yml", "test" )
-      Rapper.send( :asset_types ).sort.should == ["javascripts", "stylesheets", "validators"]
-      Rapper.definitions["stylesheets"]["source_root"].should == "spec/fixtures/stylesheets"
-      Rapper.definitions["stylesheets"]["suffix"].should == "css"
+      rapper = Rapper::Engine.new( "spec/fixtures/config/assets.yml", "test" )
+      rapper.send( :asset_types ).sort.should == ["javascripts", "stylesheets", "validators"]
+      rapper.definitions["stylesheets"]["source_root"].should == "spec/fixtures/stylesheets"
+      rapper.definitions["stylesheets"]["suffix"].should == "css"
       # Using a YAML::OMap here, so it looks a bit weird
-      Rapper.definitions["stylesheets"]["assets"].first.key?( "master" ).should be_true
-      Rapper.definitions["stylesheets"]["assets"].first["files"].should == ["reset", "base", "layout"]
+      rapper.definitions["stylesheets"]["assets"].first.key?( "master" ).should be_true
+      rapper.definitions["stylesheets"]["assets"].first["files"].should == ["reset", "base", "layout"]
     end
   end
   
@@ -102,18 +102,18 @@ describe Rapper do
     Dir["spec/test_cases/*"].each do |folder|
       next unless File.directory?( folder )
       name = folder.split( "/" ).last
-      results_paths = "tmp/*.*"
-      expecteds_paths = "#{folder}/expected/*.*"
+      results_path = "tmp/*.*"
+      expecteds_path = "#{folder}/expected/*.*"
       
       it "passes the \"#{name}\" test case" do
-        Rapper.setup( "#{folder}/assets.yml", "test" )
-        Rapper.package
+        rapper = Rapper::Engine.new( "#{folder}/assets.yml", "test" )
+        rapper.package
         
         # Produces the same exact individual files
         file_names( results_paths ).should == file_names( expecteds_paths )
         # Contents are all the same
-        results = Dir[results_paths]
-        expecteds = Dir[expecteds_paths]
+        results = Dir[results_path]
+        expecteds = Dir[expecteds_path]
         
         results.each_index do |i|
           unless File.read( results[i] ) == File.read( expecteds[i] )

@@ -1,14 +1,26 @@
 module Rapper
-  # Rapper-wide utility methods.
+  # Rapper-wide utility methods for working with paths, files, etc.
   module Utils
     
     protected
     
+    # =========
+    # = Paths =
+    # =========
+    
+    # @param [String] type Asset type.
+    # 
+    # @return [String] Path to the definition file for the given asset type.
     def definition_path( type )
       File.join( env_config["definition_root"], "#{type}.yml")
     end
     
-    # Given an asset type and asset name, return a path to that asset, locally.
+    # @param [String] type Asset type.
+    # 
+    # @param [String] name Name of the asset.
+    # 
+    # @return [String] Path to the packaged asset file for the given type and
+    #   name.
     def asset_path( type, name )
       if @definitions[type].nil?
         raise Rapper::Errors::InvalidDefinitionType,
@@ -20,6 +32,11 @@ module Rapper
       File.join( @definitions[type]["destination_root"], file_name )
     end
     
+    # @param [String] type Asset type.
+    # 
+    # @param [String] name Name of the asset.
+    # 
+    # @return [Array<String>] Ordered list of asset component file paths.
     def asset_component_paths( type, name )
       if @definitions[type].nil?
         raise Rapper::Errors::InvalidDefinitionType,
@@ -44,6 +61,24 @@ module Rapper
       end
     end
     
+    # =========
+    # = Files =
+    # =========
+    
+    # @param [String] path Path to the desired file.
+    # 
+    # @return [File] Readable File instance.
+    def readable_file( path )
+      File.new( path, 'r' )
+    end
+    
+    # @param [String] path Path to the desired file.
+    # 
+    # @return [File] Writable file instance with 0644 permissions.
+    def writable_file( path )
+      File.new( path, 'w', 0644 )
+    end
+    
     # Contatenate one or more files. Uses <code>cat</code>.
     # 
     # @param [Array<String>,String] source_files A  path or array of paths to
@@ -55,8 +90,17 @@ module Rapper
       system "cat #{source_files} > #{destination_file}"
     end
     
-    def first_hash_with_key( value, array )
-      array.find { |h| h.keys.include? value }
+    # =========
+    # = Misc. =
+    # =========
+    
+    # @param [Object] key Key to search for.
+    # 
+    # @param [Array<Hash>] array Array of Hash object to search in.
+    # 
+    # @return [Hash] First hash with the given key.
+    def first_hash_with_key( key, array )
+      array.find { |h| h.keys.include? key }
     end
     
   end
