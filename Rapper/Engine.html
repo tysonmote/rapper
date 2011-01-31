@@ -1,0 +1,439 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: Rapper::Engine</title>
+<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (E)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../Rapper.html" title="Rapper (module)">Rapper</a></span></span>
+     &raquo; 
+    <span class="title">Engine</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: Rapper::Engine
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Rapper::Engine</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2"><span class='object_link'><a href="Compressors.html" title="Rapper::Compressors (module)">Compressors</a></span>, <span class='object_link'><a href="Config.html" title="Rapper::Config (module)">Config</a></span>, <span class='object_link'><a href="Logging.html" title="Rapper::Logging (module)">Logging</a></span>, <span class='object_link'><a href="Utils.html" title="Rapper::Utils (module)">Utils</a></span>, <span class='object_link'><a href="Versioning.html" title="Rapper::Versioning (module)">Versioning</a></span></dd>
+      
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/rapper.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+The main Rapper class. Handles, well, everything.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Engine) <strong>initialize</strong>(config_path, environment) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Load the configuration YAML file and set the current environment.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#package-instance_method" title="#package (instance method)">- (Object) <strong>package</strong>(*types) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Package assets according to the loaded config and definitions.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Versioning.html" title="Rapper::Versioning (module)">Versioning</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Versioning.html#refresh_versions-instance_method" title="Rapper::Versioning#refresh_versions (method)">#refresh_versions</a></span>, <span class='object_link'><a href="Versioning.html#version-instance_method" title="Rapper::Versioning#version (method)">#version</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Compressors.html" title="Rapper::Compressors (module)">Compressors</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Compressors.html#compress_css-instance_method" title="Rapper::Compressors#compress_css (method)">#compress_css</a></span>, <span class='object_link'><a href="Compressors.html#compress_js-instance_method" title="Rapper::Compressors#compress_js (method)">#compress_js</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Utils.html" title="Rapper::Utils (module)">Utils</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Utils.html#asset_component_paths-instance_method" title="Rapper::Utils#asset_component_paths (method)">#asset_component_paths</a></span>, <span class='object_link'><a href="Utils.html#asset_path-instance_method" title="Rapper::Utils#asset_path (method)">#asset_path</a></span>, <span class='object_link'><a href="Utils.html#definition_path-instance_method" title="Rapper::Utils#definition_path (method)">#definition_path</a></span>, <span class='object_link'><a href="Utils.html#first_hash_with_key-instance_method" title="Rapper::Utils#first_hash_with_key (method)">#first_hash_with_key</a></span>, <span class='object_link'><a href="Utils.html#join_files-instance_method" title="Rapper::Utils#join_files (method)">#join_files</a></span>, <span class='object_link'><a href="Utils.html#readable_file-instance_method" title="Rapper::Utils#readable_file (method)">#readable_file</a></span>, <span class='object_link'><a href="Utils.html#writable_file-instance_method" title="Rapper::Utils#writable_file (method)">#writable_file</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Logging.html" title="Rapper::Logging (module)">Logging</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Logging.html#log-instance_method" title="Rapper::Logging#log (method)">#log</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Config.html" title="Rapper::Config (module)">Config</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Config.html#asset_types-instance_method" title="Rapper::Config#asset_types (method)">#asset_types</a></span>, <span class='object_link'><a href="Config.html#default_config-instance_method" title="Rapper::Config#default_config (method)">#default_config</a></span>, <span class='object_link'><a href="Config.html#env_config-instance_method" title="Rapper::Config#env_config (method)">#env_config</a></span>, <span class='object_link'><a href="Config.html#get_config-instance_method" title="Rapper::Config#get_config (method)">#get_config</a></span>, <span class='object_link'><a href="Config.html#load_config-instance_method" title="Rapper::Config#load_config (method)">#load_config</a></span>, <span class='object_link'><a href="Config.html#update_definitions-instance_method" title="Rapper::Config#update_definitions (method)">#update_definitions</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="Rapper::Engine (class)">Engine</a></span></tt>) <strong>initialize</strong>(config_path, environment) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Load the configuration YAML file and set the current environment.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>config_path</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Path to the configuration YAML file.
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+      
+      
+        <span class='name'>environment</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The current environment. This must map to an environment configured in the
+Rapper configuration file.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+27
+28
+29
+30
+31
+32</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/rapper.rb', line 27</span>
+
+<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span> <span class='config_path identifier id'>config_path</span><span class='comma token'>,</span> <span class='environment identifier id'>environment</span> <span class='rparen token'>)</span>
+  <span class='@environment ivar id'>@environment</span> <span class='assign token'>=</span> <span class='environment identifier id'>environment</span>
+  <span class='@config ivar id'>@config</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+  <span class='@definitions ivar id'>@definitions</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+  <span class='load_config identifier id'>load_config</span><span class='lparen token'>(</span> <span class='config_path identifier id'>config_path</span> <span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="package-instance_method">
+  
+    - (<tt>Object</tt>) <strong>package</strong>(*types) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Package assets according to the loaded config and definitions. Defaults to
+packaging all asset types.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>&lt;String&gt;</tt>)</span>
+      
+      
+        <span class='name'>types</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Asset types to refresh versions for.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/rapper.rb', line 38</span>
+
+<span class='def def kw'>def</span> <span class='package identifier id'>package</span><span class='lparen token'>(</span> <span class='mult op'>*</span><span class='types identifier id'>types</span> <span class='rparen token'>)</span>
+  <span class='types identifier id'>types</span> <span class='assign token'>=</span> <span class='types identifier id'>types</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span> <span class='integer val'>? </span><span class='asset_types identifier id'>asset_types</span> <span class='colon op'>:</span> <span class='types identifier id'>types</span>
+  
+  <span class='types identifier id'>types</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='type identifier id'>type</span><span class='bitor op'>|</span>
+    <span class='definition identifier id'>definition</span> <span class='assign token'>=</span> <span class='@definitions ivar id'>@definitions</span><span class='lbrack token'>[</span><span class='type identifier id'>type</span><span class='rbrack token'>]</span>
+    <span class='source identifier id'>source</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='expand_path identifier id'>expand_path</span><span class='lparen token'>(</span> <span class='definition identifier id'>definition</span><span class='lbrack token'>[</span><span class='string val'>&quot;source_root&quot;</span><span class='rbrack token'>]</span> <span class='rparen token'>)</span>
+    <span class='destination identifier id'>destination</span> <span class='assign token'>=</span> <span class='definition identifier id'>definition</span><span class='lbrack token'>[</span><span class='string val'>&quot;destination_root&quot;</span><span class='rbrack token'>]</span>
+    <span class='suffix identifier id'>suffix</span> <span class='assign token'>=</span> <span class='definition identifier id'>definition</span><span class='lbrack token'>[</span><span class='string val'>&quot;suffix&quot;</span><span class='rbrack token'>]</span>
+    
+    <span class='definition identifier id'>definition</span><span class='lbrack token'>[</span><span class='string val'>&quot;assets&quot;</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='asset identifier id'>asset</span><span class='bitor op'>|</span>
+      <span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='asset identifier id'>asset</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span><span class='dot token'>.</span><span class='first identifier id'>first</span>
+      <span class='spec identifier id'>spec</span> <span class='assign token'>=</span> <span class='asset identifier id'>asset</span><span class='dot token'>.</span><span class='values identifier id'>values</span><span class='dot token'>.</span><span class='first identifier id'>first</span><span class='dot token'>.</span><span class='first identifier id'>first</span>
+      
+      <span class='source_files identifier id'>source_files</span> <span class='assign token'>=</span> <span class='asset_component_paths identifier id'>asset_component_paths</span><span class='lparen token'>(</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
+      <span class='destination_file identifier id'>destination_file</span> <span class='assign token'>=</span> <span class='asset_path identifier id'>asset_path</span><span class='lparen token'>(</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
+      
+      <span class='join_files identifier id'>join_files</span><span class='lparen token'>(</span> <span class='source_files identifier id'>source_files</span><span class='comma token'>,</span> <span class='destination_file identifier id'>destination_file</span> <span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+  
+  <span class='refresh_versions identifier id'>refresh_versions</span><span class='lparen token'>(</span> <span class='mult op'>*</span><span class='types identifier id'>types</span> <span class='rparen token'>)</span>
+  <span class='update_definitions identifier id'>update_definitions</span><span class='lparen token'>(</span> <span class='mult op'>*</span><span class='types identifier id'>types</span> <span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Mon Jan 31 00:28:25 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.4 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Documentation by YARD 0.6.4</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html" title="Index">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><div id='filecontents'><h1>rapper</h1>
+
+<p>Static asset packager and compressor with versioning. Supports Merb and Sinatra out of the box.</p>
+
+<p>Pre-alpha, of course.</p>
+
+<h2>Notes</h2>
+
+<ul>
+<li>Definition files are YAML ordered mapping documents. This is so that version updates (which involves rapper updating the version numbers and writing out the updated definition as YAML) don't change the order of the file. This is especially useful when using git and working with many branches because it prevents nasty merge conflicts. Trust us. We've been there.</li>
+</ul>
+
+
+<h2>Rapper configuration</h2>
+
+<p>Rapper is configured using a YAML file. Example:</p>
+
+<pre class="code"><span class='base identifier id'>base</span><span class='colon op'>:</span> <span class='bitand op'>&amp;</span><span class='base identifier id'>base</span>
+  <span class='definition_root identifier id'>definition_root</span><span class='colon op'>:</span> <span class='config identifier id'>config</span><span class='div op'>/</span><span class='assets identifier id'>assets</span>
+  <span class='tag_style identifier id'>tag_style</span><span class='colon op'>:</span> <span class='html identifier id'>html</span> <span class='comment val'># optional, [html, xhtml, html5], default: html5</span>
+
+<span class='development identifier id'>development</span><span class='colon op'>:</span>
+  <span class='lshft op'>&lt;&lt;</span><span class='colon op'>:</span> <span class='mult op'>*</span><span class='base identifier id'>base</span>
+  <span class='bundle identifier id'>bundle</span><span class='colon op'>:</span> <span class='false false kw'>false</span>   <span class='comment val'># optional, default: true</span>
+  <span class='compress identifier id'>compress</span><span class='colon op'>:</span> <span class='false false kw'>false</span> <span class='comment val'># optional, default: true</span>
+  <span class='versions identifier id'>versions</span><span class='colon op'>:</span> <span class='false false kw'>false</span> <span class='comment val'># optional, default: true</span>
+
+<span class='production identifier id'>production</span><span class='colon op'>:</span>
+  <span class='lshft op'>&lt;&lt;</span><span class='colon op'>:</span> <span class='mult op'>*</span><span class='base identifier id'>base</span>
+  <span class='bundle identifier id'>bundle</span><span class='colon op'>:</span> <span class='true true kw'>true</span>
+  <span class='compress identifier id'>compress</span><span class='colon op'>:</span> <span class='true true kw'>true</span>
+  <span class='versions identifier id'>versions</span><span class='colon op'>:</span> <span class='true true kw'>true</span>
+  <span class='comment val'># optional, passed to Google Closure Compiler</span>
+  <span class='closure_compiler identifier id'>closure_compiler</span><span class='colon op'>:</span>
+    <span class='comment val'># default: SIMPLE_OPTIMIZATIONS</span>
+    <span class='compilation_level identifier id'>compilation_level</span><span class='colon op'>:</span> <span class='ADVANCED_OPTIMIZATIONS constant id'>ADVANCED_OPTIMIZATIONS</span>
+</pre>
+
+<h2>Packaging</h2>
+
+<p>Set up rapper with the config file and current environment:</p>
+
+<pre class="code"><span class='engine identifier id'>engine</span> <span class='assign token'>=</span> <span class='Rapper constant id'>Rapper</span><span class='colon2 op'>::</span><span class='Engine constant id'>Engine</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span> <span class='string val'>&quot;config/assets.yml&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;development&quot;</span> <span class='rparen token'>)</span>
+</pre>
+
+<p>And away you go!</p>
+
+<pre class="code"><span class='engine identifier id'>engine</span><span class='dot token'>.</span><span class='package identifier id'>package</span>
+</pre>
+
+<h2>Rapper definitions</h2>
+
+<p>The <code>definition_root</code> setting in the rapper config is a path to a folder containing more YAML files that defines the various types of bundles you want to build (eg. <code>stylesheets.yml</code>, <code>javascripts.yml</code>) Example definition file:</p>
+
+<pre class="code"><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span> <span class='notop op'>!</span><span class='omap identifier id'>omap</span> 
+<span class='minus op'>-</span> <span class='source_root identifier id'>source_root</span><span class='colon op'>:</span> <span class='public identifier id'>public</span><span class='div op'>/</span><span class='javascripts identifier id'>javascripts</span>
+<span class='minus op'>-</span> <span class='destination_root identifier id'>destination_root</span><span class='colon op'>:</span> <span class='public identifier id'>public</span><span class='div op'>/</span><span class='assets identifier id'>assets</span><span class='div op'>/</span><span class='javascripts identifier id'>javascripts</span>
+<span class='minus op'>-</span> <span class='suffix identifier id'>suffix</span><span class='colon op'>:</span> <span class='js identifier id'>js</span>
+<span class='minus op'>-</span> <span class='assets identifier id'>assets</span><span class='colon op'>:</span> 
+  <span class='minus op'>-</span> <span class='base identifier id'>base</span><span class='colon op'>:</span> 
+    <span class='minus op'>-</span> <span class='files identifier id'>files</span><span class='colon op'>:</span> 
+      <span class='minus op'>-</span> <span class='mootools identifier id'>mootools</span>
+  <span class='minus op'>-</span> <span class='stats identifier id'>stats</span><span class='colon op'>:</span> 
+    <span class='minus op'>-</span> <span class='files identifier id'>files</span><span class='colon op'>:</span> 
+      <span class='minus op'>-</span> <span class='protovis identifier id'>protovis</span>
+      <span class='minus op'>-</span> <span class='ext_js_full identifier id'>ext_js_full</span>
+</pre>
+
+<p>The above definition will create two asset files: <code>public/assets/javascripts/base.js</code> and <code>public/assets/javascripts/stats.js</code> from the component files in <code>public/javascripts</code>.</p>
+
+<h2>Versioning</h2>
+
+<p>If versioning is turned on in your config, version strings will be automatically added to / updated on definition files after packaging:</p>
+
+<pre class="code"><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span> <span class='notop op'>!</span><span class='omap identifier id'>omap</span> 
+<span class='minus op'>-</span> <span class='source_root identifier id'>source_root</span><span class='colon op'>:</span> <span class='public identifier id'>public</span><span class='div op'>/</span><span class='javascripts identifier id'>javascripts</span>
+<span class='minus op'>-</span> <span class='destination_root identifier id'>destination_root</span><span class='colon op'>:</span> <span class='public identifier id'>public</span><span class='div op'>/</span><span class='assets identifier id'>assets</span><span class='div op'>/</span><span class='javascripts identifier id'>javascripts</span>
+<span class='minus op'>-</span> <span class='suffix identifier id'>suffix</span><span class='colon op'>:</span> <span class='js identifier id'>js</span>
+<span class='minus op'>-</span> <span class='assets identifier id'>assets</span><span class='colon op'>:</span> 
+  <span class='minus op'>-</span> <span class='base identifier id'>base</span><span class='colon op'>:</span> 
+    <span class='minus op'>-</span> <span class='files identifier id'>files</span><span class='colon op'>:</span> 
+      <span class='minus op'>-</span> <span class='mootools identifier id'>mootools</span>
+    <span class='minus op'>-</span> <span class='version identifier id'>version</span><span class='colon op'>:</span> <span class='integer val'>7</span><span class='b06 identifier id'>b06</span>
+  <span class='minus op'>-</span> <span class='stats identifier id'>stats</span><span class='colon op'>:</span> 
+    <span class='minus op'>-</span> <span class='files identifier id'>files</span><span class='colon op'>:</span> 
+      <span class='minus op'>-</span> <span class='protovis identifier id'>protovis</span>
+      <span class='minus op'>-</span> <span class='ext_js_full identifier id'>ext_js_full</span>
+    <span class='minus op'>-</span> <span class='version identifier id'>version</span><span class='colon op'>:</span> <span class='db62 identifier id'>db62</span>
+</pre>
+
+<p>These version strings are hashes of the asset file. This means that they will only change when the contents of the asset file change. Version strings are used to enforce good browser caching habits, especially when you have a far-future expires header configured on your web server. For example, suppose you had the following asset:</p>
+
+<pre class="code"><span class='lt op'>&lt;</span><span class='script identifier id'>script</span> <span class='type identifier id'>type</span><span class='assign token'>=</span><span class='string val'>&quot;text/javascript&quot;</span> <span class='src identifier id'>src</span><span class='assign token'>=</span><span class='string val'>&quot;/assets/milkshake.js?v=d3va&quot;</span><span class='gt op'>&gt;</span><span class='lt op'>&lt;</span><span class='regexp val'>/script&gt;
+</span></pre>
+
+<p>When the contents of the asset change, the version will change in the query string:</p>
+
+<pre class="code"><span class='lt op'>&lt;</span><span class='script identifier id'>script</span> <span class='type identifier id'>type</span><span class='assign token'>=</span><span class='string val'>&quot;text/javascript&quot;</span> <span class='src identifier id'>src</span><span class='assign token'>=</span><span class='string val'>&quot;/assets/milkshake.js?v=ae51&quot;</span><span class='gt op'>&gt;</span><span class='lt op'>&lt;</span><span class='regexp val'>/script&gt;
+</span></pre>
+
+<p>Browsers will automatically re-download and cache the new asset.</p>
+
+<h2>To do</h2>
+
+<ul>
+<li>Compress JS and CSS when set</li>
+<li>Merb view helpers</li>
+<li>Sinatra helpers</li>
+</ul>
+
+
+<h2>Near-future to do</h2>
+
+<ul>
+<li>Per-asset configuration overrides</li>
+<li>Rails helpers</li>
+<li>Watch for CoffeeScript changes and automatically compile</li>
+<li>Watch for Sass changes and automatically compile</li>
+</ul>
+
+
+<h2>Contributing to rapper</h2>
+
+<ul>
+<li>Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet</li>
+<li>Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it</li>
+<li>Fork the project</li>
+<li>Start a feature/bugfix branch</li>
+<li>Commit and push until you are happy with your contribution</li>
+<li>Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.</li>
+<li>Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.</li>
+</ul>
+
+
+<h2>Copyright</h2>
+
+<p>Copyright (c) 2011 Tyson Tate. See LICENSE.txt for further details.</p></div></div>
+    
+    <div id="footer">
+  Generated on Mon Jan 31 00:28:24 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.4 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>
