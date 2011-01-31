@@ -96,6 +96,9 @@ describe Rapper do
     it "concatenates files" do
       Rapper.setup( "spec/fixtures/config/assets.yml", "test_concatenation" )
       Rapper.package
+      
+      File.read( "tmp/base.css" ).should == "body {\n  margin: 0px 0px 0px 0px;\n  color: #333333;\n}\n* {\n  margin: 0px 0px 0px 0px;\n  color: #ffffff;\n}\n"
+      File.read( "tmp/base_reversed.css" ).should == "* {\n  margin: 0px 0px 0px 0px;\n  color: #ffffff;\n}\nbody {\n  margin: 0px 0px 0px 0px;\n  color: #333333;\n}\n"
     end
     
     it "raises an error if a file doesn't exist"
