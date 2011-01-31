@@ -16,3 +16,9 @@ Spec::Runner.configure do |config|
     Dir[ "tmp/*" ].each { |f| FileUtils.rm( f ) }
   end
 end
+
+def file_names( path )
+  Dir[path].map do |path|
+    File.basename( path )
+  end
+end

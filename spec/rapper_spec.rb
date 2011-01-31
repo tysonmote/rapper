@@ -93,13 +93,7 @@ describe Rapper do
   end
   
   describe "packaging test cases" do
-    def file_names( path )
-      Dir[path].map do |path|
-        File.basename( path )
-      end
-    end
-    
-    Dir["spec/test_cases/*"].each do |folder|
+    Dir["spec/fixtures/test_cases/*"].each do |folder|
       next unless File.directory?( folder )
       name = folder.split( "/" ).last
       results_path = "tmp/*.*"
@@ -110,7 +104,7 @@ describe Rapper do
         rapper.package
         
         # Produces the same exact individual files
-        file_names( results_paths ).should == file_names( expecteds_paths )
+        file_names( results_path ).should == file_names( expecteds_path )
         # Contents are all the same
         results = Dir[results_path]
         expecteds = Dir[expecteds_path]
