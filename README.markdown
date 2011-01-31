@@ -115,5 +115,5 @@ Browsers will automatically re-download and cache the new asset.
 
 ## Copyright
 
-Copyright (c) 2011 CrowdFlower. See LICENSE.txt for further details.
+Copyright (c) 2011 Tyson Tate. See LICENSE.txt for further details.
 

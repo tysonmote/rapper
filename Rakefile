@@ -12,12 +12,12 @@ require 'rake'
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   gem.name = "rapper"
-  gem.homepage = "http://dolores.github.com/rapper/"
+  gem.homepage = "http://tysontate.github.com/rapper/"
   gem.license = "MIT"
   gem.summary = %Q{Static asset packager and compressor with versioning.}
   gem.description = %Q{Static asset packager and compressor with versioning. Built-in support for CoffeeScript, Sass, Merb, and Sinatra.}
   gem.email = "tyson@doloreslabs.com"
-  gem.authors = ["Tyson Tate", "Chris van Pelt"]
+  gem.authors = ["Tyson Tate"]
   
   # Runtime dependencies
   gem.add_runtime_dependency "closure-compiler", "~> 1.0.0"

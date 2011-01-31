@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.authors = ["Chris van Pelt", "Tyson Tate"]
   s.date = %q{2011-01-26}
   s.description = %q{Static asset bundler with proper versioning and compression. Built-in support for Merb and Sinatra.}
-  s.email = %q{tyson@doloreslabs.com}
+  s.email = %q{tyson@crowdflower.com}
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.markdown"
@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
     "spec/rapper_spec.rb",
     "spec/spec_helper.rb"
   ]
-  s.homepage = %q{http://github.com/dolores/rapper}
+  s.homepage = %q{http://github.com/tysontate/rapper}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
