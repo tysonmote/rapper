@@ -7,7 +7,7 @@ describe Closure::Compiler do
   end
     
     it "provides whitespace-only, simple, and advanced compression" do
-      # Taken from https://github.com/documentcloud/closure-compiler/blob/master/test/unit/test_closure_compiler.rb
+      # https://github.com/documentcloud/closure-compiler/blob/master/test/unit/test_closure_compiler.rb
       
       original = "window.hello = function(name) { return console.log('hello ' + name ); }; hello.squared = function(num) { return num * num; }; hello('world');"
       compiled_whitespace = "window.hello=function(name){return console.log(\"hello \"+name)};hello.squared=function(num){return num*num};hello(\"world\");\n"
@@ -21,7 +21,8 @@ describe Closure::Compiler do
 end
 
 describe YUI::CSSCompressor do
-  # Originally from: https://github.com/rhulse/ruby-css-toolkit/blob/master/test/yui_compressor_test.rb
+  # https://github.com/rhulse/ruby-css-toolkit/blob/master/test/yui_compressor_test.rb
+  
   test_files = Dir[File.join( File.dirname( __FILE__ ), '/fixtures/yui_css/*.css' )]
   test_files.each_with_index do |file, i|
     test_css = File.read(file)
@@ -69,6 +70,9 @@ describe Rapper do
       Rapper.send( :get_config, "bundle" ).should be_true
       Rapper.send( :get_config, "compress" ).should be_true
       Rapper.send( :get_config, "versions" ).should be_true
+      Rapper.send( :get_config, "closure_compiler" ).should == {
+        "compilation_level" => "SIMPLE_OPTIMIZATIONS"
+      }
     end
     
     it "loads asset definitions" do
@@ -88,13 +92,27 @@ describe Rapper do
     it "can log to a file"
   end
   
-  describe "bundling" do
-    it "can be turned off"
-    it "concatenates files"
+  describe "bundling" do    
+    it "concatenates files" do
+      Rapper.setup( "spec/fixtures/config/assets.yml", "test_concatenation" )
+      Rapper.package
+    end
+    
+    it "raises an error if a file doesn't exist"
   end
   
   describe "compressing" do
-    it "can be turned off"
     it "compresses, if configured to"
+    it "can be turned off"
+  end
+  
+  describe "view helpers" do
+    it "returns tags for component files when bundling is off"
+    it "returns tabs for asset when bundling is on"
+    it "can return html"
+    it "can return xhtml"
+    it "can return html5"
+    it "adds a version number if versioning is on"
+    it "doesn't add a version number if versioning is off"
   end
 end

@@ -1,0 +1,15 @@
+--- !omap
+- source_root: spec/fixtures/stylesheets
+- destination_root: tmp
+- suffix: css
+- assets:
+  - base:
+    - files:
+      - simple_1
+      - simple_2
+    - version: abcd
+  - base_reversed:
+    - files:
+      - simple_2
+      - simple_1
+    - version: abcd

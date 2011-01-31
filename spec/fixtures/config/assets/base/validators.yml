@@ -7,4 +7,3 @@
     files: 
     - spec/fixtures/javascripts/foo
     - spec/fixtures/javascripts/bar
-    version: 3de3

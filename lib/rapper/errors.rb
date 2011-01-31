@@ -8,5 +8,8 @@ module Rapper
     # Raised when an invalid definition type param is used.
     class InvalidDefinitionType < StandardError; end
     
+    # Raised when an invalid Asset name param is used.
+    class InvalidAssetName < StandardError; end
+    
   end
 end

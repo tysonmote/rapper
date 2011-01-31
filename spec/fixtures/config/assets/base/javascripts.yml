@@ -6,9 +6,7 @@
   - single_file: 
     files: 
     - mootools
-    version: 3de3
   - multiple_files: 
     files: 
     - mootools
     - jquery
-    version: 4b83

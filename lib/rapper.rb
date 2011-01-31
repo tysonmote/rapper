@@ -35,17 +35,32 @@ module Rapper
       #   map to an environment configured in the Rapper configuration file.
       def setup( config_path, environment )
         @environment = environment
+        @config = {}
+        @definitions = {}
         load_config( config_path )
       end
       
-      # TODO: <code>package()</code>?
-      def bundle( *types )
-        # Bundle the assets according to the config and definitions.
-      end
-      
-      # Watch the asset component files and rebuild the asset when they change.
-      def watch( *types )
-        # TODO: Callbacks? Forking? How do we do this?
+      def package( *types )
+        types = types.empty? ? asset_types : types
+        
+        types.each do |type|
+          definition = @definitions[type]
+          source = File.expand_path( definition["source_root"] )
+          destination = definition["destination_root"]
+          suffix = definition["suffix"]
+          
+          definition["assets"].each do |asset|
+            name = asset.keys.first
+            spec = asset.values.first.first
+            
+            source_files = asset_component_paths( type, name )
+            destination_file = asset_path( type, name )
+            
+            join_files( source_files, destination_file )
+          end
+        end
+        
+        refresh_versions( types )
       end
       
     end

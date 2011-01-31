@@ -1,11 +1,5 @@
 base: &base
-  definition_root: spec/fixtures/config/assets
-development:
-  <<: *base
-  bundle: false
-  compress: false
-  tag_style: html5
-  versions: false
+  definition_root: spec/fixtures/config/assets/base
 test:
   <<: *base
   bundle: true
@@ -17,3 +11,7 @@ test:
     formatting: pretty_print
 test_empty:
   <<: *base
+test_concatenation:
+  definition_root: spec/fixtures/config/assets/concatenation
+  bundle: true
+  compress: false

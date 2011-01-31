@@ -17,7 +17,6 @@ module Rapper
     # @param [String] config_path The path to the configuration YAML file.
     def load_config( config_path )
       @config = YAML.load_file( config_path )
-      @definitions = {}
       if env_config.nil?
         raise Rapper::Errors::InvalidEnvironment,
           "The '#{@environment}' environment is not defined in #{config_path}"
@@ -41,7 +40,7 @@ module Rapper
     #   environment's setting.
     def get_config( key )
       if default_config[key].is_a?( Hash )
-        default_config[key].merge( env_config[key] )
+        default_config[key].merge( env_config[key] || {} )
       else
         env_config[key] || default_config[key]
       end
@@ -72,7 +71,10 @@ module Rapper
         "bundle" => true,
         "compress" => true,
         "tag_style" => "html5",
-        "versions" => true
+        "versions" => true,
+        "closure_compiler" => {
+          "compilation_level" => "SIMPLE_OPTIMIZATIONS"
+        }
       }
     end
     
