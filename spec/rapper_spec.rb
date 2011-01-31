@@ -29,7 +29,7 @@ describe YUI::CSSCompressor do
     expected_css = File.read( file + '.min' )
     test_name = File.basename( file, ".css" )
     
-    it "passes #{test_name} test" do
+    it "passes the \"#{test_name}\" test case" do
       YUI::CSSCompressor.compress( test_css ).should == expected_css
     end
   end
@@ -105,7 +105,7 @@ describe Rapper do
       results_paths = "tmp/*.*"
       expecteds_paths = "#{folder}/expected/*.*"
       
-      it "passes the '#{name}' test case" do
+      it "passes the \"#{name}\" test case" do
         Rapper.setup( "#{folder}/assets.yml", "test" )
         Rapper.package
         
