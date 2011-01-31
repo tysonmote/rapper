@@ -128,7 +128,7 @@ The main Rapper class. Handles, well, everything.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#bundle-class_method" title="bundle (class method)">+ (Object) <strong>bundle</strong>(*types) </a>
+      <a href="#package-class_method" title="package (class method)">+ (Object) <strong>package</strong>(*types) </a>
     
 
     
@@ -141,10 +141,7 @@ The main Rapper class. Handles, well, everything.
   
 
   
-    <span class="summary_desc"><div class='inline'><p>
-TODO: <tt>package()</tt>?.
-</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -167,30 +164,6 @@ TODO: <tt>package()</tt>?.
   
     <span class="summary_desc"><div class='inline'><p>
 Load the configuration YAML file and set the current environment.
-</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#watch-class_method" title="watch (class method)">+ (Object) <strong>watch</strong>(*types) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>
-Watch the asset component files and rebuild the asset when they change.
 </p>
 </div></span>
   
@@ -229,7 +202,7 @@ Watch the asset component files and rebuild the asset when they change.
   
   
   <h3 class="inherited">Methods included from <span class='object_link'><a href="Utils.html" title="Rapper::Utils (module)">Utils</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="Utils.html#asset_path-instance_method" title="Rapper::Utils#asset_path (method)">asset_path</a></span>, <span class='object_link'><a href="Utils.html#join_files-instance_method" title="Rapper::Utils#join_files (method)">join_files</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="Utils.html#asset_component_paths-instance_method" title="Rapper::Utils#asset_component_paths (method)">asset_component_paths</a></span>, <span class='object_link'><a href="Utils.html#asset_path-instance_method" title="Rapper::Utils#asset_path (method)">asset_path</a></span>, <span class='object_link'><a href="Utils.html#definition_path-instance_method" title="Rapper::Utils#definition_path (method)">definition_path</a></span>, <span class='object_link'><a href="Utils.html#first_hash_with_key-instance_method" title="Rapper::Utils#first_hash_with_key (method)">first_hash_with_key</a></span>, <span class='object_link'><a href="Utils.html#join_files-instance_method" title="Rapper::Utils#join_files (method)">join_files</a></span></p>
 
   
   
@@ -257,38 +230,67 @@ Watch the asset component files and rebuild the asset when they change.
     
     
       <div class="method_details first">
-  <p class="signature first" id="bundle-class_method">
+  <p class="signature first" id="package-class_method">
   
-    + (<tt>Object</tt>) <strong>bundle</strong>(*types) 
+    + (<tt>Object</tt>) <strong>package</strong>(*types) 
   
 
   
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-TODO: <tt>package()</tt>?
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-</div><table class="source_code">
+</p><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-42
 43
-44</pre>
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper.rb', line 42</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper.rb', line 43</span>
 
-<span class='def def kw'>def</span> <span class='bundle identifier id'>bundle</span><span class='lparen token'>(</span> <span class='mult op'>*</span><span class='types identifier id'>types</span> <span class='rparen token'>)</span>
-  <span class='comment val'># Bundle the assets according to the config and definitions.</span>
+<span class='def def kw'>def</span> <span class='package identifier id'>package</span><span class='lparen token'>(</span> <span class='mult op'>*</span><span class='types identifier id'>types</span> <span class='rparen token'>)</span>
+  <span class='types identifier id'>types</span> <span class='assign token'>=</span> <span class='types identifier id'>types</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span> <span class='integer val'>? </span><span class='asset_types identifier id'>asset_types</span> <span class='colon op'>:</span> <span class='types identifier id'>types</span>
+  
+  <span class='types identifier id'>types</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='type identifier id'>type</span><span class='bitor op'>|</span>
+    <span class='definition identifier id'>definition</span> <span class='assign token'>=</span> <span class='@definitions ivar id'>@definitions</span><span class='lbrack token'>[</span><span class='type identifier id'>type</span><span class='rbrack token'>]</span>
+    <span class='source identifier id'>source</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='expand_path identifier id'>expand_path</span><span class='lparen token'>(</span> <span class='definition identifier id'>definition</span><span class='lbrack token'>[</span><span class='string val'>&quot;source_root&quot;</span><span class='rbrack token'>]</span> <span class='rparen token'>)</span>
+    <span class='destination identifier id'>destination</span> <span class='assign token'>=</span> <span class='definition identifier id'>definition</span><span class='lbrack token'>[</span><span class='string val'>&quot;destination_root&quot;</span><span class='rbrack token'>]</span>
+    <span class='suffix identifier id'>suffix</span> <span class='assign token'>=</span> <span class='definition identifier id'>definition</span><span class='lbrack token'>[</span><span class='string val'>&quot;suffix&quot;</span><span class='rbrack token'>]</span>
+    
+    <span class='definition identifier id'>definition</span><span class='lbrack token'>[</span><span class='string val'>&quot;assets&quot;</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='asset identifier id'>asset</span><span class='bitor op'>|</span>
+      <span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='asset identifier id'>asset</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span><span class='dot token'>.</span><span class='first identifier id'>first</span>
+      <span class='spec identifier id'>spec</span> <span class='assign token'>=</span> <span class='asset identifier id'>asset</span><span class='dot token'>.</span><span class='values identifier id'>values</span><span class='dot token'>.</span><span class='first identifier id'>first</span><span class='dot token'>.</span><span class='first identifier id'>first</span>
+      
+      <span class='source_files identifier id'>source_files</span> <span class='assign token'>=</span> <span class='asset_component_paths identifier id'>asset_component_paths</span><span class='lparen token'>(</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
+      <span class='destination_file identifier id'>destination_file</span> <span class='assign token'>=</span> <span class='asset_path identifier id'>asset_path</span><span class='lparen token'>(</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
+      
+      <span class='join_files identifier id'>join_files</span><span class='lparen token'>(</span> <span class='source_files identifier id'>source_files</span><span class='comma token'>,</span> <span class='destination_file identifier id'>destination_file</span> <span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+  
+  <span class='refresh_versions identifier id'>refresh_versions</span><span class='lparen token'>(</span> <span class='mult op'>*</span><span class='types identifier id'>types</span> <span class='rparen token'>)</span>
+  <span class='update_definitions identifier id'>update_definitions</span><span class='lparen token'>(</span> <span class='mult op'>*</span><span class='types identifier id'>types</span> <span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -362,54 +364,18 @@ Rapper configuration file.
 36
 37
 38
-39</pre>
+39
+40
+41</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/rapper.rb', line 36</span>
 
 <span class='def def kw'>def</span> <span class='setup identifier id'>setup</span><span class='lparen token'>(</span> <span class='config_path identifier id'>config_path</span><span class='comma token'>,</span> <span class='environment identifier id'>environment</span> <span class='rparen token'>)</span>
   <span class='@environment ivar id'>@environment</span> <span class='assign token'>=</span> <span class='environment identifier id'>environment</span>
+  <span class='@config ivar id'>@config</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+  <span class='@definitions ivar id'>@definitions</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
   <span class='load_config identifier id'>load_config</span><span class='lparen token'>(</span> <span class='config_path identifier id'>config_path</span> <span class='rparen token'>)</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="watch-class_method">
-  
-    + (<tt>Object</tt>) <strong>watch</strong>(*types) 
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-Watch the asset component files and rebuild the asset when they change.
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-47
-48
-49</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper.rb', line 47</span>
-
-<span class='def def kw'>def</span> <span class='watch identifier id'>watch</span><span class='lparen token'>(</span> <span class='mult op'>*</span><span class='types identifier id'>types</span> <span class='rparen token'>)</span>
-  <span class='comment val'># TODO: Callbacks? Forking? How do we do this?</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -422,7 +388,7 @@ Watch the asset component files and rebuild the asset when they change.
 </div>
     
     <div id="footer">
-  Generated on Sun Jan 30 03:27:17 2011 by 
+  Generated on Sun Jan 30 22:58:38 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>

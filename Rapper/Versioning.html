@@ -205,7 +205,8 @@ Asset types to refresh versions for.
 22
 23
 24
-25</pre>
+25
+26</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/rapper/versioning.rb', line 13</span>
@@ -215,11 +216,12 @@ Asset types to refresh versions for.
   <span class='log identifier id'>log</span> <span class='string val'>&quot;Refreshing bundle versions for:&quot;</span><span class='comma token'>,</span> <span class='types identifier id'>types</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span> <span class='string val'>&quot;, &quot;</span> <span class='rparen token'>)</span>
   
   <span class='types identifier id'>types</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='type identifier id'>type</span><span class='bitor op'>|</span>
-    <span class='@definitions ivar id'>@definitions</span><span class='lbrack token'>[</span><span class='type identifier id'>type</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='spec identifier id'>spec</span><span class='bitor op'>|</span>
+    <span class='@definitions ivar id'>@definitions</span><span class='lbrack token'>[</span><span class='type identifier id'>type</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='string val'>&quot;assets&quot;</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='asset identifier id'>asset</span><span class='bitor op'>|</span>
+      <span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='asset identifier id'>asset</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span><span class='dot token'>.</span><span class='first identifier id'>first</span>
+      <span class='spec identifier id'>spec</span> <span class='assign token'>=</span> <span class='asset identifier id'>asset</span><span class='dot token'>.</span><span class='values identifier id'>values</span><span class='dot token'>.</span><span class='first identifier id'>first</span>
       <span class='path identifier id'>path</span> <span class='assign token'>=</span> <span class='asset_path identifier id'>asset_path</span><span class='lparen token'>(</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
       <span class='version identifier id'>version</span> <span class='assign token'>=</span> <span class='version identifier id'>version</span><span class='lparen token'>(</span> <span class='path identifier id'>path</span> <span class='rparen token'>)</span>
-      <span class='log identifier id'>log</span> <span class='path identifier id'>path</span><span class='comma token'>,</span> <span class='string val'>&quot;=&gt;&quot;</span><span class='comma token'>,</span> <span class='version identifier id'>version</span>
-      <span class='spec identifier id'>spec</span><span class='lbrack token'>[</span><span class='string val'>&quot;version&quot;</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='version identifier id'>version</span>
+      <span class='first_hash_with_key identifier id'>first_hash_with_key</span><span class='lparen token'>(</span> <span class='string val'>&quot;version&quot;</span><span class='comma token'>,</span> <span class='spec identifier id'>spec</span> <span class='rparen token'>)</span><span class='lbrack token'>[</span><span class='string val'>&quot;version&quot;</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='version identifier id'>version</span>
     <span class='end end kw'>end</span>
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
@@ -293,15 +295,15 @@ A four-character MD5 hash of the contents of the file.
       <pre class="lines">
 
 
-30
 31
-32</pre>
+32
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/versioning.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/versioning.rb', line 31</span>
 
 <span class='def def kw'>def</span> <span class='version identifier id'>version</span><span class='lparen token'>(</span> <span class='file_path identifier id'>file_path</span> <span class='rparen token'>)</span>
-  <span class='Digest constant id'>Digest</span><span class='colon2 op'>::</span><span class='MD5 constant id'>MD5</span><span class='dot token'>.</span><span class='file identifier id'>file</span><span class='lparen token'>(</span> <span class='path identifier id'>path</span> <span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='comma token'>,</span><span class='integer val'>4</span><span class='rbrack token'>]</span>
+  <span class='Digest constant id'>Digest</span><span class='colon2 op'>::</span><span class='MD5 constant id'>MD5</span><span class='dot token'>.</span><span class='file identifier id'>file</span><span class='lparen token'>(</span> <span class='file_path identifier id'>file_path</span> <span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='comma token'>,</span><span class='integer val'>4</span><span class='rbrack token'>]</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -314,7 +316,7 @@ A four-character MD5 hash of the contents of the file.
 </div>
     
     <div id="footer">
-  Generated on Sun Jan 30 03:27:16 2011 by 
+  Generated on Sun Jan 30 22:58:37 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>
