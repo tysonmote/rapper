@@ -6,7 +6,7 @@ Pre-alpha, of course.
 
 ## Notes
 
-* Definition files are Yaml ordered mappings so that version updates, when rapper updates the version numbers and writes out the updated definition file, don't re-order anything in the file. This is especially useful when using git and working with many branches because it prevents nasty merge conflicts. Trust us. We've been there.
+* Definition files are YAML ordered mapping documents. This is so that version updates (which involves rapper updating the version numbers and writing out the updated definition as YAML) don't change the order of the file. This is especially useful when using git and working with many branches because it prevents nasty merge conflicts. Trust us. We've been there.
 
 ## Rapper configuration
 
