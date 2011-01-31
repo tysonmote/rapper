@@ -56,7 +56,7 @@ module Rapper
       
       types.each do |type|
         log "Updating definition file for", type
-        File.open( path, "w" ) do |file|
+        File.open( definition_path( type ), "w" ) do |file|
           file.puts @definitions[type].to_yaml
         end
       end

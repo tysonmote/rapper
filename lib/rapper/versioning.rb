@@ -15,11 +15,12 @@ module Rapper
       log "Refreshing bundle versions for:", types.join( ", " )
       
       types.each do |type|
-        @definitions[type].each do |name, spec|
+        @definitions[type]["assets"].each do |asset|
+          name = asset.keys.first
+          spec = asset.values.first
           path = asset_path( type, name )
           version = version( path )
-          log path, "=>", version
-          spec["version"] = version
+          first_hash_with_key( "version", spec )["version"] = version
         end
       end
     end
@@ -28,7 +29,7 @@ module Rapper
     # 
     # @return [String] A four-character MD5 hash of the contents of the file.
     def version( file_path )
-      Digest::MD5.file( path ).to_s[0,4]
+      Digest::MD5.file( file_path ).to_s[0,4]
     end
     
   end

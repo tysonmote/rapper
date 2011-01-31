@@ -4,6 +4,10 @@ module Rapper
     
     protected
     
+    def definition_path( type )
+      File.join( env_config["definition_root"], "#{type}.yml")
+    end
+    
     # Given an asset type and asset name, return a path to that asset, locally.
     def asset_path( type, name )
       if @definitions[type].nil?

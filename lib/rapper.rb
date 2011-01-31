@@ -60,7 +60,8 @@ module Rapper
           end
         end
         
-        refresh_versions( types )
+        refresh_versions( *types )
+        update_definitions( *types )
       end
       
     end
