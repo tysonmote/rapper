@@ -1,26 +1,37 @@
 # rapper
 
-Static asset packager and compressor with versioning. Supports Merb and Sinatra out of the box.
+Static asset packager and compressor with versioning and built-in view helpers. Easy to configure, easy to use, and easy to ignore when you want to. No crazy JavaScript comment DSLs, either.
 
-Pre-alpha, of course.
+Merb and Sinatra view helpers are coming soon, as well as pluggable compression backends (YUI Compressor, Google Closure Compiler, etc.) `rapper` currently only includes Google Closure Compiler.
 
-## Notes
+## Packaging assets without wanting to claw your eyes out
 
-* Definition files are YAML ordered mapping documents. This is so that version updates (which involves rapper updating the version numbers and writing out the updated definition as YAML) don't change the order of the file. This is especially useful when using git and working with many branches because it prevents nasty merge conflicts. Trust us. We've been there.
+1. Create a config file and one or more asset type definition files.
+2. Load `rapper` with the config path and current environment:
+
+        engine = Rapper::Engine.new( "config/assets.yml", "development" )
+
+3. Then package the assets:
+
+        engine.package
+
+4. That's it. Stop fussing with ridiculous asset packagers that want you to spend an hour shuffling files around for them.
 
 ## Rapper configuration
 
-Rapper is configured using a YAML file. Example:
+Rapper is configured using a YAML file that defines the settings to be used in various server environments. Example:
 
     base: &base
       definition_root: config/assets
-      tag_style: html # optional, [html, xhtml, html5], default: html5
+      tag_style: html   # optional, ["html", "xhtml", "html5"], default: html5
     
     development:
       <<: *base
-      bundle: false   # optional, default: true
-      compress: false # optional, default: true
-      versions: false # optional, default: true
+      bundle: false     # optional, default: true
+      compress: false   # optional, default: true
+      versions: false   # optional, default: true
+      log: stdout       # optional, ["stdout", file path], default: off
+      log_verbose: true # optional, default: off
     
     production:
       <<: *base
@@ -32,19 +43,25 @@ Rapper is configured using a YAML file. Example:
         # default: SIMPLE_OPTIMIZATIONS
         compilation_level: ADVANCED_OPTIMIZATIONS
 
-## Packaging
+The only required setting is `definition_root`. (Of course, you'll still need definition files to define the asset packages that you want build. More on that below.)
 
-Set up rapper with the config file and current environment:
+The minimum settings needed for a configuration file is:
 
-    engine = Rapper::Engine.new( "config/assets.yml", "development" )
+    base:
+      definition_root: config/assets
 
-And away you go!
+The following defaults are applied if not defined in your configuration:
 
-    engine.package
+    bundle: true
+    compress: true
+    tag_style: html5
+    versions: true
+    closure_compiler:
+      compilation_level: SIMPLE_OPTIMIZATIONS
 
 ## Rapper definitions
 
-The `definition_root` setting in the rapper config is a path to a folder containing more YAML files that defines the various types of bundles you want to build (eg. `stylesheets.yml`, `javascripts.yml`) Example definition file:
+The `definition_root` setting in the rapper config is a path to a folder containing more YAML files that define the various types of bundles you want to build (eg. `stylesheets.yml`, `javascripts.yml`) Example definition file:
 
     --- !omap 
     - source_root: public/javascripts
@@ -59,11 +76,13 @@ The `definition_root` setting in the rapper config is a path to a folder contain
           - protovis
           - ext_js_full
 
-The above definition will create two asset files: `public/assets/javascripts/base.js` and `public/assets/javascripts/stats.js` from the component files in `public/javascripts`.
+The above definition will create two asset files: `public/assets/javascripts/base.js` and `public/assets/javascripts/stats.js` from the component files in `public/javascripts` (in this case: `public/javascripts/protovis.js` and `public/javascripts/ext_js_full.js`).
+
+**Note:** Definition files are YAML ordered mapping documents. This is so that version updates (which involves rapper updating the version numbers and writing out the updated definition as YAML) don't change the order of the file. This is especially useful when using git and working with many branches because it prevents nasty merge conflicts.
 
 ## Versioning
 
-If versioning is turned on in your config, version strings will be automatically added to / updated on definition files after packaging:
+If versioning is turned on in your config, version strings will be used to enforce better browser caching of assets.
 
     --- !omap 
     - source_root: public/javascripts
@@ -80,7 +99,7 @@ If versioning is turned on in your config, version strings will be automatically
           - ext_js_full
         - version: db62
 
-These version strings are hashes of the asset file. This means that they will only change when the contents of the asset file change. Version strings are used to enforce good browser caching habits, especially when you have a far-future expires header configured on your web server. For example, suppose you had the following asset:
+These version strings are hashes of the final asset file. This means that they will only change when the contents of the asset file change. Version strings are used to enforce good browser caching habits, especially when you have a far-future expires header configured on your web server. For example, suppose you had the following asset:
 
     <script type="text/javascript" src="/assets/milkshake.js?v=d3va"></script>
 
@@ -90,13 +109,12 @@ When the contents of the asset change, the version will change in the query stri
 
 Browsers will automatically re-download and cache the new asset.
 
-## To do
+## To do soon
 
-* Compress JS and CSS when set
 * Merb view helpers
 * Sinatra helpers
 
-## Near-future to do
+## To do later
 
 * Per-asset configuration overrides
 * Rails helpers
@@ -116,4 +134,3 @@ Browsers will automatically re-download and cache the new asset.
 ## Copyright
 
 Copyright (c) 2011 Tyson Tate. See LICENSE.txt for further details.
-
