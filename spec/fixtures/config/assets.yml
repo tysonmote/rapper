@@ -11,3 +11,15 @@ test:
     formatting: pretty_print
 test_empty:
   <<: *base
+test_no_definition_root:
+  log: stdout
+test_logging_stdout:
+  <<: *base
+  log: stdout
+test_logging_verbose:
+  <<: *base
+  log: stdout
+  log_verbose: true
+test_logging_file:
+  <<: *base
+  log: tmp/test_logging_file.log

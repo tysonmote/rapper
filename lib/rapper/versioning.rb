@@ -12,7 +12,8 @@ module Rapper
     # @param [<String>] types Asset types to refresh versions for.
     def refresh_versions( *types )
       types = types.empty? ? asset_types : types
-      log "Refreshing bundle versions for:", types.join( ", " )
+      
+      log :info, "Refreshing versions for #{types.join( ', ' )}"
       
       types.each do |type|
         @definitions[type]["assets"].each do |asset|

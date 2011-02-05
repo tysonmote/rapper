@@ -20,6 +20,9 @@ module Rapper
       if env_config.nil?
         raise Rapper::Errors::InvalidEnvironment,
           "The '#{@environment}' environment is not defined in #{config_path}"
+      elsif env_config["definition_root"].nil?
+        raise Rapper::Errors::NoDefinitionRoot,
+          "No 'definition_root' has been defined for #{@environment}"
       end
       definition_path = File.join( env_config["definition_root"], "*.yml" )
       Dir[definition_path].each do |definition|
@@ -53,6 +56,7 @@ module Rapper
     #   Defaults to all types.
     def update_definitions( *types )
       types = types.empty? ? asset_types : types
+      log :info, "Updating definitions for #{types.join( ', ' )}"
       
       types.each do |type|
         log "Updating definition file for", type
@@ -67,7 +71,6 @@ module Rapper
     # @return [Hash] Default rapper configuration.
     def default_config
       {
-        "definition_root" => ".",
         "bundle" => true,
         "compress" => true,
         "tag_style" => "html5",

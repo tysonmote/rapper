@@ -4,7 +4,7 @@
 - suffix: css
 - assets:
   - master: 
-    files: 
-    - reset
-    - base
-    - layout
+    - files: 
+      - reset
+      - base
+      - layout

@@ -29,6 +29,7 @@ module Rapper
       @config = {}
       @definitions = {}
       load_config( config_path )
+      log :verbose, "Loaded rappper with #{environment} environment from #{config_path}"
     end
     
     # Package assets according to the loaded config and definitions. Defaults
@@ -37,6 +38,7 @@ module Rapper
     # @param [<String>] types Asset types to refresh versions for.
     def package( *types )
       types = types.empty? ? asset_types : types
+      log :info, "Packaging #{types.join( ', ' )}"
       
       types.each do |type|
         definition = @definitions[type]
@@ -51,6 +53,7 @@ module Rapper
           source_files = asset_component_paths( type, name )
           destination_file = asset_path( type, name )
           
+          log :verbose, "Joining #{definition["assets"].count} files to #{name}"
           join_files( source_files, destination_file )
         end
       end

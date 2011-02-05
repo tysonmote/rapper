@@ -13,6 +13,8 @@ module Rapper
     # @param [String] destination Path to destination CSS file.
     #   written to.
     def compress_css( source, destination )
+      log :verbose, "Compressing #{source}"
+      
       source = readable_file( source )
       destination = writable_file( source )
       
@@ -29,6 +31,8 @@ module Rapper
     # 
     # @param [String] destination Path to destination JavaScript file.
     def compress_js( source, destination, opts={} )
+      log :verbose, "Compressing #{source}"
+      
       source = readable_file( source )
       destination = writable_file( source )
       closure = Closure::Compiler.new( opts )

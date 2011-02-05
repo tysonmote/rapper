@@ -4,9 +4,9 @@
 - suffix: js
 - assets:
   - single_file: 
-    files: 
-    - mootools
+    - files: 
+      - mootools
   - multiple_files: 
-    files: 
-    - mootools
-    - jquery
+    - files: 
+      - mootools
+      - jquery

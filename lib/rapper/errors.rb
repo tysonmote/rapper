@@ -6,6 +6,10 @@ module Rapper
     # is one not defined in the current rapper config.
     class InvalidEnvironment < StandardError; end
     
+    # Raised when no "definition_root" setting is given for the current
+    # environment.
+    class NoDefinitionRoot < StandardError; end
+    
     # Raised when an invalid definition type param is used. An invalid
     # definition type is one that doesn't have a definition YAML file in the
     # "definition_root" folder (set in the config).

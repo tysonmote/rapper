@@ -4,6 +4,6 @@
 - suffix: js
 - assets:
   - master: 
-    files: 
-    - spec/fixtures/javascripts/foo
-    - spec/fixtures/javascripts/bar
+    - files: 
+      - spec/fixtures/javascripts/foo
+      - spec/fixtures/javascripts/bar

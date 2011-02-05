@@ -52,7 +52,6 @@ module Rapper
       
       source_root = @definitions[type]["source_root"]
       suffix = @definitions[type]["suffix"]
-      
       files = first_hash_with_key( "files", spec.values.first )["files"] || []
       
       files.map do |file|
