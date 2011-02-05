@@ -508,12 +508,12 @@ All defined asset types.
       <pre class="lines">
 
 
-87
-88
-89</pre>
+90
+91
+92</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/config.rb', line 87</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/config.rb', line 90</span>
 
 <span class='def def kw'>def</span> <span class='asset_types identifier id'>asset_types</span>
   <span class='@definitions ivar id'>@definitions</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span>
@@ -567,10 +567,6 @@ Default rapper configuration.
       <pre class="lines">
 
 
-68
-69
-70
-71
 72
 73
 74
@@ -578,14 +574,16 @@ Default rapper configuration.
 76
 77
 78
-79</pre>
+79
+80
+81
+82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/config.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/config.rb', line 72</span>
 
 <span class='def def kw'>def</span> <span class='default_config identifier id'>default_config</span>
   <span class='lbrace token'>{</span>
-    <span class='string val'>&quot;definition_root&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;.&quot;</span><span class='comma token'>,</span>
     <span class='string val'>&quot;bundle&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span><span class='comma token'>,</span>
     <span class='string val'>&quot;compress&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span><span class='comma token'>,</span>
     <span class='string val'>&quot;tag_style&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;html5&quot;</span><span class='comma token'>,</span>
@@ -644,12 +642,12 @@ The configuration for the currently set environment.
       <pre class="lines">
 
 
-82
-83
-84</pre>
+85
+86
+87</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/config.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/config.rb', line 85</span>
 
 <span class='def def kw'>def</span> <span class='env_config identifier id'>env_config</span>
   <span class='@config ivar id'>@config</span><span class='lbrack token'>[</span><span class='@environment ivar id'>@environment</span><span class='rbrack token'>]</span>
@@ -726,16 +724,16 @@ hash, return the default merged with the environment&#8217;s setting.
       <pre class="lines">
 
 
-41
-42
-43
 44
 45
 46
-47</pre>
+47
+48
+49
+50</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/config.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/config.rb', line 44</span>
 
 <span class='def def kw'>def</span> <span class='get_config identifier id'>get_config</span><span class='lparen token'>(</span> <span class='key identifier id'>key</span> <span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='default_config identifier id'>default_config</span><span class='lbrack token'>[</span><span class='key identifier id'>key</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span> <span class='Hash constant id'>Hash</span> <span class='rparen token'>)</span>
@@ -810,7 +808,10 @@ The path to the configuration YAML file.
 26
 27
 28
-29</pre>
+29
+30
+31
+32</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/rapper/config.rb', line 18</span>
@@ -820,6 +821,9 @@ The path to the configuration YAML file.
   <span class='if if kw'>if</span> <span class='env_config identifier id'>env_config</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
     <span class='raise identifier id'>raise</span> <span class='Rapper constant id'>Rapper</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='colon2 op'>::</span><span class='InvalidEnvironment constant id'>InvalidEnvironment</span><span class='comma token'>,</span>
       <span class='dstring node'>&quot;The '#{@environment}' environment is not defined in #{config_path}&quot;</span>
+  <span class='elsif elsif kw'>elsif</span> <span class='env_config identifier id'>env_config</span><span class='lbrack token'>[</span><span class='string val'>&quot;definition_root&quot;</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+    <span class='raise identifier id'>raise</span> <span class='Rapper constant id'>Rapper</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='colon2 op'>::</span><span class='NoDefinitionRoot constant id'>NoDefinitionRoot</span><span class='comma token'>,</span>
+      <span class='dstring node'>&quot;No 'definition_root' has been defined for #{@environment}&quot;</span>
   <span class='end end kw'>end</span>
   <span class='definition_path identifier id'>definition_path</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span> <span class='env_config identifier id'>env_config</span><span class='lbrack token'>[</span><span class='string val'>&quot;definition_root&quot;</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;*.yml&quot;</span> <span class='rparen token'>)</span>
   <span class='Dir constant id'>Dir</span><span class='lbrack token'>[</span><span class='definition_path identifier id'>definition_path</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='definition identifier id'>definition</span><span class='bitor op'>|</span>
@@ -879,22 +883,24 @@ Asset types to update the definition files for. Defaults to all types.
       <pre class="lines">
 
 
-54
-55
-56
 57
 58
 59
 60
 61
 62
-63</pre>
+63
+64
+65
+66
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/config.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/config.rb', line 57</span>
 
 <span class='def def kw'>def</span> <span class='update_definitions identifier id'>update_definitions</span><span class='lparen token'>(</span> <span class='mult op'>*</span><span class='types identifier id'>types</span> <span class='rparen token'>)</span>
   <span class='types identifier id'>types</span> <span class='assign token'>=</span> <span class='types identifier id'>types</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span> <span class='integer val'>? </span><span class='asset_types identifier id'>asset_types</span> <span class='colon op'>:</span> <span class='types identifier id'>types</span>
+  <span class='log identifier id'>log</span> <span class='symbol val'>:info</span><span class='comma token'>,</span> <span class='dstring node'>&quot;Updating definitions for #{types.join( ', ' )}&quot;</span>
   
   <span class='types identifier id'>types</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='type identifier id'>type</span><span class='bitor op'>|</span>
     <span class='log identifier id'>log</span> <span class='string val'>&quot;Updating definition file for&quot;</span><span class='comma token'>,</span> <span class='type identifier id'>type</span>
@@ -914,7 +920,7 @@ Asset types to update the definition files for. Defaults to all types.
 </div>
     
     <div id="footer">
-  Generated on Mon Jan 31 00:28:26 2011 by 
+  Generated on Fri Feb  4 23:12:55 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>

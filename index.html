@@ -43,30 +43,41 @@
     
     <div id="content"><div id='filecontents'><h1>rapper</h1>
 
-<p>Static asset packager and compressor with versioning. Supports Merb and Sinatra out of the box.</p>
+<p>Static asset packager and compressor with versioning and built-in view helpers. Easy to configure, easy to use, and easy to ignore when you want to. No crazy JavaScript comment DSLs, either.</p>
 
-<p>Pre-alpha, of course.</p>
+<p>Merb and Sinatra view helpers are coming soon, as well as pluggable compression backends (YUI Compressor, Google Closure Compiler, etc.) <code>rapper</code> currently only includes Google Closure Compiler.</p>
 
-<h2>Notes</h2>
+<h2>Packaging assets without wanting to claw your eyes out</h2>
 
-<ul>
-<li>Definition files are YAML ordered mapping documents. This is so that version updates (which involves rapper updating the version numbers and writing out the updated definition as YAML) don't change the order of the file. This is especially useful when using git and working with many branches because it prevents nasty merge conflicts. Trust us. We've been there.</li>
-</ul>
+<ol>
+<li>Create a config file and one or more asset type definition files.</li>
+<li><p>Load <code>rapper</code> with the config path and current environment:</p>
+
+<pre class="code"> <span class='engine identifier id'>engine</span> <span class='assign token'>=</span> <span class='Rapper constant id'>Rapper</span><span class='colon2 op'>::</span><span class='Engine constant id'>Engine</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span> <span class='string val'>&quot;config/assets.yml&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;development&quot;</span> <span class='rparen token'>)</span>
+</pre></li>
+<li><p>Then package the assets:</p>
+
+<pre class="code"> <span class='engine identifier id'>engine</span><span class='dot token'>.</span><span class='package identifier id'>package</span>
+</pre></li>
+<li><p>That's it. Stop fussing with ridiculous asset packagers that want you to spend an hour shuffling files around for them.</p></li>
+</ol>
 
 
 <h2>Rapper configuration</h2>
 
-<p>Rapper is configured using a YAML file. Example:</p>
+<p>Rapper is configured using a YAML file that defines the settings to be used in various server environments. Example:</p>
 
 <pre class="code"><span class='base identifier id'>base</span><span class='colon op'>:</span> <span class='bitand op'>&amp;</span><span class='base identifier id'>base</span>
   <span class='definition_root identifier id'>definition_root</span><span class='colon op'>:</span> <span class='config identifier id'>config</span><span class='div op'>/</span><span class='assets identifier id'>assets</span>
-  <span class='tag_style identifier id'>tag_style</span><span class='colon op'>:</span> <span class='html identifier id'>html</span> <span class='comment val'># optional, [html, xhtml, html5], default: html5</span>
+  <span class='tag_style identifier id'>tag_style</span><span class='colon op'>:</span> <span class='html identifier id'>html</span>   <span class='comment val'># optional, [&quot;html&quot;, &quot;xhtml&quot;, &quot;html5&quot;], default: html5</span>
 
 <span class='development identifier id'>development</span><span class='colon op'>:</span>
   <span class='lshft op'>&lt;&lt;</span><span class='colon op'>:</span> <span class='mult op'>*</span><span class='base identifier id'>base</span>
-  <span class='bundle identifier id'>bundle</span><span class='colon op'>:</span> <span class='false false kw'>false</span>   <span class='comment val'># optional, default: true</span>
-  <span class='compress identifier id'>compress</span><span class='colon op'>:</span> <span class='false false kw'>false</span> <span class='comment val'># optional, default: true</span>
-  <span class='versions identifier id'>versions</span><span class='colon op'>:</span> <span class='false false kw'>false</span> <span class='comment val'># optional, default: true</span>
+  <span class='bundle identifier id'>bundle</span><span class='colon op'>:</span> <span class='false false kw'>false</span>     <span class='comment val'># optional, default: true</span>
+  <span class='compress identifier id'>compress</span><span class='colon op'>:</span> <span class='false false kw'>false</span>   <span class='comment val'># optional, default: true</span>
+  <span class='versions identifier id'>versions</span><span class='colon op'>:</span> <span class='false false kw'>false</span>   <span class='comment val'># optional, default: true</span>
+  <span class='log identifier id'>log</span><span class='colon op'>:</span> <span class='stdout identifier id'>stdout</span>       <span class='comment val'># optional, [&quot;stdout&quot;, file path], default: off</span>
+  <span class='log_verbose identifier id'>log_verbose</span><span class='colon op'>:</span> <span class='true true kw'>true</span> <span class='comment val'># optional, default: off</span>
 
 <span class='production identifier id'>production</span><span class='colon op'>:</span>
   <span class='lshft op'>&lt;&lt;</span><span class='colon op'>:</span> <span class='mult op'>*</span><span class='base identifier id'>base</span>
@@ -79,21 +90,27 @@
     <span class='compilation_level identifier id'>compilation_level</span><span class='colon op'>:</span> <span class='ADVANCED_OPTIMIZATIONS constant id'>ADVANCED_OPTIMIZATIONS</span>
 </pre>
 
-<h2>Packaging</h2>
+<p>The only required setting is <code>definition_root</code>. (Of course, you'll still need definition files to define the asset packages that you want build. More on that below.)</p>
 
-<p>Set up rapper with the config file and current environment:</p>
+<p>The minimum settings needed for a configuration file is:</p>
 
-<pre class="code"><span class='engine identifier id'>engine</span> <span class='assign token'>=</span> <span class='Rapper constant id'>Rapper</span><span class='colon2 op'>::</span><span class='Engine constant id'>Engine</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span> <span class='string val'>&quot;config/assets.yml&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;development&quot;</span> <span class='rparen token'>)</span>
+<pre class="code"><span class='base identifier id'>base</span><span class='colon op'>:</span>
+  <span class='definition_root identifier id'>definition_root</span><span class='colon op'>:</span> <span class='config identifier id'>config</span><span class='div op'>/</span><span class='assets identifier id'>assets</span>
 </pre>
 
-<p>And away you go!</p>
+<p>The following defaults are applied if not defined in your configuration:</p>
 
-<pre class="code"><span class='engine identifier id'>engine</span><span class='dot token'>.</span><span class='package identifier id'>package</span>
+<pre class="code"><span class='bundle identifier id'>bundle</span><span class='colon op'>:</span> <span class='true true kw'>true</span>
+<span class='compress identifier id'>compress</span><span class='colon op'>:</span> <span class='true true kw'>true</span>
+<span class='tag_style identifier id'>tag_style</span><span class='colon op'>:</span> <span class='html5 identifier id'>html5</span>
+<span class='versions identifier id'>versions</span><span class='colon op'>:</span> <span class='true true kw'>true</span>
+<span class='closure_compiler identifier id'>closure_compiler</span><span class='colon op'>:</span>
+  <span class='compilation_level identifier id'>compilation_level</span><span class='colon op'>:</span> <span class='SIMPLE_OPTIMIZATIONS constant id'>SIMPLE_OPTIMIZATIONS</span>
 </pre>
 
 <h2>Rapper definitions</h2>
 
-<p>The <code>definition_root</code> setting in the rapper config is a path to a folder containing more YAML files that defines the various types of bundles you want to build (eg. <code>stylesheets.yml</code>, <code>javascripts.yml</code>) Example definition file:</p>
+<p>The <code>definition_root</code> setting in the rapper config is a path to a folder containing more YAML files that define the various types of bundles you want to build (eg. <code>stylesheets.yml</code>, <code>javascripts.yml</code>) Example definition file:</p>
 
 <pre class="code"><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span> <span class='notop op'>!</span><span class='omap identifier id'>omap</span> 
 <span class='minus op'>-</span> <span class='source_root identifier id'>source_root</span><span class='colon op'>:</span> <span class='public identifier id'>public</span><span class='div op'>/</span><span class='javascripts identifier id'>javascripts</span>
@@ -109,11 +126,13 @@
       <span class='minus op'>-</span> <span class='ext_js_full identifier id'>ext_js_full</span>
 </pre>
 
-<p>The above definition will create two asset files: <code>public/assets/javascripts/base.js</code> and <code>public/assets/javascripts/stats.js</code> from the component files in <code>public/javascripts</code>.</p>
+<p>The above definition will create two asset files: <code>public/assets/javascripts/base.js</code> and <code>public/assets/javascripts/stats.js</code> from the component files in <code>public/javascripts</code> (in this case: <code>public/javascripts/protovis.js</code> and <code>public/javascripts/ext_js_full.js</code>).</p>
+
+<p><strong>Note:</strong> Definition files are YAML ordered mapping documents. This is so that version updates (which involves rapper updating the version numbers and writing out the updated definition as YAML) don't change the order of the file. This is especially useful when using git and working with many branches because it prevents nasty merge conflicts.</p>
 
 <h2>Versioning</h2>
 
-<p>If versioning is turned on in your config, version strings will be automatically added to / updated on definition files after packaging:</p>
+<p>If versioning is turned on in your config, version strings will be used to enforce better browser caching of assets.</p>
 
 <pre class="code"><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span> <span class='notop op'>!</span><span class='omap identifier id'>omap</span> 
 <span class='minus op'>-</span> <span class='source_root identifier id'>source_root</span><span class='colon op'>:</span> <span class='public identifier id'>public</span><span class='div op'>/</span><span class='javascripts identifier id'>javascripts</span>
@@ -131,7 +150,7 @@
     <span class='minus op'>-</span> <span class='version identifier id'>version</span><span class='colon op'>:</span> <span class='db62 identifier id'>db62</span>
 </pre>
 
-<p>These version strings are hashes of the asset file. This means that they will only change when the contents of the asset file change. Version strings are used to enforce good browser caching habits, especially when you have a far-future expires header configured on your web server. For example, suppose you had the following asset:</p>
+<p>These version strings are hashes of the final asset file. This means that they will only change when the contents of the asset file change. Version strings are used to enforce good browser caching habits, especially when you have a far-future expires header configured on your web server. For example, suppose you had the following asset:</p>
 
 <pre class="code"><span class='lt op'>&lt;</span><span class='script identifier id'>script</span> <span class='type identifier id'>type</span><span class='assign token'>=</span><span class='string val'>&quot;text/javascript&quot;</span> <span class='src identifier id'>src</span><span class='assign token'>=</span><span class='string val'>&quot;/assets/milkshake.js?v=d3va&quot;</span><span class='gt op'>&gt;</span><span class='lt op'>&lt;</span><span class='regexp val'>/script&gt;
 </span></pre>
@@ -143,22 +162,28 @@
 
 <p>Browsers will automatically re-download and cache the new asset.</p>
 
-<h2>To do</h2>
+<h2>To do soon</h2>
 
 <ul>
-<li>Compress JS and CSS when set</li>
 <li>Merb view helpers</li>
 <li>Sinatra helpers</li>
 </ul>
 
 
-<h2>Near-future to do</h2>
+<h2>To do later</h2>
 
 <ul>
 <li>Per-asset configuration overrides</li>
 <li>Rails helpers</li>
 <li>Watch for CoffeeScript changes and automatically compile</li>
 <li>Watch for Sass changes and automatically compile</li>
+</ul>
+
+
+<h2>Version history</h2>
+
+<ul>
+<li><strong>0.0.1</strong> - Initial release. Functioning bundler, minus the view helpers.</li>
 </ul>
 
 
@@ -180,7 +205,7 @@
 <p>Copyright (c) 2011 Tyson Tate. See LICENSE.txt for further details.</p></div></div>
     
     <div id="footer">
-  Generated on Mon Jan 31 00:28:24 2011 by 
+  Generated on Fri Feb  4 23:12:54 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>

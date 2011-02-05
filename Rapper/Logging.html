@@ -80,6 +80,19 @@ Basic logging support.
 <div class="tags">
   
 </div>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="PATHY_STRING-constant" class="">PATHY_STRING =
+          
+        </dt>
+        <dd><pre class="code"><span class='regexp val'>/\.|\//</span>
+</pre></dd>
+      
+    </dl>
+  
+
 
 
   
@@ -93,7 +106,7 @@ Basic logging support.
         <li class="protected ">
   <span class="summary_signature">
     
-      <a href="#log-instance_method" title="#log (instance method)">- (Object) <strong>log</strong>(*args) </a>
+      <a href="#log-instance_method" title="#log (instance method)">- (Object) <strong>log</strong>(level, message) </a>
     
 
     
@@ -126,7 +139,7 @@ Outputs all arguments (joined with spaces) to:.
       <div class="method_details first">
   <p class="signature first" id="log-instance_method">
   
-    - (<tt>Object</tt>) <strong>log</strong>(*args)  <span class="extras">(protected)</span>
+    - (<tt>Object</tt>) <strong>log</strong>(level, message)  <span class="extras">(protected)</span>
   
 
   
@@ -138,8 +151,8 @@ Outputs all arguments (joined with spaces) to:
 <pre class="code">
   <span class='mult op'>*</span> <span class='lt op'>&lt;</span><span class='code identifier id'>code</span><span class='gt op'>&gt;</span><span class='stdout identifier id'>stdout</span><span class='lt op'>&lt;</span><span class='regexp val'>/code&gt; if &quot;log&quot; is set to &quot;stdout&quot; in the environment
     configuration.
-  * the configured file if &quot;log&quot; is set to &quot;file&quot; in the environment
-    configuration.
+  * a text file if &quot;log&quot; appears to be a file path (i.e. has a slash or
+    period in it).
 </span></pre>
 
 
@@ -151,16 +164,34 @@ Outputs all arguments (joined with spaces) to:
   
     <li>
       
-        <span class='type'>(<tt>&lt;String&gt;</tt>)</span>
+        <span class='type'>(<tt>Symbol</tt>)</span>
       
       
-        <span class='name'>args</span>
+        <span class='name'>level</span>
       
       
       
         &mdash;
         <div class='inline'><p>
-Strings to be logged.
+Log level. :info or :verbose. :verbose level log messages are only emitted
+if the &quot;verbose_logging&quot; setting is truthy.
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>message</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Message to be logged.
 </p>
 </div>
       
@@ -174,15 +205,37 @@ Strings to be logged.
       <pre class="lines">
 
 
-14
-15
-16</pre>
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/logging.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/logging.rb', line 19</span>
 
-<span class='def def kw'>def</span> <span class='log identifier id'>log</span><span class='lparen token'>(</span> <span class='mult op'>*</span><span class='args identifier id'>args</span> <span class='rparen token'>)</span>
-  <span class='puts identifier id'>puts</span> <span class='args identifier id'>args</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span> <span class='string val'>&quot; &quot;</span> <span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='get_config identifier id'>get_config</span><span class='lparen token'>(</span> <span class='string val'>&quot;log&quot;</span> <span class='rparen token'>)</span> <span class='eq op'>==</span> <span class='string val'>&quot;stdout&quot;</span>
+<span class='def def kw'>def</span> <span class='log identifier id'>log</span><span class='lparen token'>(</span> <span class='level identifier id'>level</span><span class='comma token'>,</span> <span class='message identifier id'>message</span> <span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='unless unless_mod kw'>unless</span> <span class='destination identifier id'>destination</span> <span class='assign token'>=</span> <span class='get_config identifier id'>get_config</span><span class='lparen token'>(</span> <span class='string val'>&quot;log&quot;</span> <span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='if if_mod kw'>if</span> <span class='notop op'>!</span><span class='get_config identifier id'>get_config</span><span class='lparen token'>(</span> <span class='string val'>&quot;log_verbose&quot;</span> <span class='rparen token'>)</span> <span class='andop op'>&amp;&amp;</span> <span class='level identifier id'>level</span> <span class='eq op'>==</span> <span class='symbol val'>:verbose</span>
+  
+  <span class='case case kw'>case</span> <span class='destination identifier id'>destination</span>
+    <span class='when when kw'>when</span> <span class='PATHY_STRING constant id'>PATHY_STRING</span>
+      <span class='open identifier id'>open</span><span class='lparen token'>(</span> <span class='destination identifier id'>destination</span><span class='comma token'>,</span> <span class='string val'>&quot;a&quot;</span> <span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='file identifier id'>file</span><span class='bitor op'>|</span>
+        <span class='file identifier id'>file</span><span class='dot token'>.</span><span class='puts identifier id'>puts</span> <span class='dstring node'>&quot;#{message}\n&quot;</span>
+      <span class='end end kw'>end</span>
+    <span class='when when kw'>when</span> <span class='string val'>&quot;stdout&quot;</span>
+      <span class='puts identifier id'>puts</span> <span class='message identifier id'>message</span>
+  <span class='end end kw'>end</span>
+  
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -195,7 +248,7 @@ Strings to be logged.
 </div>
     
     <div id="footer">
-  Generated on Mon Jan 31 00:28:25 2011 by 
+  Generated on Fri Feb  4 23:12:55 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>

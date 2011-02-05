@@ -95,6 +95,9 @@ The main Rapper class. Handles, well, everything.
 <div class="tags">
   
 </div>
+  <h2>Constant Summary</h2>
+  
+
 
   
   
@@ -112,6 +115,9 @@ The main Rapper class. Handles, well, everything.
   
   
   
+  <h3 class="inherited">Constants included from <span class='object_link'><a href="Logging.html" title="Rapper::Logging (module)">Logging</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Logging.html#PATHY_STRING-constant" title="Rapper::Logging::PATHY_STRING (constant)">PATHY_STRING</a></span></p>
+
   
   
   
@@ -299,7 +305,8 @@ Rapper configuration file.
 29
 30
 31
-32</pre>
+32
+33</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/rapper.rb', line 27</span>
@@ -309,6 +316,7 @@ Rapper configuration file.
   <span class='@config ivar id'>@config</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
   <span class='@definitions ivar id'>@definitions</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
   <span class='load_config identifier id'>load_config</span><span class='lparen token'>(</span> <span class='config_path identifier id'>config_path</span> <span class='rparen token'>)</span>
+  <span class='log identifier id'>log</span> <span class='symbol val'>:verbose</span><span class='comma token'>,</span> <span class='dstring node'>&quot;Loaded rappper with #{environment} environment from #{config_path}&quot;</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -369,7 +377,6 @@ Asset types to refresh versions for.
       <pre class="lines">
 
 
-38
 39
 40
 41
@@ -391,13 +398,17 @@ Asset types to refresh versions for.
 57
 58
 59
-60</pre>
+60
+61
+62
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper.rb', line 39</span>
 
 <span class='def def kw'>def</span> <span class='package identifier id'>package</span><span class='lparen token'>(</span> <span class='mult op'>*</span><span class='types identifier id'>types</span> <span class='rparen token'>)</span>
   <span class='types identifier id'>types</span> <span class='assign token'>=</span> <span class='types identifier id'>types</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span> <span class='integer val'>? </span><span class='asset_types identifier id'>asset_types</span> <span class='colon op'>:</span> <span class='types identifier id'>types</span>
+  <span class='log identifier id'>log</span> <span class='symbol val'>:info</span><span class='comma token'>,</span> <span class='dstring node'>&quot;Packaging #{types.join( ', ' )}&quot;</span>
   
   <span class='types identifier id'>types</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='type identifier id'>type</span><span class='bitor op'>|</span>
     <span class='definition identifier id'>definition</span> <span class='assign token'>=</span> <span class='@definitions ivar id'>@definitions</span><span class='lbrack token'>[</span><span class='type identifier id'>type</span><span class='rbrack token'>]</span>
@@ -412,6 +423,7 @@ Asset types to refresh versions for.
       <span class='source_files identifier id'>source_files</span> <span class='assign token'>=</span> <span class='asset_component_paths identifier id'>asset_component_paths</span><span class='lparen token'>(</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
       <span class='destination_file identifier id'>destination_file</span> <span class='assign token'>=</span> <span class='asset_path identifier id'>asset_path</span><span class='lparen token'>(</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
       
+      <span class='log identifier id'>log</span> <span class='symbol val'>:verbose</span><span class='comma token'>,</span> <span class='dstring node'>&quot;Joining #{definition[&quot;assets&quot;].count} files to #{name}&quot;</span>
       <span class='join_files identifier id'>join_files</span><span class='lparen token'>(</span> <span class='source_files identifier id'>source_files</span><span class='comma token'>,</span> <span class='destination_file identifier id'>destination_file</span> <span class='rparen token'>)</span>
     <span class='end end kw'>end</span>
   <span class='end end kw'>end</span>
@@ -430,7 +442,7 @@ Asset types to refresh versions for.
 </div>
     
     <div id="footer">
-  Generated on Mon Jan 31 00:28:25 2011 by 
+  Generated on Fri Feb  4 23:12:55 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>
