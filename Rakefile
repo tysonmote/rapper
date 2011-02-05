@@ -14,9 +14,9 @@ Jeweler::Tasks.new do |gem|
   gem.name = "rapper"
   gem.homepage = "http://tysontate.github.com/rapper/"
   gem.license = "MIT"
-  gem.summary = %Q{Static asset packager and compressor with versioning.}
-  gem.description = %Q{Static asset packager and compressor with versioning. Built-in support for CoffeeScript, Sass, Merb, and Sinatra.}
-  gem.email = "tyson@doloreslabs.com"
+  gem.summary = %Q{Static asset packager and compressor with versioning and built-in view helpers.}
+  gem.description = %Q{Static asset packager and compressor with versioning and built-in view helpers. Easy to configure, easy to use, and easy to ignore when you want to. No crazy JavaScript comment DSLs, either.}
+  gem.email = "tyson@tysontate.com"
   gem.authors = ["Tyson Tate"]
   
   # Runtime dependencies
