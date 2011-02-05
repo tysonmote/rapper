@@ -121,6 +121,10 @@ Browsers will automatically re-download and cache the new asset.
 * Watch for CoffeeScript changes and automatically compile
 * Watch for Sass changes and automatically compile
 
+## Version history
+
+* **0.0.1** - Initial release. Functioning bundler, minus the view helpers.
+
 ## Contributing to rapper
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
