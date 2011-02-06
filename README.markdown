@@ -123,6 +123,7 @@ Browsers will automatically re-download and cache the new asset.
 
 ## Version history
 
+* **0.0.2** - Compression now works and is specced.
 * **0.0.1** - Initial release. Functioning bundler, minus the view helpers.
 
 ## Contributing to rapper
