@@ -29,7 +29,7 @@ Rapper is configured using a YAML file that defines the settings to be used in v
       <<: *base
       bundle: false     # optional, default: true
       compress: false   # optional, default: true
-      versions: false   # optional, default: true
+      version: false    # optional, default: true
       log: stdout       # optional, ["stdout", file path], default: off
       log_verbose: true # optional, default: off
     
@@ -37,7 +37,7 @@ Rapper is configured using a YAML file that defines the settings to be used in v
       <<: *base
       bundle: true
       compress: true
-      versions: true
+      version: true
       # optional, passed to Google Closure Compiler
       closure_compiler:
         # default: SIMPLE_OPTIMIZATIONS
@@ -55,7 +55,7 @@ The following defaults are applied if not defined in your configuration:
     bundle: true
     compress: true
     tag_style: html5
-    versions: true
+    version: true
     closure_compiler:
       compilation_level: SIMPLE_OPTIMIZATIONS
 

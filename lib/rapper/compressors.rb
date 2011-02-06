@@ -1,46 +1,105 @@
 require File.expand_path( File.dirname( __FILE__ ) + "/../yui/css_compressor.rb" )
 require "closure-compiler"
+require 'fileutils'
 
 module Rapper
-  # Compression methods for various types of assets.
+  # Compression handlers for various types of assets. And by "various" I mean
+  # JavaScript and CSS.
   module Compressors
     
-    # Use Richard Hulse's port of the YUI CSS Compressor to compress the
-    # contents of a source file to a destination file.
+    # Compress a file in-place. Relies on the file's suffix to determine type.
     # 
-    # @param [String] source Path to source CSS file.
-    # 
-    # @param [String] destination Path to destination CSS file.
-    #   written to.
-    def compress_css( source, destination )
-      log :verbose, "Compressing #{source}"
-      
-      source = readable_file( source )
-      destination = writable_file( source )
-      
-      destination.write( YUI::CSS.compress( source.read ) )
-      destination.write "\n"
-      
-      source.close && destination.close
+    # @param [String] file Path to the file to compress.
+    def compress( file )
+      opts = {}
+      # TODO: Someday this goes away.
+      opts = get_config( "closure_compiler" ) if file =~ /\.js/
+      Rapper::Compressors::Compressor.compress( file, opts )
     end
     
-    # Use Google's Closure Compiler to compress the JavaScript from a source
-    # file to a destination file.
-    # 
-    # @param [String] source Path to source JavaScript file.
-    # 
-    # @param [String] destination Path to destination JavaScript file.
-    def compress_js( source, destination, opts={} )
-      log :verbose, "Compressing #{source}"
+    protected
+    
+    # Base class for a compression handler.
+    class Compressor
+      class << self
+        
+        # Get the compressor for a given file.
+        # 
+        # @param [String] file Path to the file to fetch the Compressor for
+        # @return [Types] Description
+        def compress( file_path, opts={} )
+          unless compressor = @extensions[File.extname( file_path )]
+            raise Rapper::Errors::UnknownFileExtension,
+              "Rapper doesn't know how to compress #{file_path}"
+          end
+          
+          compressor.do_compress( file_path, opts )
+        end
+        
+        protected
+        
+        attr_accessor :extensions
+        
+        # Register `self` as a file compressor.
+        # 
+        # @param [String] extension The file extension `self` handles.
+        def register( extension )
+          superclass.extensions ||= {}
+          superclass.extensions[extension] = self
+        end
+        
+        # Compress a file.
+        def do_compress( file_path )
+          raise NotImplementedError
+        end
+        
+        # @param [String] path Path to a file.
+        # 
+        # @return [String] The contents of the file.
+        def read_file( path )
+          File.new( path, 'r' ).read
+        end
+        
+        # @param [String] path Path to the desired file.
+        # 
+        # @return [File] Writable file instance with 0644 permissions.
+        def writable_file( path )
+          File.new( path, 'w', 0644 )
+        end
+      end
+    end
+    
+    # Use Richard Hulse's Ruby port of the YUI CSS Compressor to compress the
+    # contents of a CSS file.
+    class CSSCompressor < Compressor
+      register ".css"
       
-      source = readable_file( source )
-      destination = writable_file( source )
-      closure = Closure::Compiler.new( opts )
+      def self.do_compress( file_path, opts={} )
+        css = read_file( file_path )
+        css = YUI::CSS.compress( css )
+        destination = writable_file( file_path )
+        
+        destination.write( css )
+        destination.write "\n"
+        destination.close
+      end
+    end
+    
+    # Uses Google's Closure Compiler (via DocumentCloud's closure-compiler gem)
+    # to compress JavaScrpt.
+    class JSCompressor < Compressor
+      register ".js"
       
-      destination.write( closure.compile( destination ) )
-      destination.write "\n"
-      
-      source.close && destination.close
+      def self.do_compress( file_path, opts={} )
+        closure = Closure::Compiler.new( opts )
+        
+        js = read_file( file_path )
+        destination = writable_file( file_path )
+        
+        destination.write( closure.compile( js ) )
+        destination.write "\n"
+        destination.close
+      end
     end
     
   end

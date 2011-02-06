@@ -1,5 +1,5 @@
 a = 1;
 b = 2;
-function() {
+function b() {
   return false;
 }

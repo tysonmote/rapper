@@ -45,7 +45,7 @@ module Rapper
       if default_config[key].is_a?( Hash )
         default_config[key].merge( env_config[key] || {} )
       else
-        env_config[key] || default_config[key]
+        env_config.key?( key ) ? env_config[key] : default_config[key]
       end
     end
     

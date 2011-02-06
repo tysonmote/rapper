@@ -12,7 +12,7 @@ module Rapper
     # 
     # @return [String] Path to the definition file for the given asset type.
     def definition_path( type )
-      File.join( env_config["definition_root"], "#{type}.yml")
+      File.join( get_config( "definition_root" ), "#{type}.yml")
     end
     
     # @param [String] type Asset type.
@@ -63,20 +63,6 @@ module Rapper
     # =========
     # = Files =
     # =========
-    
-    # @param [String] path Path to the desired file.
-    # 
-    # @return [File] Readable File instance.
-    def readable_file( path )
-      File.new( path, 'r' )
-    end
-    
-    # @param [String] path Path to the desired file.
-    # 
-    # @return [File] Writable file instance with 0644 permissions.
-    def writable_file( path )
-      File.new( path, 'w', 0644 )
-    end
     
     # Contatenate one or more files. Uses <code>cat</code>.
     # 

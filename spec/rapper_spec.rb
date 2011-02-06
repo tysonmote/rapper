@@ -111,7 +111,6 @@ describe Rapper do
         
         results.each_index do |i|
           unless File.read( results[i] ) == File.read( expecteds[i] )
-            # p File.read( results[i] )
             raise "#{results[i]} did not match #{expecteds[i]}"
           end
         end
@@ -121,10 +120,6 @@ describe Rapper do
   
   describe "bundling" do
     it "raises an error if a file doesn't exist"
-  end
-  
-  describe "compressing" do
-    it "can be turned off"
   end
   
   describe "view helpers" do

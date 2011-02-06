@@ -55,6 +55,11 @@ module Rapper
           
           log :verbose, "Joining #{definition["assets"].count} files to #{name}"
           join_files( source_files, destination_file )
+          
+          if get_config( "compress" )
+            log :verbose, "Compressing #{name}"
+            compress( destination_file )
+          end
         end
       end
       

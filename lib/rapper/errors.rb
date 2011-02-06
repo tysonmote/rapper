@@ -19,5 +19,8 @@ module Rapper
     # is one not defined in a given definition file.
     class InvalidAssetName < StandardError; end
     
+    # Raised when attempting to compress a file with an extension that Rapper
+    # doesn't recognize.
+    class UnknownFileExtension < StandardError; end
   end
 end
