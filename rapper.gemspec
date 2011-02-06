@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rapper}
-  s.version = "0.0.1"
+  s.version = "0.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tyson Tate"]
-  s.date = %q{2011-02-04}
+  s.date = %q{2011-02-05}
   s.description = %q{Static asset packager and compressor with versioning and built-in view helpers. Easy to configure, easy to use, and easy to ignore when you want to. No crazy JavaScript comment DSLs, either.}
   s.email = %q{tyson@tysontate.com}
   s.extra_rdoc_files = [
@@ -42,6 +42,13 @@ Gem::Specification.new do |s|
     "spec/fixtures/javascripts/simple_2.js",
     "spec/fixtures/stylesheets/simple_1.css",
     "spec/fixtures/stylesheets/simple_2.css",
+    "spec/fixtures/test_cases/compression/assets.yml",
+    "spec/fixtures/test_cases/compression/definitions/css.yml",
+    "spec/fixtures/test_cases/compression/definitions/js.yml",
+    "spec/fixtures/test_cases/compression/expected/base.css",
+    "spec/fixtures/test_cases/compression/expected/base.js",
+    "spec/fixtures/test_cases/compression/expected/base_reversed.css",
+    "spec/fixtures/test_cases/compression/expected/base_reversed.js",
     "spec/fixtures/test_cases/concatenation/assets.yml",
     "spec/fixtures/test_cases/concatenation/definitions/css.yml",
     "spec/fixtures/test_cases/concatenation/definitions/js.yml",
