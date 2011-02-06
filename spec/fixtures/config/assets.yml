@@ -5,7 +5,7 @@ test:
   bundle: true
   compress: true
   tag_style: html
-  versions: false
+  version: false
   closure_compiler:
     compilation_level: ADVANCED_OPTIMIZATIONS
     formatting: pretty_print

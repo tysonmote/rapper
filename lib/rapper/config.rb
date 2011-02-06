@@ -74,7 +74,7 @@ module Rapper
         "bundle" => true,
         "compress" => true,
         "tag_style" => "html5",
-        "versions" => true,
+        "version" => true,
         "closure_compiler" => {
           "compilation_level" => "SIMPLE_OPTIMIZATIONS"
         }

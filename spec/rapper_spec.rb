@@ -40,7 +40,7 @@ describe Rapper do
       # private
       rapper.send( :get_config, "bundle" ).should be_true
       rapper.send( :get_config, "compress" ).should be_true
-      rapper.send( :get_config, "versions" ).should be_true
+      rapper.send( :get_config, "version" ).should be_true
       rapper.send( :get_config, "closure_compiler" ).should == {
         "compilation_level" => "SIMPLE_OPTIMIZATIONS"
       }
