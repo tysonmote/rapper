@@ -210,54 +210,6 @@ Contatenate one or more files.
 </li>
 
       
-        <li class="protected ">
-  <span class="summary_signature">
-    
-      <a href="#readable_file-instance_method" title="#readable_file (instance method)">- (File) <strong>readable_file</strong>(path) </a>
-    
-
-    
-  </span>
-  
-  
-  <span class="note title protected">protected</span>
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>
-Readable File instance.
-</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="protected ">
-  <span class="summary_signature">
-    
-      <a href="#writable_file-instance_method" title="#writable_file (instance method)">- (File) <strong>writable_file</strong>(path) </a>
-    
-
-    
-  </span>
-  
-  
-  <span class="note title protected">protected</span>
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>
-Writable file instance with 0644 permissions.
-</p>
-</div></span>
-  
-</li>
-
-      
     </ul>
   
 
@@ -585,7 +537,7 @@ Path to the definition file for the given asset type.
       <pre class="code"><span class="info file"># File 'lib/rapper/utils.rb', line 14</span>
 
 <span class='def def kw'>def</span> <span class='definition_path identifier id'>definition_path</span><span class='lparen token'>(</span> <span class='type identifier id'>type</span> <span class='rparen token'>)</span>
-  <span class='File constant id'>File</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span> <span class='env_config identifier id'>env_config</span><span class='lbrack token'>[</span><span class='string val'>&quot;definition_root&quot;</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='dstring node'>&quot;#{type}.yml&quot;</span><span class='rparen token'>)</span>
+  <span class='File constant id'>File</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span> <span class='get_config identifier id'>get_config</span><span class='lparen token'>(</span> <span class='string val'>&quot;definition_root&quot;</span> <span class='rparen token'>)</span><span class='comma token'>,</span> <span class='dstring node'>&quot;#{type}.yml&quot;</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -674,12 +626,12 @@ First hash with the given key.
       <pre class="lines">
 
 
-101
-102
-103</pre>
+87
+88
+89</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/utils.rb', line 101</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/utils.rb', line 87</span>
 
 <span class='def def kw'>def</span> <span class='first_hash_with_key identifier id'>first_hash_with_key</span><span class='lparen token'>(</span> <span class='key identifier id'>key</span><span class='comma token'>,</span> <span class='array identifier id'>array</span> <span class='rparen token'>)</span>
   <span class='array identifier id'>array</span><span class='dot token'>.</span><span class='find identifier id'>find</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='h identifier id'>h</span><span class='bitor op'>|</span> <span class='h identifier id'>h</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span><span class='dot token'>.</span><span class='include? fid id'>include?</span> <span class='key identifier id'>key</span> <span class='rbrace token'>}</span>
@@ -752,177 +704,17 @@ Destination for concatenated output.
       <pre class="lines">
 
 
-87
-88
-89
-90</pre>
+73
+74
+75
+76</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/utils.rb', line 87</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/utils.rb', line 73</span>
 
 <span class='def def kw'>def</span> <span class='join_files identifier id'>join_files</span><span class='lparen token'>(</span> <span class='source_files identifier id'>source_files</span><span class='comma token'>,</span> <span class='destination_file identifier id'>destination_file</span> <span class='rparen token'>)</span>
   <span class='source_files identifier id'>source_files</span> <span class='assign token'>=</span> <span class='Array constant id'>Array</span><span class='lparen token'>(</span> <span class='source_files identifier id'>source_files</span> <span class='rparen token'>)</span><span class='dot token'>.</span><span class='uniq identifier id'>uniq</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span> <span class='string val'>&quot; &quot;</span> <span class='rparen token'>)</span>
   <span class='system identifier id'>system</span> <span class='dstring node'>&quot;cat #{source_files} &gt; #{destination_file}&quot;</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="readable_file-instance_method">
-  
-    - (<tt>File</tt>) <strong>readable_file</strong>(path)  <span class="extras">(protected)</span>
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-Readable File instance.
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <h3>Parameters:</h3>
-<ul class="param">
-  
-    <li>
-      
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
-        <span class='name'>path</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>
-Path to the desired file.
-</p>
-</div>
-      
-    </li>
-  
-</ul>
-<h3>Returns:</h3>
-<ul class="return">
-  
-    <li>
-      
-        <span class='type'>(<tt>File</tt>)</span>
-      
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>
-Readable File instance.
-</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-70
-71
-72</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/utils.rb', line 70</span>
-
-<span class='def def kw'>def</span> <span class='readable_file identifier id'>readable_file</span><span class='lparen token'>(</span> <span class='path identifier id'>path</span> <span class='rparen token'>)</span>
-  <span class='File constant id'>File</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span> <span class='path identifier id'>path</span><span class='comma token'>,</span> <span class='string val'>'r'</span> <span class='rparen token'>)</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="writable_file-instance_method">
-  
-    - (<tt>File</tt>) <strong>writable_file</strong>(path)  <span class="extras">(protected)</span>
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-Writable file instance with 0644 permissions.
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <h3>Parameters:</h3>
-<ul class="param">
-  
-    <li>
-      
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
-        <span class='name'>path</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>
-Path to the desired file.
-</p>
-</div>
-      
-    </li>
-  
-</ul>
-<h3>Returns:</h3>
-<ul class="return">
-  
-    <li>
-      
-        <span class='type'>(<tt>File</tt>)</span>
-      
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>
-Writable file instance with 0644 permissions.
-</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-77
-78
-79</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/utils.rb', line 77</span>
-
-<span class='def def kw'>def</span> <span class='writable_file identifier id'>writable_file</span><span class='lparen token'>(</span> <span class='path identifier id'>path</span> <span class='rparen token'>)</span>
-  <span class='File constant id'>File</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span> <span class='path identifier id'>path</span><span class='comma token'>,</span> <span class='string val'>'w'</span><span class='comma token'>,</span> <span class='integer val'>0644</span> <span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -935,7 +727,7 @@ Writable file instance with 0644 permissions.
 </div>
     
     <div id="footer">
-  Generated on Fri Feb  4 23:12:54 2011 by 
+  Generated on Sat Feb  5 22:26:50 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>

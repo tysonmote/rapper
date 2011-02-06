@@ -587,7 +587,7 @@ Default rapper configuration.
     <span class='string val'>&quot;bundle&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span><span class='comma token'>,</span>
     <span class='string val'>&quot;compress&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span><span class='comma token'>,</span>
     <span class='string val'>&quot;tag_style&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;html5&quot;</span><span class='comma token'>,</span>
-    <span class='string val'>&quot;versions&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span><span class='comma token'>,</span>
+    <span class='string val'>&quot;version&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span><span class='comma token'>,</span>
     <span class='string val'>&quot;closure_compiler&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span>
       <span class='string val'>&quot;compilation_level&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;SIMPLE_OPTIMIZATIONS&quot;</span>
     <span class='rbrace token'>}</span>
@@ -739,7 +739,7 @@ hash, return the default merged with the environment&#8217;s setting.
   <span class='if if kw'>if</span> <span class='default_config identifier id'>default_config</span><span class='lbrack token'>[</span><span class='key identifier id'>key</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span> <span class='Hash constant id'>Hash</span> <span class='rparen token'>)</span>
     <span class='default_config identifier id'>default_config</span><span class='lbrack token'>[</span><span class='key identifier id'>key</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span> <span class='env_config identifier id'>env_config</span><span class='lbrack token'>[</span><span class='key identifier id'>key</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span> <span class='rparen token'>)</span>
   <span class='else else kw'>else</span>
-    <span class='env_config identifier id'>env_config</span><span class='lbrack token'>[</span><span class='key identifier id'>key</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='default_config identifier id'>default_config</span><span class='lbrack token'>[</span><span class='key identifier id'>key</span><span class='rbrack token'>]</span>
+    <span class='env_config identifier id'>env_config</span><span class='dot token'>.</span><span class='key? fid id'>key?</span><span class='lparen token'>(</span> <span class='key identifier id'>key</span> <span class='rparen token'>)</span> <span class='question op'>?</span> <span class='env_config identifier id'>env_config</span><span class='lbrack token'>[</span><span class='key identifier id'>key</span><span class='rbrack token'>]</span> <span class='colon op'>:</span> <span class='default_config identifier id'>default_config</span><span class='lbrack token'>[</span><span class='key identifier id'>key</span><span class='rbrack token'>]</span>
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
@@ -920,7 +920,7 @@ Asset types to update the definition files for. Defaults to all types.
 </div>
     
     <div id="footer">
-  Generated on Fri Feb  4 23:12:55 2011 by 
+  Generated on Sat Feb  5 22:26:52 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>

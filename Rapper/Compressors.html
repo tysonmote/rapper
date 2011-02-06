@@ -71,7 +71,8 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     <p>
-Compression methods for various types of assets.
+Compression handlers for various types of assets. And by
+&quot;various&quot; I mean JavaScript and CSS.
 </p>
 
 
@@ -79,7 +80,17 @@ Compression methods for various types of assets.
 </div>
 <div class="tags">
   
-</div>
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+   
+    
+   
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Compressors/CSSCompressor.html" title="Rapper::Compressors::CSSCompressor (class)">CSSCompressor</a></span>, <span class='object_link'><a href="Compressors/Compressor.html" title="Rapper::Compressors::Compressor (class)">Compressor</a></span>, <span class='object_link'><a href="Compressors/JSCompressor.html" title="Rapper::Compressors::JSCompressor (class)">JSCompressor</a></span>
+    
+  
+</p>
+
 
 
   
@@ -93,7 +104,7 @@ Compression methods for various types of assets.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#compress_css-instance_method" title="#compress_css (instance method)">- (Object) <strong>compress_css</strong>(source, destination) </a>
+      <a href="#compress-instance_method" title="#compress (instance method)">- (Object) <strong>compress</strong>(file) </a>
     
 
     
@@ -107,33 +118,7 @@ Compression methods for various types of assets.
 
   
     <span class="summary_desc"><div class='inline'><p>
-Use Richard Hulse&#8217;s port of the YUI CSS Compressor to compress the
-contents of a source file to a destination file.
-</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#compress_js-instance_method" title="#compress_js (instance method)">- (Object) <strong>compress_js</strong>(source, destination, opts = {}) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>
-Use Google&#8217;s Closure Compiler to compress the JavaScript from a
-source file to a destination file.
+Compress a file in-place.
 </p>
 </div></span>
   
@@ -150,17 +135,17 @@ source file to a destination file.
     
     
       <div class="method_details first">
-  <p class="signature first" id="compress_css-instance_method">
+  <p class="signature first" id="compress-instance_method">
   
-    - (<tt>Object</tt>) <strong>compress_css</strong>(source, destination) 
+    - (<tt>Object</tt>) <strong>compress</strong>(file) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Use Richard Hulse&#8217;s port of the YUI CSS Compressor to compress the
-contents of a source file to a destination file.
+Compress a file in-place. Relies on the file&#8217;s suffix to determine
+type.
 </p>
 
 
@@ -175,30 +160,13 @@ contents of a source file to a destination file.
         <span class='type'>(<tt>String</tt>)</span>
       
       
-        <span class='name'>source</span>
+        <span class='name'>file</span>
       
       
       
         &mdash;
         <div class='inline'><p>
-Path to source CSS file.
-</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
-        <span class='name'>destination</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>
-Path to destination CSS file. written to.
+Path to the file to compress.
 </p>
 </div>
       
@@ -212,128 +180,21 @@ Path to destination CSS file. written to.
       <pre class="lines">
 
 
+13
+14
 15
 16
 17
-18
-19
-20
-21
-22
-23
-24
-25</pre>
+18</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/compressors.rb', line 15</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/compressors.rb', line 13</span>
 
-<span class='def def kw'>def</span> <span class='compress_css identifier id'>compress_css</span><span class='lparen token'>(</span> <span class='source identifier id'>source</span><span class='comma token'>,</span> <span class='destination identifier id'>destination</span> <span class='rparen token'>)</span>
-  <span class='log identifier id'>log</span> <span class='symbol val'>:verbose</span><span class='comma token'>,</span> <span class='dstring node'>&quot;Compressing #{source}&quot;</span>
-  
-  <span class='source identifier id'>source</span> <span class='assign token'>=</span> <span class='readable_file identifier id'>readable_file</span><span class='lparen token'>(</span> <span class='source identifier id'>source</span> <span class='rparen token'>)</span>
-  <span class='destination identifier id'>destination</span> <span class='assign token'>=</span> <span class='writable_file identifier id'>writable_file</span><span class='lparen token'>(</span> <span class='source identifier id'>source</span> <span class='rparen token'>)</span>
-  
-  <span class='destination identifier id'>destination</span><span class='dot token'>.</span><span class='write identifier id'>write</span><span class='lparen token'>(</span> <span class='YUI constant id'>YUI</span><span class='colon2 op'>::</span><span class='CSS constant id'>CSS</span><span class='dot token'>.</span><span class='compress identifier id'>compress</span><span class='lparen token'>(</span> <span class='source identifier id'>source</span><span class='dot token'>.</span><span class='read identifier id'>read</span> <span class='rparen token'>)</span> <span class='rparen token'>)</span>
-  <span class='destination identifier id'>destination</span><span class='dot token'>.</span><span class='write identifier id'>write</span> <span class='string val'>&quot;\n&quot;</span>
-  
-  <span class='source identifier id'>source</span><span class='dot token'>.</span><span class='close identifier id'>close</span> <span class='andop op'>&amp;&amp;</span> <span class='destination identifier id'>destination</span><span class='dot token'>.</span><span class='close identifier id'>close</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="compress_js-instance_method">
-  
-    - (<tt>Object</tt>) <strong>compress_js</strong>(source, destination, opts = {}) 
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-Use Google&#8217;s Closure Compiler to compress the JavaScript from a
-source file to a destination file.
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <h3>Parameters:</h3>
-<ul class="param">
-  
-    <li>
-      
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
-        <span class='name'>source</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>
-Path to source JavaScript file.
-</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
-        <span class='name'>destination</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>
-Path to destination JavaScript file.
-</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/compressors.rb', line 33</span>
-
-<span class='def def kw'>def</span> <span class='compress_js identifier id'>compress_js</span><span class='lparen token'>(</span> <span class='source identifier id'>source</span><span class='comma token'>,</span> <span class='destination identifier id'>destination</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span> <span class='rparen token'>)</span>
-  <span class='log identifier id'>log</span> <span class='symbol val'>:verbose</span><span class='comma token'>,</span> <span class='dstring node'>&quot;Compressing #{source}&quot;</span>
-  
-  <span class='source identifier id'>source</span> <span class='assign token'>=</span> <span class='readable_file identifier id'>readable_file</span><span class='lparen token'>(</span> <span class='source identifier id'>source</span> <span class='rparen token'>)</span>
-  <span class='destination identifier id'>destination</span> <span class='assign token'>=</span> <span class='writable_file identifier id'>writable_file</span><span class='lparen token'>(</span> <span class='source identifier id'>source</span> <span class='rparen token'>)</span>
-  <span class='closure identifier id'>closure</span> <span class='assign token'>=</span> <span class='Closure constant id'>Closure</span><span class='colon2 op'>::</span><span class='Compiler constant id'>Compiler</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span> <span class='opts identifier id'>opts</span> <span class='rparen token'>)</span>
-  
-  <span class='destination identifier id'>destination</span><span class='dot token'>.</span><span class='write identifier id'>write</span><span class='lparen token'>(</span> <span class='closure identifier id'>closure</span><span class='dot token'>.</span><span class='compile identifier id'>compile</span><span class='lparen token'>(</span> <span class='destination identifier id'>destination</span> <span class='rparen token'>)</span> <span class='rparen token'>)</span>
-  <span class='destination identifier id'>destination</span><span class='dot token'>.</span><span class='write identifier id'>write</span> <span class='string val'>&quot;\n&quot;</span>
-  
-  <span class='source identifier id'>source</span><span class='dot token'>.</span><span class='close identifier id'>close</span> <span class='andop op'>&amp;&amp;</span> <span class='destination identifier id'>destination</span><span class='dot token'>.</span><span class='close identifier id'>close</span>
+<span class='def def kw'>def</span> <span class='compress identifier id'>compress</span><span class='lparen token'>(</span> <span class='file identifier id'>file</span> <span class='rparen token'>)</span>
+  <span class='opts identifier id'>opts</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+  <span class='comment val'># TODO: Someday this goes away.</span>
+  <span class='opts identifier id'>opts</span> <span class='assign token'>=</span> <span class='get_config identifier id'>get_config</span><span class='lparen token'>(</span> <span class='string val'>&quot;closure_compiler&quot;</span> <span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='file identifier id'>file</span> <span class='match op'>=~</span> <span class='regexp val'>/\.js/</span>
+  <span class='Rapper constant id'>Rapper</span><span class='colon2 op'>::</span><span class='Compressors constant id'>Compressors</span><span class='colon2 op'>::</span><span class='Compressor constant id'>Compressor</span><span class='dot token'>.</span><span class='compress identifier id'>compress</span><span class='lparen token'>(</span> <span class='file identifier id'>file</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span> <span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -346,7 +207,7 @@ Path to destination JavaScript file.
 </div>
     
     <div id="footer">
-  Generated on Fri Feb  4 23:12:55 2011 by 
+  Generated on Sat Feb  5 22:26:52 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>
