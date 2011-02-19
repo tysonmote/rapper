@@ -85,7 +85,18 @@ Basic logging support.
     <dl class="constants">
       
         <dt id="PATHY_STRING-constant" class="">PATHY_STRING =
-          
+          <div class="docstring">
+  <div class="discussion">
+    <p>
+Guess if a string is a path.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
         </dt>
         <dd><pre class="code"><span class='regexp val'>/\.|\//</span>
 </pre></dd>
@@ -205,7 +216,6 @@ Message to be logged.
       <pre class="lines">
 
 
-19
 20
 21
 22
@@ -218,10 +228,11 @@ Message to be logged.
 29
 30
 31
-32</pre>
+32
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/logging.rb', line 19</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/logging.rb', line 20</span>
 
 <span class='def def kw'>def</span> <span class='log identifier id'>log</span><span class='lparen token'>(</span> <span class='level identifier id'>level</span><span class='comma token'>,</span> <span class='message identifier id'>message</span> <span class='rparen token'>)</span>
   <span class='return return kw'>return</span> <span class='unless unless_mod kw'>unless</span> <span class='destination identifier id'>destination</span> <span class='assign token'>=</span> <span class='get_config identifier id'>get_config</span><span class='lparen token'>(</span> <span class='string val'>&quot;log&quot;</span> <span class='rparen token'>)</span>
@@ -248,7 +259,7 @@ Message to be logged.
 </div>
     
     <div id="footer">
-  Generated on Sat Feb 19 00:50:54 2011 by 
+  Generated on Sat Feb 19 01:03:10 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>

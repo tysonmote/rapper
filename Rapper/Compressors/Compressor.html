@@ -140,7 +140,7 @@ Returns the value of attribute extensions.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#compress-class_method" title="compress (class method)">+ (Types) <strong>compress</strong>(file_path, opts = {}) </a>
+      <a href="#compress-class_method" title="compress (class method)">+ (Object) <strong>compress</strong>(file_path, opts = {}) </a>
     
 
     
@@ -154,7 +154,7 @@ Returns the value of attribute extensions.
 
   
     <span class="summary_desc"><div class='inline'><p>
-Get the compressor for a given file.
+Compress a file.
 </p>
 </div></span>
   
@@ -188,7 +188,7 @@ Compress a file.
         <li class="protected ">
   <span class="summary_signature">
     
-      <a href="#read_file-class_method" title="read_file (class method)">+ (String) <strong>read_file</strong>(path) </a>
+      <a href="#read_file-class_method" title="read_file (class method)">+ (String) <strong>read_file</strong>(file_path) </a>
     
 
     
@@ -236,7 +236,7 @@ Register `self` as a file compressor.
         <li class="protected ">
   <span class="summary_signature">
     
-      <a href="#writable_file-class_method" title="writable_file (class method)">+ (File) <strong>writable_file</strong>(path) </a>
+      <a href="#writable_file-class_method" title="writable_file (class method)">+ (File) <strong>writable_file</strong>(file_path) </a>
     
 
     
@@ -291,12 +291,12 @@ Returns the value of attribute extensions
       <pre class="lines">
 
 
-41
-42
-43</pre>
+43
+44
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/compressors.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/compressors.rb', line 43</span>
 
 <span class='def def kw'>def</span> <span class='extensions identifier id'>extensions</span>
   <span class='@extensions ivar id'>@extensions</span>
@@ -317,14 +317,15 @@ Returns the value of attribute extensions
       <div class="method_details first">
   <p class="signature first" id="compress-class_method">
   
-    + (<tt>Types</tt>) <strong>compress</strong>(file_path, opts = {}) 
+    + (<tt>Object</tt>) <strong>compress</strong>(file_path, opts = {}) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Get the compressor for a given file.
+Compress a file. Raises UnknownFileExtension if it doesn&#8217;t know how
+to compress a file with the given file&#8217;s file extension.
 </p>
 
 
@@ -339,32 +340,32 @@ Get the compressor for a given file.
         <span class='type'>(<tt>String</tt>)</span>
       
       
-        <span class='name'>file</span>
+        <span class='name'>file_path</span>
       
       
       
         &mdash;
         <div class='inline'><p>
-Path to the file to fetch the Compressor for
+Path to the file to compress.
 </p>
 </div>
       
     </li>
   
-</ul>
-<h3>Returns:</h3>
-<ul class="return">
-  
     <li>
       
-        <span class='type'>(<tt>Types</tt>)</span>
+        <span class='type'>(<tt>Hash</tt>)</span>
       
       
+        <span class='name'>opts</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
       
       
         &mdash;
         <div class='inline'><p>
-Description
+Options to be passed to the compressor (optional).
 </p>
 </div>
       
@@ -378,17 +379,17 @@ Description
       <pre class="lines">
 
 
-30
-31
 32
 33
 34
 35
 36
-37</pre>
+37
+38
+39</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/compressors.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/compressors.rb', line 32</span>
 
 <span class='def def kw'>def</span> <span class='compress identifier id'>compress</span><span class='lparen token'>(</span> <span class='file_path identifier id'>file_path</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span> <span class='rparen token'>)</span>
   <span class='unless unless kw'>unless</span> <span class='compressor identifier id'>compressor</span> <span class='assign token'>=</span> <span class='@extensions ivar id'>@extensions</span><span class='lbrack token'>[</span><span class='File constant id'>File</span><span class='dot token'>.</span><span class='extname identifier id'>extname</span><span class='lparen token'>(</span> <span class='file_path identifier id'>file_path</span> <span class='rparen token'>)</span><span class='rbrack token'>]</span>
@@ -421,7 +422,28 @@ Compress a file.
   </div>
 </div>
 <div class="tags">
-  <h3>Raises:</h3>
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>file_path</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Path to the file to compress.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Raises:</h3>
 <ul class="raise">
   
     <li>
@@ -441,12 +463,12 @@ Compress a file.
       <pre class="lines">
 
 
-52
-53
-54</pre>
+56
+57
+58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/compressors.rb', line 52</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/compressors.rb', line 56</span>
 
 <span class='def def kw'>def</span> <span class='do_compress identifier id'>do_compress</span><span class='lparen token'>(</span> <span class='file_path identifier id'>file_path</span> <span class='rparen token'>)</span>
   <span class='raise identifier id'>raise</span> <span class='NotImplementedError constant id'>NotImplementedError</span>
@@ -460,7 +482,7 @@ Compress a file.
       <div class="method_details ">
   <p class="signature " id="read_file-class_method">
   
-    + (<tt>String</tt>) <strong>read_file</strong>(path)  <span class="extras">(protected)</span>
+    + (<tt>String</tt>) <strong>read_file</strong>(file_path)  <span class="extras">(protected)</span>
   
 
   
@@ -482,7 +504,7 @@ The contents of the file.
         <span class='type'>(<tt>String</tt>)</span>
       
       
-        <span class='name'>path</span>
+        <span class='name'>file_path</span>
       
       
       
@@ -521,15 +543,15 @@ The contents of the file.
       <pre class="lines">
 
 
-59
-60
-61</pre>
+63
+64
+65</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/compressors.rb', line 59</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/compressors.rb', line 63</span>
 
-<span class='def def kw'>def</span> <span class='read_file identifier id'>read_file</span><span class='lparen token'>(</span> <span class='path identifier id'>path</span> <span class='rparen token'>)</span>
-  <span class='File constant id'>File</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span> <span class='path identifier id'>path</span><span class='comma token'>,</span> <span class='string val'>'r'</span> <span class='rparen token'>)</span><span class='dot token'>.</span><span class='read identifier id'>read</span>
+<span class='def def kw'>def</span> <span class='read_file identifier id'>read_file</span><span class='lparen token'>(</span> <span class='file_path identifier id'>file_path</span> <span class='rparen token'>)</span>
+  <span class='File constant id'>File</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span> <span class='file_path identifier id'>file_path</span><span class='comma token'>,</span> <span class='string val'>'r'</span> <span class='rparen token'>)</span><span class='dot token'>.</span><span class='read identifier id'>read</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -582,13 +604,13 @@ The file extension `self` handles.
       <pre class="lines">
 
 
-46
-47
 48
-49</pre>
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/compressors.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/compressors.rb', line 48</span>
 
 <span class='def def kw'>def</span> <span class='register identifier id'>register</span><span class='lparen token'>(</span> <span class='extension identifier id'>extension</span> <span class='rparen token'>)</span>
   <span class='superclass identifier id'>superclass</span><span class='dot token'>.</span><span class='extensions identifier id'>extensions</span> <span class='opasgn op'>||=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
@@ -603,7 +625,7 @@ The file extension `self` handles.
       <div class="method_details ">
   <p class="signature " id="writable_file-class_method">
   
-    + (<tt>File</tt>) <strong>writable_file</strong>(path)  <span class="extras">(protected)</span>
+    + (<tt>File</tt>) <strong>writable_file</strong>(file_path)  <span class="extras">(protected)</span>
   
 
   
@@ -625,7 +647,7 @@ Writable file instance with 0644 permissions.
         <span class='type'>(<tt>String</tt>)</span>
       
       
-        <span class='name'>path</span>
+        <span class='name'>file_path</span>
       
       
       
@@ -664,15 +686,15 @@ Writable file instance with 0644 permissions.
       <pre class="lines">
 
 
-66
-67
-68</pre>
+70
+71
+72</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/compressors.rb', line 66</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/compressors.rb', line 70</span>
 
-<span class='def def kw'>def</span> <span class='writable_file identifier id'>writable_file</span><span class='lparen token'>(</span> <span class='path identifier id'>path</span> <span class='rparen token'>)</span>
-  <span class='File constant id'>File</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span> <span class='path identifier id'>path</span><span class='comma token'>,</span> <span class='string val'>'w'</span><span class='comma token'>,</span> <span class='integer val'>0644</span> <span class='rparen token'>)</span>
+<span class='def def kw'>def</span> <span class='writable_file identifier id'>writable_file</span><span class='lparen token'>(</span> <span class='file_path identifier id'>file_path</span> <span class='rparen token'>)</span>
+  <span class='File constant id'>File</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span> <span class='file_path identifier id'>file_path</span><span class='comma token'>,</span> <span class='string val'>'w'</span><span class='comma token'>,</span> <span class='integer val'>0644</span> <span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -685,7 +707,7 @@ Writable file instance with 0644 permissions.
 </div>
     
     <div id="footer">
-  Generated on Sat Feb 19 00:50:54 2011 by 
+  Generated on Sat Feb 19 01:03:09 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>
