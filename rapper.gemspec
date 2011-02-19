@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rapper}
-  s.version = "0.0.2"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tyson Tate"]
-  s.date = %q{2011-02-05}
+  s.date = %q{2011-02-19}
   s.description = %q{Static asset packager and compressor with versioning and built-in view helpers. Easy to configure, easy to use, and easy to ignore when you want to. No crazy JavaScript comment DSLs, either.}
   s.email = %q{tyson@tysontate.com}
   s.extra_rdoc_files = [
@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
     "lib/rapper.rb",
     "lib/rapper/compressors.rb",
     "lib/rapper/config.rb",
+    "lib/rapper/definition.rb",
     "lib/rapper/errors.rb",
     "lib/rapper/logging.rb",
     "lib/rapper/utils.rb",
@@ -37,7 +38,6 @@ Gem::Specification.new do |s|
     "spec/fixtures/config/assets.yml",
     "spec/fixtures/config/assets/base/javascripts.yml",
     "spec/fixtures/config/assets/base/stylesheets.yml",
-    "spec/fixtures/config/assets/base/validators.yml",
     "spec/fixtures/javascripts/simple_1.js",
     "spec/fixtures/javascripts/simple_2.js",
     "spec/fixtures/stylesheets/simple_1.css",
@@ -117,7 +117,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://tysontate.github.com/rapper/}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.7}
+  s.rubygems_version = %q{1.4.2}
   s.summary = %q{Static asset packager and compressor with versioning and built-in view helpers.}
   s.test_files = [
     "spec/rapper_spec.rb",
@@ -126,7 +126,6 @@ Gem::Specification.new do |s|
   ]
 
   if s.respond_to? :specification_version then
-    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
