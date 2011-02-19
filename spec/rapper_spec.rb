@@ -115,6 +115,15 @@ describe Rapper do
         "version"=>"f3d9"
       }
     end
+    
+    it "doesn't re-package assets that don't need re-packaging" do
+      rapper = Rapper::Engine.new( "spec/fixtures/config/assets.yml", "test" )
+      rapper.stub!( :update_definitions ).and_return( nil ) # Block definition updating
+      rapper.package
+      
+      rapper.should_not_receive( :compress )
+      rapper.package
+    end
   end
   
   describe "packaging test cases" do

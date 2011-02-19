@@ -33,7 +33,7 @@ module Rapper
     end
     
     # Package assets according to the loaded config and definitions. Defaults
-    # to packaging all asset types.
+    # to packaging all asset types. Skips files that don't need re-packaging.
     # 
     # @param [<String>] types Asset types to refresh versions for.
     def package( *types )
@@ -47,6 +47,8 @@ module Rapper
         suffix = definition.suffix
         
         definition.assets.each do |name, spec|
+          next unless needs_packaging?( type, name )
+          
           source_files = definition.asset_component_paths( name )
           destination_file = definition.asset_path( name )
           
