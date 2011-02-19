@@ -1,4 +1,5 @@
 require 'digest/md5'
+require 'tempfile'
 
 module Rapper
   # Asset versioning methods.
@@ -20,17 +21,24 @@ module Rapper
           name = asset.keys.first
           spec = asset.values.first
           path = asset_path( type, name )
-          version = version( path )
+          version = version( type, name )
           first_hash_with_key( "version", spec )["version"] = version
         end
       end
     end
     
-    # @param [String] file_path The path to a file to generate a version for.
+    # @param [String] type The bundle type.
     # 
-    # @return [String] A four-character MD5 hash of the contents of the file.
-    def version( file_path )
-      Digest::MD5.file( file_path ).to_s[0,4]
+    # @param [String] name The name of the bundle.
+    # 
+    # @return [String] A four-character version hash for the given asset.
+    def version( type, name )
+      source_files = asset_component_paths( type, name )
+      destination_file = Tempfile.new( 'rapper' )
+      join_files( source_files, destination_file.path )
+      version = Digest::MD5.file( destination_file.path ).to_s[0,4]
+      destination_file.unlink
+      version
     end
     
   end
