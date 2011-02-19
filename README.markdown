@@ -63,7 +63,7 @@ The following defaults are applied if not defined in your configuration:
 
 The `definition_root` setting in the rapper config is a path to a folder containing more YAML files that define the various types of bundles you want to build (eg. `stylesheets.yml`, `javascripts.yml`) Example definition file:
 
-    --- !omap 
+    --- 
     - source_root: public/javascripts
     - destination_root: public/assets/javascripts
     - suffix: js
@@ -82,9 +82,9 @@ The above definition will create two asset files: `public/assets/javascripts/bas
 
 ## Versioning
 
-If versioning is turned on in your config, version strings will be used to enforce better browser caching of assets.
+If versioning is turned on in your config, version strings will be used to enforce better browser caching of assets. (Version numbers are always used in definition files.)
 
-    --- !omap 
+    --- 
     - source_root: public/javascripts
     - destination_root: public/assets/javascripts
     - suffix: js
@@ -99,7 +99,9 @@ If versioning is turned on in your config, version strings will be used to enfor
           - ext_js_full
         - version: db62
 
-These version strings are hashes of the final asset file. This means that they will only change when the contents of the asset file change. Version strings are used to enforce good browser caching habits, especially when you have a far-future expires header configured on your web server. For example, suppose you had the following asset:
+Version strings are short hashes of the pre-compression asset file. This means that they will only change when the contents of the component files for an asset change and time-consuming compression will only happen when a bundle needs to be re-packaged.
+
+Version strings are also used to enforce good browser caching habits, especially when you have a far-future expires header configured on your web server. For example, suppose you had the following asset:
 
     <script type="text/javascript" src="/assets/milkshake.js?v=d3va"></script>
 
@@ -123,6 +125,7 @@ Browsers will automatically re-download and cache the new asset.
 
 ## Version history
 
+* **0.0.3** - New `Definition` object to make working with definitions significantly easier, don't re-package assets that don't need re-packaging.
 * **0.0.2** - Compression now works and is specced.
 * **0.0.1** - Initial release. Functioning bundler, minus the view helpers.
 
