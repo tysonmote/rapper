@@ -24,10 +24,10 @@ module Rapper
         raise Rapper::Errors::NoDefinitionRoot,
           "No 'definition_root' has been defined for #{@environment}"
       end
-      definition_path = File.join( env_config["definition_root"], "*.yml" )
-      Dir[definition_path].each do |definition|
+      definition_paths = File.join( env_config["definition_root"], "*.yml" )
+      Dir[definition_paths].each do |definition|
         type = File.basename( definition, ".yml" )
-        @definitions[type] = YAML.load_file( definition )
+        @definitions[type] = Definition.new( definition )
       end
     end
     
@@ -59,10 +59,7 @@ module Rapper
       log :info, "Updating definitions for #{types.join( ', ' )}"
       
       types.each do |type|
-        log "Updating definition file for", type
-        File.open( definition_path( type ), "w" ) do |file|
-          file.puts @definitions[type].to_yaml
-        end
+        @definitions[type].update
       end
     end
     

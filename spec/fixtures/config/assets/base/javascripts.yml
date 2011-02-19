@@ -1,12 +1,14 @@
---- !omap 
+--- 
 - source_root: spec/fixtures/javascripts
-- destination_root: spec/fixtures/javascripts
+- destination_root: tmp
 - suffix: js
-- assets:
+- assets: 
   - single_file: 
     - files: 
-      - mootools
+      - simple_1
+    - version: 0
   - multiple_files: 
     - files: 
-      - mootools
-      - jquery
+      - simple_1
+      - simple_2
+    - version: 0

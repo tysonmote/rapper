@@ -1,4 +1,4 @@
---- !omap 
+--- 
 - source_root: spec/fixtures/javascripts
 - destination_root: tmp
 - suffix: js

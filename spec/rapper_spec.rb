@@ -48,12 +48,22 @@ describe Rapper do
     
     it "loads asset definitions" do
       rapper = Rapper::Engine.new( "spec/fixtures/config/assets.yml", "test" )
-      rapper.send( :asset_types ).sort.should == ["javascripts", "stylesheets", "validators"]
-      rapper.definitions["stylesheets"]["source_root"].should == "spec/fixtures/stylesheets"
-      rapper.definitions["stylesheets"]["suffix"].should == "css"
-      # Using a YAML::OMap here, so it looks a bit weird
-      rapper.definitions["stylesheets"]["assets"].first.key?( "master" ).should be_true
-      rapper.definitions["stylesheets"]["assets"].first["master"].first["files"].should == ["reset", "base", "layout"]
+      rapper.send( :asset_types ).sort.should == ["javascripts", "stylesheets"]
+      rapper.definitions["javascripts"].should be_a( Rapper::Definition )
+      rapper.definitions["stylesheets"].should be_a( Rapper::Definition )
+      rapper.definitions["javascripts"].source_root.should == "spec/fixtures/javascripts"
+      rapper.definitions["javascripts"].destination_root.should == "tmp"
+      rapper.definitions["javascripts"].suffix.should == "js"
+      rapper.definitions["javascripts"].assets.should == {
+        "single_file"=>{
+          "files"=>["simple_1"],
+          "version"=>0
+        },
+        "multiple_files"=>{
+          "files"=>["simple_1", "simple_2"],
+          "version"=>0
+        }
+      }
     end
   end
   
@@ -89,6 +99,21 @@ describe Rapper do
       rapper = Rapper::Engine.new( "spec/fixtures/config/assets.yml", "test_logging_file" )
       rapper.send( :log, :info, "Derp" )
       File.read( "tmp/test_logging_file.log" ).should == "Derp\n"
+    end
+  end
+  
+  describe "versioning" do
+    it "uses the concatenated file to calculate versions" do
+      rapper = Rapper::Engine.new( "spec/fixtures/config/assets.yml", "test" )
+      rapper.send( :refresh_versions )
+      rapper.definitions["javascripts"].assets["single_file"].should == {
+        "files"=>["simple_1"],
+        "version"=>"98bc"
+      }
+      rapper.definitions["javascripts"].assets["multiple_files"].should == {
+        "files"=>["simple_1", "simple_2"],
+        "version"=>"f3d9"
+      }
     end
   end
   

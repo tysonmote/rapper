@@ -42,18 +42,15 @@ module Rapper
       
       types.each do |type|
         definition = @definitions[type]
-        source = File.expand_path( definition["source_root"] )
-        destination = definition["destination_root"]
-        suffix = definition["suffix"]
+        source = File.expand_path( definition.source_root )
+        destination = definition.destination_root
+        suffix = definition.suffix
         
-        definition["assets"].each do |asset|
-          name = asset.keys.first
-          spec = asset.values.first.first
+        definition.assets.each do |name, spec|
+          source_files = definition.asset_component_paths( name )
+          destination_file = definition.asset_path( name )
           
-          source_files = asset_component_paths( type, name )
-          destination_file = asset_path( type, name )
-          
-          log :verbose, "Joining #{definition["assets"].count} files to #{name}"
+          log :verbose, "Joining #{source_files.size} files to #{name}"
           join_files( source_files, destination_file )
           
           if get_config( "compress" )

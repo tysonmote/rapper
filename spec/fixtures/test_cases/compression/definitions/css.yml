@@ -1,4 +1,4 @@
---- !omap 
+--- 
 - source_root: spec/fixtures/stylesheets
 - destination_root: tmp
 - suffix: css

@@ -17,12 +17,9 @@ module Rapper
       log :info, "Refreshing versions for #{types.join( ', ' )}"
       
       types.each do |type|
-        @definitions[type]["assets"].each do |asset|
-          name = asset.keys.first
-          spec = asset.values.first
-          path = asset_path( type, name )
+        @definitions[type].assets.each do |name, spec|
           version = version( type, name )
-          first_hash_with_key( "version", spec )["version"] = version
+          @definitions[type].set_version( name, version )
         end
       end
     end
@@ -33,7 +30,7 @@ module Rapper
     # 
     # @return [String] A four-character version hash for the given asset.
     def version( type, name )
-      source_files = asset_component_paths( type, name )
+      source_files = @definitions[type].asset_component_paths( name )
       destination_file = Tempfile.new( 'rapper' )
       join_files( source_files, destination_file.path )
       version = Digest::MD5.file( destination_file.path ).to_s[0,4]
