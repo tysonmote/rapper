@@ -38,8 +38,8 @@ module Rapper
     # @param [String] key Configuration key.
     # 
     # @return [String,Hash] If the current environment's config defines this
-    #   setting, return that value. If not, return the default setting. If the
-    #   default setting is a hash, return the default merged with the
+    #   setting, returns that value. If not, returns the default setting. If
+    #   the default setting is a hash, returns the default merged with the
     #   environment's setting.
     def get_config( key )
       if default_config[key].is_a?( Hash )
@@ -53,7 +53,8 @@ module Rapper
     # versions.)
     # 
     # @param [<String>] types Asset types to update the definition files for.
-    #   Defaults to all types.
+    #   Defaults to all types (i.e. every type with a definition file in
+    #   `definition_root`).
     def update_definitions( *types )
       types = types.empty? ? asset_types : types
       log :info, "Updating definitions for #{types.join( ', ' )}"

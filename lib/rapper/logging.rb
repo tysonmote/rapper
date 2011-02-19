@@ -4,6 +4,7 @@ module Rapper
     
     protected
     
+    # Guess if a string is a path.
     PATHY_STRING = /\.|\//
     
     # Outputs all arguments (joined with spaces) to:

@@ -23,10 +23,12 @@ module Rapper
     class Compressor
       class << self
         
-        # Get the compressor for a given file.
+        # Compress a file. Raises UnknownFileExtension if it doesn't know how
+        # to compress a file with the given file's file extension.
         # 
-        # @param [String] file Path to the file to fetch the Compressor for
-        # @return [Types] Description
+        # @param [String] file_path Path to the file to compress.
+        # 
+        # @param [Hash] opts Options to be passed to the compressor (optional).
         def compress( file_path, opts={} )
           unless compressor = @extensions[File.extname( file_path )]
             raise Rapper::Errors::UnknownFileExtension,
@@ -49,22 +51,24 @@ module Rapper
         end
         
         # Compress a file.
+        # 
+        # @param [String] file_path Path to the file to compress.
         def do_compress( file_path )
           raise NotImplementedError
         end
         
-        # @param [String] path Path to a file.
+        # @param [String] file_path Path to a file.
         # 
         # @return [String] The contents of the file.
-        def read_file( path )
-          File.new( path, 'r' ).read
+        def read_file( file_path )
+          File.new( file_path, 'r' ).read
         end
         
-        # @param [String] path Path to the desired file.
+        # @param [String] file_path Path to the desired file.
         # 
         # @return [File] Writable file instance with 0644 permissions.
-        def writable_file( path )
-          File.new( path, 'w', 0644 )
+        def writable_file( file_path )
+          File.new( file_path, 'w', 0644 )
         end
       end
     end

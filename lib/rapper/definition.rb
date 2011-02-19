@@ -13,14 +13,17 @@ module Rapper
     # = Definition settings =
     # =======================
     
+    # @return [String] The root for asset component files.
     def source_root
       first_key_value( "source_root", @definition ) || ""
     end
     
+    # @return [String] The root for packaged asset files.
     def destination_root
       first_key_value( "destination_root", @definition ) || ""
     end
     
+    # @return [String] The suffix of files used in this definition.
     def suffix
       first_key_value( "suffix", @definition )
     end
