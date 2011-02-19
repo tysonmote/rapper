@@ -112,7 +112,7 @@
 
 <p>The <code>definition_root</code> setting in the rapper config is a path to a folder containing more YAML files that define the various types of bundles you want to build (eg. <code>stylesheets.yml</code>, <code>javascripts.yml</code>) Example definition file:</p>
 
-<pre class="code"><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span> <span class='notop op'>!</span><span class='omap identifier id'>omap</span> 
+<pre class="code"><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span> 
 <span class='minus op'>-</span> <span class='source_root identifier id'>source_root</span><span class='colon op'>:</span> <span class='public identifier id'>public</span><span class='div op'>/</span><span class='javascripts identifier id'>javascripts</span>
 <span class='minus op'>-</span> <span class='destination_root identifier id'>destination_root</span><span class='colon op'>:</span> <span class='public identifier id'>public</span><span class='div op'>/</span><span class='assets identifier id'>assets</span><span class='div op'>/</span><span class='javascripts identifier id'>javascripts</span>
 <span class='minus op'>-</span> <span class='suffix identifier id'>suffix</span><span class='colon op'>:</span> <span class='js identifier id'>js</span>
@@ -132,9 +132,9 @@
 
 <h2>Versioning</h2>
 
-<p>If versioning is turned on in your config, version strings will be used to enforce better browser caching of assets.</p>
+<p>If versioning is turned on in your config, version strings will be used to enforce better browser caching of assets. (Version numbers are always used in definition files.)</p>
 
-<pre class="code"><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span> <span class='notop op'>!</span><span class='omap identifier id'>omap</span> 
+<pre class="code"><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span> 
 <span class='minus op'>-</span> <span class='source_root identifier id'>source_root</span><span class='colon op'>:</span> <span class='public identifier id'>public</span><span class='div op'>/</span><span class='javascripts identifier id'>javascripts</span>
 <span class='minus op'>-</span> <span class='destination_root identifier id'>destination_root</span><span class='colon op'>:</span> <span class='public identifier id'>public</span><span class='div op'>/</span><span class='assets identifier id'>assets</span><span class='div op'>/</span><span class='javascripts identifier id'>javascripts</span>
 <span class='minus op'>-</span> <span class='suffix identifier id'>suffix</span><span class='colon op'>:</span> <span class='js identifier id'>js</span>
@@ -150,7 +150,9 @@
     <span class='minus op'>-</span> <span class='version identifier id'>version</span><span class='colon op'>:</span> <span class='db62 identifier id'>db62</span>
 </pre>
 
-<p>These version strings are hashes of the final asset file. This means that they will only change when the contents of the asset file change. Version strings are used to enforce good browser caching habits, especially when you have a far-future expires header configured on your web server. For example, suppose you had the following asset:</p>
+<p>Version strings are short hashes of the pre-compression asset file. This means that they will only change when the contents of the component files for an asset change and time-consuming compression will only happen when a bundle needs to be re-packaged.</p>
+
+<p>Version strings are also used to enforce good browser caching habits, especially when you have a far-future expires header configured on your web server. For example, suppose you had the following asset:</p>
 
 <pre class="code"><span class='lt op'>&lt;</span><span class='script identifier id'>script</span> <span class='type identifier id'>type</span><span class='assign token'>=</span><span class='string val'>&quot;text/javascript&quot;</span> <span class='src identifier id'>src</span><span class='assign token'>=</span><span class='string val'>&quot;/assets/milkshake.js?v=d3va&quot;</span><span class='gt op'>&gt;</span><span class='lt op'>&lt;</span><span class='regexp val'>/script&gt;
 </span></pre>
@@ -183,6 +185,7 @@
 <h2>Version history</h2>
 
 <ul>
+<li><strong>0.0.3</strong> - New <code>Definition</code> object to make working with definitions significantly easier, don't re-package assets that don't need re-packaging.</li>
 <li><strong>0.0.2</strong> - Compression now works and is specced.</li>
 <li><strong>0.0.1</strong> - Initial release. Functioning bundler, minus the view helpers.</li>
 </ul>
@@ -206,7 +209,7 @@
 <p>Copyright (c) 2011 Tyson Tate. See LICENSE.txt for further details.</p></div></div>
     
     <div id="footer">
-  Generated on Sat Feb  5 22:26:50 2011 by 
+  Generated on Sat Feb 19 00:50:53 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>

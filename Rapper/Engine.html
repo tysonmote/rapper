@@ -193,7 +193,7 @@ Package assets according to the loaded config and definitions.
   
   
   <h3 class="inherited">Methods included from <span class='object_link'><a href="Versioning.html" title="Rapper::Versioning (module)">Versioning</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="Versioning.html#refresh_versions-instance_method" title="Rapper::Versioning#refresh_versions (method)">#refresh_versions</a></span>, <span class='object_link'><a href="Versioning.html#version-instance_method" title="Rapper::Versioning#version (method)">#version</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="Versioning.html#needs_packaging%3F-instance_method" title="Rapper::Versioning#needs_packaging? (method)">#needs_packaging?</a></span>, <span class='object_link'><a href="Versioning.html#refresh_versions-instance_method" title="Rapper::Versioning#refresh_versions (method)">#refresh_versions</a></span>, <span class='object_link'><a href="Versioning.html#version-instance_method" title="Rapper::Versioning#version (method)">#version</a></span></p>
 
   
   
@@ -213,7 +213,7 @@ Package assets according to the loaded config and definitions.
   
   
   <h3 class="inherited">Methods included from <span class='object_link'><a href="Utils.html" title="Rapper::Utils (module)">Utils</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="Utils.html#asset_component_paths-instance_method" title="Rapper::Utils#asset_component_paths (method)">#asset_component_paths</a></span>, <span class='object_link'><a href="Utils.html#asset_path-instance_method" title="Rapper::Utils#asset_path (method)">#asset_path</a></span>, <span class='object_link'><a href="Utils.html#definition_path-instance_method" title="Rapper::Utils#definition_path (method)">#definition_path</a></span>, <span class='object_link'><a href="Utils.html#first_hash_with_key-instance_method" title="Rapper::Utils#first_hash_with_key (method)">#first_hash_with_key</a></span>, <span class='object_link'><a href="Utils.html#join_files-instance_method" title="Rapper::Utils#join_files (method)">#join_files</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="Utils.html#join_files-instance_method" title="Rapper::Utils#join_files (method)">#join_files</a></span></p>
 
   
   
@@ -342,7 +342,7 @@ Rapper configuration file.
   <div class="discussion">
     <p>
 Package assets according to the loaded config and definitions. Defaults to
-packaging all asset types.
+packaging all asset types. Skips files that don&#8217;t need re-packaging.
 </p>
 
 
@@ -405,8 +405,7 @@ Asset types to refresh versions for.
 64
 65
 66
-67
-68</pre>
+67</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/rapper.rb', line 39</span>
@@ -417,18 +416,17 @@ Asset types to refresh versions for.
   
   <span class='types identifier id'>types</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='type identifier id'>type</span><span class='bitor op'>|</span>
     <span class='definition identifier id'>definition</span> <span class='assign token'>=</span> <span class='@definitions ivar id'>@definitions</span><span class='lbrack token'>[</span><span class='type identifier id'>type</span><span class='rbrack token'>]</span>
-    <span class='source identifier id'>source</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='expand_path identifier id'>expand_path</span><span class='lparen token'>(</span> <span class='definition identifier id'>definition</span><span class='lbrack token'>[</span><span class='string val'>&quot;source_root&quot;</span><span class='rbrack token'>]</span> <span class='rparen token'>)</span>
-    <span class='destination identifier id'>destination</span> <span class='assign token'>=</span> <span class='definition identifier id'>definition</span><span class='lbrack token'>[</span><span class='string val'>&quot;destination_root&quot;</span><span class='rbrack token'>]</span>
-    <span class='suffix identifier id'>suffix</span> <span class='assign token'>=</span> <span class='definition identifier id'>definition</span><span class='lbrack token'>[</span><span class='string val'>&quot;suffix&quot;</span><span class='rbrack token'>]</span>
+    <span class='source identifier id'>source</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='expand_path identifier id'>expand_path</span><span class='lparen token'>(</span> <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='source_root identifier id'>source_root</span> <span class='rparen token'>)</span>
+    <span class='destination identifier id'>destination</span> <span class='assign token'>=</span> <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='destination_root identifier id'>destination_root</span>
+    <span class='suffix identifier id'>suffix</span> <span class='assign token'>=</span> <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='suffix identifier id'>suffix</span>
     
-    <span class='definition identifier id'>definition</span><span class='lbrack token'>[</span><span class='string val'>&quot;assets&quot;</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='asset identifier id'>asset</span><span class='bitor op'>|</span>
-      <span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='asset identifier id'>asset</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span><span class='dot token'>.</span><span class='first identifier id'>first</span>
-      <span class='spec identifier id'>spec</span> <span class='assign token'>=</span> <span class='asset identifier id'>asset</span><span class='dot token'>.</span><span class='values identifier id'>values</span><span class='dot token'>.</span><span class='first identifier id'>first</span><span class='dot token'>.</span><span class='first identifier id'>first</span>
+    <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='assets identifier id'>assets</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='spec identifier id'>spec</span><span class='bitor op'>|</span>
+      <span class='next next kw'>next</span> <span class='unless unless_mod kw'>unless</span> <span class='needs_packaging? fid id'>needs_packaging?</span><span class='lparen token'>(</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
       
-      <span class='source_files identifier id'>source_files</span> <span class='assign token'>=</span> <span class='asset_component_paths identifier id'>asset_component_paths</span><span class='lparen token'>(</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
-      <span class='destination_file identifier id'>destination_file</span> <span class='assign token'>=</span> <span class='asset_path identifier id'>asset_path</span><span class='lparen token'>(</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
+      <span class='source_files identifier id'>source_files</span> <span class='assign token'>=</span> <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='asset_component_paths identifier id'>asset_component_paths</span><span class='lparen token'>(</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
+      <span class='destination_file identifier id'>destination_file</span> <span class='assign token'>=</span> <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='asset_path identifier id'>asset_path</span><span class='lparen token'>(</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
       
-      <span class='log identifier id'>log</span> <span class='symbol val'>:verbose</span><span class='comma token'>,</span> <span class='dstring node'>&quot;Joining #{definition[&quot;assets&quot;].count} files to #{name}&quot;</span>
+      <span class='log identifier id'>log</span> <span class='symbol val'>:verbose</span><span class='comma token'>,</span> <span class='dstring node'>&quot;Joining #{source_files.size} files to #{name}&quot;</span>
       <span class='join_files identifier id'>join_files</span><span class='lparen token'>(</span> <span class='source_files identifier id'>source_files</span><span class='comma token'>,</span> <span class='destination_file identifier id'>destination_file</span> <span class='rparen token'>)</span>
       
       <span class='if if kw'>if</span> <span class='get_config identifier id'>get_config</span><span class='lparen token'>(</span> <span class='string val'>&quot;compress&quot;</span> <span class='rparen token'>)</span>
@@ -452,7 +450,7 @@ Asset types to refresh versions for.
 </div>
     
     <div id="footer">
-  Generated on Sat Feb  5 22:26:51 2011 by 
+  Generated on Sat Feb 19 00:50:55 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>
