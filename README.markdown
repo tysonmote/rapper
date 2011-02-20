@@ -64,8 +64,8 @@ The following defaults are applied if not defined in your configuration:
 The `definition_root` setting in the rapper config is a path to a folder containing more YAML files that define the various types of bundles you want to build (eg. `stylesheets.yml`, `javascripts.yml`) Example definition file:
 
     --- 
-    - source_root: public/javascripts
-    - destination_root: public/assets/javascripts
+    - root: public/javascripts
+    - tag_root: /javascripts
     - suffix: js
     - assets: 
       - base: 
@@ -85,8 +85,8 @@ The above definition will create two asset files: `public/assets/javascripts/bas
 If versioning is turned on in your config, version strings will be used to enforce better browser caching of assets. (Version numbers are always used in definition files.)
 
     --- 
-    - source_root: public/javascripts
-    - destination_root: public/assets/javascripts
+    - root: public/javascripts
+    - tag_root: /javascripts
     - suffix: js
     - assets: 
       - base: 
@@ -110,6 +110,13 @@ When the contents of the asset change, the version will change in the query stri
     <script type="text/javascript" src="/assets/milkshake.js?v=ae51"></script>
 
 Browsers will automatically re-download and cache the new asset.
+
+# Development
+
+Rapper's got a Gemfile. You know what to do.
+
+    bundle install --path vendor
+    bundle exec rake spec
 
 ## To do soon
 

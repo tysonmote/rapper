@@ -51,17 +51,18 @@ describe Rapper do
       rapper.send( :asset_types ).sort.should == ["javascripts", "stylesheets"]
       rapper.definitions["javascripts"].should be_a( Rapper::Definition )
       rapper.definitions["stylesheets"].should be_a( Rapper::Definition )
-      rapper.definitions["javascripts"].source_root.should == "spec/fixtures/javascripts"
-      rapper.definitions["javascripts"].destination_root.should == "tmp"
+      rapper.definitions["javascripts"].root.should == "spec/fixtures/javascripts"
+      rapper.definitions["javascripts"].component_tag_root.should == "/javascripts"
+      rapper.definitions["javascripts"].asset_tag_root.should == "/javascripts/assets"
       rapper.definitions["javascripts"].suffix.should == "js"
       rapper.definitions["javascripts"].assets.should == {
         "single_file"=>{
           "files"=>["simple_1"],
-          "version"=>0
+          "version"=>"abcd"
         },
         "multiple_files"=>{
           "files"=>["simple_1", "simple_2"],
-          "version"=>0
+          "version"=>"efgh"
         }
       }
     end
@@ -130,22 +131,34 @@ describe Rapper do
     Dir["spec/fixtures/test_cases/*"].each do |folder|
       next unless File.directory?( folder )
       name = folder.split( "/" ).last
-      results_path = "tmp/*.*"
-      expecteds_path = "#{folder}/expected/*.*"
+      
+      paths = [
+        {
+          :results => "spec/fixtures/javascripts/assets/*.*",
+          :expecteds => "#{folder}/expected/javascripts/*.*",
+        },
+        {
+          :results => "spec/fixtures/stylesheets/assets/*.*",
+          :expecteds => "#{folder}/expected/stylesheets/*.*",
+        }
+      ]
       
       it "passes the \"#{name}\" test case" do
         rapper = Rapper::Engine.new( "#{folder}/assets.yml", "test" )
         rapper.package
         
-        # Produces the same exact individual files
-        file_names( results_path ).should == file_names( expecteds_path )
-        # Contents are all the same
-        results = Dir[results_path]
-        expecteds = Dir[expecteds_path]
+        paths.each do |path|
         
-        results.each_index do |i|
-          unless File.read( results[i] ) == File.read( expecteds[i] )
-            raise "#{results[i]} did not match #{expecteds[i]}"
+          # Produces the same exact individual files
+          file_names( path[:results] ).should == file_names( path[:expecteds] )
+          # Contents are all the same
+          results = Dir[ path[:results] ]
+          expecteds = Dir[ path[:expecteds] ]
+          
+          results.each_index do |i|
+            unless File.read( results[i] ) == File.read( expecteds[i] )
+              raise "#{results[i]} did not match #{expecteds[i]}"
+            end
           end
         end
       end
@@ -157,12 +170,49 @@ describe Rapper do
   end
   
   describe "view helpers" do
-    it "returns tags for component files when bundling is off"
-    it "returns tabs for asset when bundling is on"
-    it "can return html"
-    it "can return xhtml"
-    it "can return html5"
-    it "adds a version number if versioning is on"
-    it "doesn't add a version number if versioning is off"
+    
+    module Merb; class Controller; end; end
+    
+    before :each do
+      @controller = Merb::Controller.new
+    end
+    
+    it "returns tags for component files when bundling is off" do
+      Rapper::Engine.new( "spec/fixtures/config/assets.yml", "test_no_bundle" )
+      @controller.rapper_stylesheets_tag( :single_file ).should == "<link rel=\"stylesheet\" href=\"/stylesheets/simple_1.css\">"
+      @controller.rapper_stylesheets_tag( :multiple_files ).should == "<link rel=\"stylesheet\" href=\"/stylesheets/simple_1.css\">\n<link rel=\"stylesheet\" href=\"/stylesheets/simple_2.css\">"
+      @controller.rapper_javascripts_tag( :single_file ).should == "<script src=\"/javascripts/simple_1.js\"></script>"
+      @controller.rapper_javascripts_tag( :multiple_files ).should == "<script src=\"/javascripts/simple_1.js\"></script>\n<script src=\"/javascripts/simple_2.js\"></script>"
+    end
+    
+    it "returns tags for asset when bundling is on" do
+      Rapper::Engine.new( "spec/fixtures/config/assets.yml", "test" )
+      @controller.rapper_stylesheets_tag( :single_file ).should == "<link type=\"text/css\" rel=\"stylesheet\" href=\"/stylesheets/assets/single_file.css\">"
+      @controller.rapper_stylesheets_tag( :multiple_files ).should == "<link type=\"text/css\" rel=\"stylesheet\" href=\"/stylesheets/assets/multiple_files.css\">"
+      @controller.rapper_javascripts_tag( :single_file ).should == "<script type=\"text/javascript\" src=\"/javascripts/assets/single_file.js\"></script>"
+      @controller.rapper_javascripts_tag( :multiple_files ).should == "<script type=\"text/javascript\" src=\"/javascripts/assets/multiple_files.js\"></script>"
+    end
+    
+    it "can return xhtml tags" do
+      Rapper::Engine.new( "spec/fixtures/config/assets.yml", "xhtml_tags" )
+      @controller.rapper_stylesheets_tag( :single_file ).should == "<link type=\"text/css\" rel=\"stylesheet\" href=\"/stylesheets/assets/single_file.css\" />"
+      @controller.rapper_stylesheets_tag( :multiple_files ).should == "<link type=\"text/css\" rel=\"stylesheet\" href=\"/stylesheets/assets/multiple_files.css\" />"
+      @controller.rapper_javascripts_tag( :single_file ).should == "<script type=\"text/javascript\" src=\"/javascripts/assets/single_file.js\"></script>"
+      @controller.rapper_javascripts_tag( :multiple_files ).should == "<script type=\"text/javascript\" src=\"/javascripts/assets/multiple_files.js\"></script>"
+    end
+    
+    it "can return html5 tags" do
+      Rapper::Engine.new( "spec/fixtures/config/assets.yml", "html5_tags" )
+      @controller.rapper_stylesheets_tag( :single_file ).should == "<link rel=\"stylesheet\" href=\"/stylesheets/assets/single_file.css\">"
+      @controller.rapper_stylesheets_tag( :multiple_files ).should == "<link rel=\"stylesheet\" href=\"/stylesheets/assets/multiple_files.css\">"
+      @controller.rapper_javascripts_tag( :single_file ).should == "<script src=\"/javascripts/assets/single_file.js\"></script>"
+      @controller.rapper_javascripts_tag( :multiple_files ).should == "<script src=\"/javascripts/assets/multiple_files.js\"></script>"
+    end
+    
+    it "adds a version number if versioning is on" do
+      Rapper::Engine.new( "spec/fixtures/config/assets.yml", "versions" )
+      @controller.rapper_stylesheets_tag( :single_file ).should == "<link rel=\"stylesheet\" href=\"/stylesheets/assets/single_file.css?v=abcd\">"
+      @controller.rapper_javascripts_tag( :single_file ).should == "<script src=\"/javascripts/assets/single_file.js?v=abcd\"></script>"
+    end
   end
 end

@@ -6,3 +6,4 @@ pkg
 tmtags
 *.swp
 tmp
+vendor
