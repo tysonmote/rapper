@@ -69,37 +69,22 @@ The `definition_root` setting in the rapper config is a path to a folder contain
     - suffix: js
     - assets: !omap
         - base: !omap
-          - files: 
-            - mootools
-        - stats: !omap
-          - files: 
-            - protovis
-            - ext_js_full
-
-The above definition will create two asset files: `public/assets/javascripts/base.js` and `public/assets/javascripts/stats.js` from the component files in `public/javascripts` (in this case: `public/javascripts/protovis.js` and `public/javascripts/ext_js_full.js`).
-
-**Note:** Definition files are YAML ordered mapping documents. This is so that version updates (which involves rapper updating the version numbers and writing out the updated definition as YAML) don't change the order of the file. This is especially useful when using git and working with many branches because it prevents nasty merge conflicts.
-
-## Versioning
-
-If versioning is turned on in your config, version strings will be used to enforce better browser caching of assets. (Version numbers are always used in definition files.)
-
-    --- !omap
-    - root: public/javascripts
-    - tag_root: /javascripts
-    - suffix: js
-    - assets: !omap 
-        - base: !omap
             - files: 
               - mootools
             - version: 7b06
-        - stats: !omap 
+        - stats: !omap
             - files: 
               - protovis
               - ext_js_full
             - version: db62
 
-Version strings are short hashes of the pre-compression asset file. This means that they will only change when the contents of the component files for an asset change and time-consuming compression will only happen when a bundle needs to be re-packaged.
+The above definition will create two asset files: `public/javascripts/assets/base.js` and `public/javascripts/assets/stats.js` from the component files in `public/javascripts` (in this case: `public/javascripts/protovis.js` and `public/javascripts/ext_js_full.js`).
+
+**Note:** Definition files are YAML ordered mapping documents. This is so that version updates (which involves rapper updating the version numbers and writing out the updated definition as YAML) don't change the order of the file. This is especially useful when using git and merging branches because it prevents nasty merge conflicts.
+
+## Versioning
+
+Version strings are short hashes of the before-compression asset file. This means that they will only change when the contents of the component files for an asset change and time-consuming compression will only happen when a bundle needs to be re-packaged.
 
 Version strings are also used to enforce good browser caching habits, especially when you have a far-future expires header configured on your web server. For example, suppose you had the following asset:
 
