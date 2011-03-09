@@ -452,7 +452,7 @@ A four-character version hash for the given asset.
       <pre class="code"><span class="info file"># File 'lib/rapper/versioning.rb', line 46</span>
 
 <span class='def def kw'>def</span> <span class='version identifier id'>version</span><span class='lparen token'>(</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
-  <span class='source_files identifier id'>source_files</span> <span class='assign token'>=</span> <span class='@definitions ivar id'>@definitions</span><span class='lbrack token'>[</span><span class='type identifier id'>type</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='asset_component_paths identifier id'>asset_component_paths</span><span class='lparen token'>(</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
+  <span class='source_files identifier id'>source_files</span> <span class='assign token'>=</span> <span class='@definitions ivar id'>@definitions</span><span class='lbrack token'>[</span><span class='type identifier id'>type</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='component_paths identifier id'>component_paths</span><span class='lparen token'>(</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
   <span class='destination_file identifier id'>destination_file</span> <span class='assign token'>=</span> <span class='Tempfile constant id'>Tempfile</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span> <span class='string val'>'rapper'</span> <span class='rparen token'>)</span>
   <span class='join_files identifier id'>join_files</span><span class='lparen token'>(</span> <span class='source_files identifier id'>source_files</span><span class='comma token'>,</span> <span class='destination_file identifier id'>destination_file</span><span class='dot token'>.</span><span class='path identifier id'>path</span> <span class='rparen token'>)</span>
   <span class='version identifier id'>version</span> <span class='assign token'>=</span> <span class='Digest constant id'>Digest</span><span class='colon2 op'>::</span><span class='MD5 constant id'>MD5</span><span class='dot token'>.</span><span class='file identifier id'>file</span><span class='lparen token'>(</span> <span class='destination_file identifier id'>destination_file</span><span class='dot token'>.</span><span class='path identifier id'>path</span> <span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='comma token'>,</span><span class='integer val'>4</span><span class='rbrack token'>]</span>
@@ -470,7 +470,7 @@ A four-character version hash for the given asset.
 </div>
     
     <div id="footer">
-  Generated on Sat Feb 19 01:03:10 2011 by 
+  Generated on Wed Mar  9 01:53:06 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>

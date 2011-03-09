@@ -105,31 +105,7 @@ easier.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#asset_component_paths-instance_method" title="#asset_component_paths (instance method)">- (Array&lt;String&gt;) <strong>asset_component_paths</strong>(name) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>
-Ordered list of the files that comprise the given asset.
-</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#asset_path-instance_method" title="#asset_path (instance method)">- (String) <strong>asset_path</strong>(name) </a>
+      <a href="#asset_path-instance_method" title="#asset_path (instance method)">- (String) <strong>asset_path</strong>(name, root = nil) </a>
     
 
     
@@ -153,7 +129,7 @@ Path to the packaged asset file.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#assets-instance_method" title="#assets (instance method)">- (Hash) <strong>assets</strong> </a>
+      <a href="#asset_tag_root-instance_method" title="#asset_tag_root (instance method)">- (String) <strong>asset_tag_root</strong> </a>
     
 
     
@@ -167,7 +143,7 @@ Path to the packaged asset file.
 
   
     <span class="summary_desc"><div class='inline'><p>
-Simplified structure representing all asset definitions.
+The public url root for packaged asset files.
 </p>
 </div></span>
   
@@ -177,7 +153,31 @@ Simplified structure representing all asset definitions.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#destination_root-instance_method" title="#destination_root (instance method)">- (String) <strong>destination_root</strong> </a>
+      <a href="#assets-instance_method" title="#assets (instance method)">- (Object) <strong>assets</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><h6>====</h6>
+<h1>Assets =</h1>
+<h6>====.</h6>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#component_paths-instance_method" title="#component_paths (instance method)">- (Array&lt;String&gt;) <strong>component_paths</strong>(name, root = nil) </a>
     
 
     
@@ -191,33 +191,75 @@ Simplified structure representing all asset definitions.
 
   
     <span class="summary_desc"><div class='inline'><p>
-The root for packaged asset files.
+Ordered list of the files that comprise the given asset.
 </p>
 </div></span>
   
 </li>
 
       
-        <li class="private ">
+        <li class="public ">
   <span class="summary_signature">
     
-      <a href="#first_key_value-instance_method" title="#first_key_value (instance method)">- (Object<sup>?</sup>) <strong>first_key_value</strong>(key, array) </a>
+      <a href="#component_tag_root-instance_method" title="#component_tag_root (instance method)">- (String) <strong>component_tag_root</strong> </a>
     
 
     
   </span>
   
   
-  <span class="note title private">private</span>
+  
   
   
   
 
   
     <span class="summary_desc"><div class='inline'><p>
-The first value found for the key or nil of nothing was found.
+when bundling is off)..
 </p>
 </div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#destination_root-instance_method" title="#destination_root (instance method)">- (Object) <strong>destination_root</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_version-instance_method" title="#get_version (instance method)">- (Object) <strong>get_version</strong>(name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -251,6 +293,30 @@ A new instance of Definition.
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#root-instance_method" title="#root (instance method)">- (String) <strong>root</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+The root for asset component files.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#set_version-instance_method" title="#set_version (instance method)">- (Object) <strong>set_version</strong>(name, version) </a>
     
 
@@ -266,30 +332,6 @@ A new instance of Definition.
   
     <span class="summary_desc"><div class='inline'><p>
 Update the version string for a specific asset.
-</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#source_root-instance_method" title="#source_root (instance method)">- (String) <strong>source_root</strong> </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>
-The root for asset component files.
 </p>
 </div></span>
   
@@ -378,7 +420,9 @@ A new instance of Definition
 7
 8
 9
-10</pre>
+10
+11
+12</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 6</span>
@@ -387,6 +431,8 @@ A new instance of Definition
   <span class='@path ivar id'>@path</span> <span class='assign token'>=</span> <span class='path identifier id'>path</span>
   <span class='@type ivar id'>@type</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='basename identifier id'>basename</span><span class='lparen token'>(</span> <span class='path identifier id'>path</span><span class='comma token'>,</span> <span class='string val'>&quot;.yml&quot;</span> <span class='rparen token'>)</span>
   <span class='@definition ivar id'>@definition</span> <span class='assign token'>=</span> <span class='YAML constant id'>YAML</span><span class='dot token'>.</span><span class='load_file identifier id'>load_file</span><span class='lparen token'>(</span> <span class='@path ivar id'>@path</span> <span class='rparen token'>)</span>
+  <span class='comment val'># Create asset destination folder, if needed</span>
+  <span class='Dir constant id'>Dir</span><span class='dot token'>.</span><span class='mkdir identifier id'>mkdir</span><span class='lparen token'>(</span> <span class='destination_root identifier id'>destination_root</span> <span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='directory? fid id'>directory?</span><span class='lparen token'>(</span> <span class='destination_root identifier id'>destination_root</span> <span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -402,109 +448,9 @@ A new instance of Definition
     
     
       <div class="method_details first">
-  <p class="signature first" id="asset_component_paths-instance_method">
+  <p class="signature first" id="asset_path-instance_method">
   
-    - (<tt>Array&lt;String&gt;</tt>) <strong>asset_component_paths</strong>(name) 
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-Ordered list of the files that comprise the given asset.
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <h3>Parameters:</h3>
-<ul class="param">
-  
-    <li>
-      
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
-        <span class='name'>name</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>
-Name of the asset.
-</p>
-</div>
-      
-    </li>
-  
-</ul>
-<h3>Returns:</h3>
-<ul class="return">
-  
-    <li>
-      
-        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
-      
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>
-Ordered list of the files that comprise the given asset.
-</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 90</span>
-
-<span class='def def kw'>def</span> <span class='asset_component_paths identifier id'>asset_component_paths</span><span class='lparen token'>(</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
-  <span class='spec identifier id'>spec</span> <span class='assign token'>=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='assets identifier id'>assets</span><span class='lbrack token'>[</span><span class='name identifier id'>name</span><span class='rbrack token'>]</span>
-  
-  <span class='if if kw'>if</span> <span class='spec identifier id'>spec</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
-    <span class='raise identifier id'>raise</span> <span class='Rapper constant id'>Rapper</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='colon2 op'>::</span><span class='InvalidAssetName constant id'>InvalidAssetName</span><span class='comma token'>,</span>
-      <span class='dstring node'>&quot;'#{name}' is not a valid #{@type} asset. Make sure it is defined in the definition file.&quot;</span>
-  <span class='end end kw'>end</span>
-  
-  <span class='lparen token'>(</span> <span class='spec identifier id'>spec</span><span class='lbrack token'>[</span><span class='string val'>&quot;files&quot;</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span> <span class='rparen token'>)</span><span class='dot token'>.</span><span class='map identifier id'>map</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='file identifier id'>file</span><span class='bitor op'>|</span>
-    <span class='file_name identifier id'>file_name</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;#{file}.#{self.suffix}&quot;</span>
-    <span class='File constant id'>File</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='source_root identifier id'>source_root</span><span class='comma token'>,</span> <span class='file_name identifier id'>file_name</span> <span class='rparen token'>)</span>
-  <span class='end end kw'>end</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="asset_path-instance_method">
-  
-    - (<tt>String</tt>) <strong>asset_path</strong>(name) 
+    - (<tt>String</tt>) <strong>asset_path</strong>(name, root = nil) 
   
 
   
@@ -565,17 +511,19 @@ Path to the packaged asset file.
       <pre class="lines">
 
 
-81
 82
 83
-84</pre>
+84
+85
+86</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 81</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 82</span>
 
-<span class='def def kw'>def</span> <span class='asset_path identifier id'>asset_path</span><span class='lparen token'>(</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
+<span class='def def kw'>def</span> <span class='asset_path identifier id'>asset_path</span><span class='lparen token'>(</span> <span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='root identifier id'>root</span><span class='assign token'>=</span><span class='nil nil kw'>nil</span> <span class='rparen token'>)</span>
+  <span class='root identifier id'>root</span> <span class='opasgn op'>||=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='destination_root identifier id'>destination_root</span>
   <span class='file_name identifier id'>file_name</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;#{name}.#{self.suffix}&quot;</span>
-  <span class='File constant id'>File</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='destination_root identifier id'>destination_root</span><span class='comma token'>,</span> <span class='file_name identifier id'>file_name</span> <span class='rparen token'>)</span>
+  <span class='File constant id'>File</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span> <span class='root identifier id'>root</span><span class='comma token'>,</span> <span class='file_name identifier id'>file_name</span> <span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -584,91 +532,16 @@ Path to the packaged asset file.
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="assets-instance_method">
+  <p class="signature " id="asset_tag_root-instance_method">
   
-    - (<tt>Hash</tt>) <strong>assets</strong> 
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-Simplified structure representing all asset definitions.
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <h3>Returns:</h3>
-<ul class="return">
-  
-    <li>
-      
-        <span class='type'>(<tt>Hash</tt>)</span>
-      
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>
-Simplified structure representing all asset definitions.
-</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 36</span>
-
-<span class='def def kw'>def</span> <span class='assets identifier id'>assets</span>
-  <span class='assets identifier id'>assets</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
-  
-  <span class='first_key_value identifier id'>first_key_value</span><span class='lparen token'>(</span> <span class='string val'>&quot;assets&quot;</span><span class='comma token'>,</span> <span class='@definition ivar id'>@definition</span> <span class='rparen token'>)</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='spec identifier id'>spec</span><span class='bitor op'>|</span>
-    <span class='assets identifier id'>assets</span><span class='lbrack token'>[</span><span class='spec identifier id'>spec</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span><span class='dot token'>.</span><span class='first identifier id'>first</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='spec identifier id'>spec</span><span class='dot token'>.</span><span class='values identifier id'>values</span><span class='dot token'>.</span><span class='first identifier id'>first</span><span class='dot token'>.</span><span class='inject identifier id'>inject</span><span class='lparen token'>(</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='memo identifier id'>memo</span><span class='comma token'>,</span> <span class='item identifier id'>item</span><span class='bitor op'>|</span>
-      <span class='memo identifier id'>memo</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span> <span class='item identifier id'>item</span> <span class='rparen token'>)</span>
-    <span class='end end kw'>end</span>
-  <span class='end end kw'>end</span>
-  
-  <span class='assets identifier id'>assets</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="destination_root-instance_method">
-  
-    - (<tt>String</tt>) <strong>destination_root</strong> 
+    - (<tt>String</tt>) <strong>asset_tag_root</strong> 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-The root for packaged asset files.
+The public url root for packaged asset files.
 </p>
 
 
@@ -687,7 +560,7 @@ The root for packaged asset files.
       
         &mdash;
         <div class='inline'><p>
-The root for packaged asset files.
+The public url root for packaged asset files.
 </p>
 </div>
       
@@ -701,15 +574,15 @@ The root for packaged asset files.
       <pre class="lines">
 
 
-22
-23
-24</pre>
+34
+35
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 34</span>
 
-<span class='def def kw'>def</span> <span class='destination_root identifier id'>destination_root</span>
-  <span class='first_key_value identifier id'>first_key_value</span><span class='lparen token'>(</span> <span class='string val'>&quot;destination_root&quot;</span><span class='comma token'>,</span> <span class='@definition ivar id'>@definition</span> <span class='rparen token'>)</span> <span class='orop op'>||</span> <span class='string val'>&quot;&quot;</span>
+<span class='def def kw'>def</span> <span class='asset_tag_root identifier id'>asset_tag_root</span>
+  <span class='@definition ivar id'>@definition</span><span class='lbrack token'>[</span><span class='string val'>&quot;tag_root&quot;</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span> <span class='regexp val'>/\/$/</span><span class='comma token'>,</span> <span class='string val'>''</span> <span class='rparen token'>)</span> <span class='plus op'>+</span> <span class='string val'>&quot;/assets&quot;</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -718,16 +591,56 @@ The root for packaged asset files.
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="first_key_value-instance_method">
+  <p class="signature " id="assets-instance_method">
   
-    - (<tt>Object</tt><sup>?</sup>) <strong>first_key_value</strong>(key, array)  <span class="extras">(private)</span>
+    - (<tt>Object</tt>) <strong>assets</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <h6>====</h6>
+<h1>Assets =</h1>
+<h6>====</h6>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+47
+48
+49</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 47</span>
+
+<span class='def def kw'>def</span> <span class='assets identifier id'>assets</span>
+  <span class='@definition ivar id'>@definition</span><span class='lbrack token'>[</span><span class='string val'>&quot;assets&quot;</span><span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="component_paths-instance_method">
+  
+    - (<tt>Array&lt;String&gt;</tt>) <strong>component_paths</strong>(name, root = nil) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-The first value found for the key or nil of nothing was found.
+Ordered list of the files that comprise the given asset.
 </p>
 
 
@@ -739,33 +652,16 @@ The first value found for the key or nil of nothing was found.
   
     <li>
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt>String</tt>)</span>
       
       
-        <span class='name'>key</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>
-Key to search for.
-</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='type'>(<tt>Array&lt;Hash&gt;</tt>)</span>
-      
-      
-        <span class='name'>array</span>
+        <span class='name'>name</span>
       
       
       
         &mdash;
         <div class='inline'><p>
-Array of Hash object to search in.
+Name of the asset.
 </p>
 </div>
       
@@ -777,14 +673,14 @@ Array of Hash object to search in.
   
     <li>
       
-        <span class='type'>(<tt>Object</tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
       
       
       
       
         &mdash;
         <div class='inline'><p>
-The first value found for the key or nil of nothing was found.
+Ordered list of the files that comprise the given asset.
 </p>
 </div>
       
@@ -798,17 +694,213 @@ The first value found for the key or nil of nothing was found.
       <pre class="lines">
 
 
-112
-113
-114
-115</pre>
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 112</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 92</span>
 
-<span class='def def kw'>def</span> <span class='first_key_value identifier id'>first_key_value</span><span class='lparen token'>(</span> <span class='key identifier id'>key</span><span class='comma token'>,</span> <span class='array identifier id'>array</span> <span class='rparen token'>)</span>
-  <span class='hash identifier id'>hash</span> <span class='assign token'>=</span> <span class='array identifier id'>array</span><span class='dot token'>.</span><span class='find identifier id'>find</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='h identifier id'>h</span><span class='bitor op'>|</span> <span class='h identifier id'>h</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span><span class='dot token'>.</span><span class='include? fid id'>include?</span> <span class='key identifier id'>key</span> <span class='rbrace token'>}</span>
-  <span class='hash identifier id'>hash</span> <span class='integer val'>? </span><span class='hash identifier id'>hash</span><span class='lbrack token'>[</span><span class='key identifier id'>key</span><span class='rbrack token'>]</span> <span class='colon op'>:</span> <span class='nil nil kw'>nil</span>
+<span class='def def kw'>def</span> <span class='component_paths identifier id'>component_paths</span><span class='lparen token'>(</span> <span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='root identifier id'>root</span><span class='assign token'>=</span><span class='nil nil kw'>nil</span> <span class='rparen token'>)</span>
+  <span class='root identifier id'>root</span> <span class='opasgn op'>||=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='root identifier id'>root</span>
+  <span class='spec identifier id'>spec</span> <span class='assign token'>=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='assets identifier id'>assets</span><span class='lbrack token'>[</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrack token'>]</span>
+  
+  <span class='if if kw'>if</span> <span class='spec identifier id'>spec</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+    <span class='raise identifier id'>raise</span> <span class='Rapper constant id'>Rapper</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='colon2 op'>::</span><span class='InvalidAssetName constant id'>InvalidAssetName</span><span class='comma token'>,</span>
+      <span class='dstring node'>&quot;'#{name}' is not a valid #{@type} asset. Make sure it is defined in the definition file.&quot;</span>
+  <span class='end end kw'>end</span>
+  
+  <span class='lparen token'>(</span> <span class='spec identifier id'>spec</span><span class='lbrack token'>[</span><span class='string val'>&quot;files&quot;</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span> <span class='rparen token'>)</span><span class='dot token'>.</span><span class='map identifier id'>map</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='file identifier id'>file</span><span class='bitor op'>|</span>
+    <span class='file_name identifier id'>file_name</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;#{file}.#{self.suffix}&quot;</span>
+    <span class='File constant id'>File</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span> <span class='root identifier id'>root</span><span class='comma token'>,</span> <span class='file_name identifier id'>file_name</span> <span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="component_tag_root-instance_method">
+  
+    - (<tt>String</tt>) <strong>component_tag_root</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+when bundling is off).
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The public url root for the asset component files (used
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+29
+30
+31</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 29</span>
+
+<span class='def def kw'>def</span> <span class='component_tag_root identifier id'>component_tag_root</span>
+  <span class='@definition ivar id'>@definition</span><span class='lbrack token'>[</span><span class='string val'>&quot;tag_root&quot;</span><span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="destination_root-instance_method">
+  
+    - (<tt>Object</tt>) <strong>destination_root</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+23
+24
+25</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 23</span>
+
+<span class='def def kw'>def</span> <span class='destination_root identifier id'>destination_root</span>
+  <span class='@definition ivar id'>@definition</span><span class='lbrack token'>[</span><span class='string val'>&quot;root&quot;</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span> <span class='regexp val'>/\/$/</span><span class='comma token'>,</span> <span class='string val'>''</span> <span class='rparen token'>)</span> <span class='plus op'>+</span> <span class='string val'>&quot;/assets&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="get_version-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_version</strong>(name) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+60
+61
+62</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 60</span>
+
+<span class='def def kw'>def</span> <span class='get_version identifier id'>get_version</span><span class='lparen token'>(</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
+  <span class='@definition ivar id'>@definition</span><span class='lbrack token'>[</span><span class='string val'>&quot;assets&quot;</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='string val'>&quot;version&quot;</span><span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="root-instance_method">
+  
+    - (<tt>String</tt>) <strong>root</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+The root for asset component files.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The root for asset component files.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+19
+20
+21</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 19</span>
+
+<span class='def def kw'>def</span> <span class='root identifier id'>root</span>
+  <span class='@definition ivar id'>@definition</span><span class='lbrack token'>[</span><span class='string val'>&quot;root&quot;</span><span class='rbrack token'>]</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -878,86 +970,15 @@ New version string for the asset.
       <pre class="lines">
 
 
-53
-54
-55
 56
 57
-58
-59
-60
-61</pre>
+58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 56</span>
 
 <span class='def def kw'>def</span> <span class='set_version identifier id'>set_version</span><span class='lparen token'>(</span> <span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='version identifier id'>version</span> <span class='rparen token'>)</span>
-  <span class='first_key_value identifier id'>first_key_value</span><span class='lparen token'>(</span> <span class='string val'>&quot;assets&quot;</span><span class='comma token'>,</span> <span class='@definition ivar id'>@definition</span> <span class='rparen token'>)</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='spec identifier id'>spec</span><span class='bitor op'>|</span>
-    <span class='next next kw'>next</span> <span class='unless unless_mod kw'>unless</span> <span class='spec identifier id'>spec</span><span class='lbrack token'>[</span><span class='name identifier id'>name</span><span class='rbrack token'>]</span>
-    <span class='spec identifier id'>spec</span><span class='lbrack token'>[</span><span class='name identifier id'>name</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='setting identifier id'>setting</span><span class='bitor op'>|</span>
-      <span class='next next kw'>next</span> <span class='unless unless_mod kw'>unless</span> <span class='setting identifier id'>setting</span><span class='lbrack token'>[</span><span class='string val'>&quot;version&quot;</span><span class='rbrack token'>]</span>
-      <span class='setting identifier id'>setting</span><span class='lbrack token'>[</span><span class='string val'>&quot;version&quot;</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='version identifier id'>version</span>
-    <span class='end end kw'>end</span>
-  <span class='end end kw'>end</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="source_root-instance_method">
-  
-    - (<tt>String</tt>) <strong>source_root</strong> 
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-The root for asset component files.
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <h3>Returns:</h3>
-<ul class="return">
-  
-    <li>
-      
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>
-The root for asset component files.
-</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-17
-18
-19</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 17</span>
-
-<span class='def def kw'>def</span> <span class='source_root identifier id'>source_root</span>
-  <span class='first_key_value identifier id'>first_key_value</span><span class='lparen token'>(</span> <span class='string val'>&quot;source_root&quot;</span><span class='comma token'>,</span> <span class='@definition ivar id'>@definition</span> <span class='rparen token'>)</span> <span class='orop op'>||</span> <span class='string val'>&quot;&quot;</span>
+  <span class='@definition ivar id'>@definition</span><span class='lbrack token'>[</span><span class='string val'>&quot;assets&quot;</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='string val'>&quot;version&quot;</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='version identifier id'>version</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -1008,15 +1029,15 @@ The suffix of files used in this definition.
       <pre class="lines">
 
 
-27
-28
-29</pre>
+39
+40
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 39</span>
 
 <span class='def def kw'>def</span> <span class='suffix identifier id'>suffix</span>
-  <span class='first_key_value identifier id'>first_key_value</span><span class='lparen token'>(</span> <span class='string val'>&quot;suffix&quot;</span><span class='comma token'>,</span> <span class='@definition ivar id'>@definition</span> <span class='rparen token'>)</span>
+  <span class='@definition ivar id'>@definition</span><span class='lbrack token'>[</span><span class='string val'>&quot;suffix&quot;</span><span class='rbrack token'>]</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -1048,14 +1069,14 @@ Writes the in-memory definition out to disk.
       <pre class="lines">
 
 
-68
 69
 70
 71
-72</pre>
+72
+73</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 69</span>
 
 <span class='def def kw'>def</span> <span class='update identifier id'>update</span>
   <span class='File constant id'>File</span><span class='dot token'>.</span><span class='open identifier id'>open</span><span class='lparen token'>(</span> <span class='@path ivar id'>@path</span><span class='comma token'>,</span> <span class='string val'>&quot;w&quot;</span> <span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='file identifier id'>file</span><span class='bitor op'>|</span>
@@ -1073,7 +1094,7 @@ Writes the in-memory definition out to disk.
 </div>
     
     <div id="footer">
-  Generated on Sat Feb 19 01:03:10 2011 by 
+  Generated on Wed Mar  9 01:53:08 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>

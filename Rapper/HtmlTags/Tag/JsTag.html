@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: Rapper::HtmlTags::Tag::JsTag</title>
+<link rel="stylesheet" href="../../../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../../../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '../../..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../../_index.html">Index (J)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../../../Rapper.html" title="Rapper (module)">Rapper</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../HtmlTags.html" title="Rapper::HtmlTags (module)">HtmlTags</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Tag.html" title="Rapper::HtmlTags::Tag (class)">Tag</a></span></span>
+     &raquo; 
+    <span class="title">JsTag</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: Rapper::HtmlTags::Tag::JsTag
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'><a href="../Tag.html" title="Rapper::HtmlTags::Tag (class)">Rapper::HtmlTags::Tag</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="../Tag.html" title="Rapper::HtmlTags::Tag (class)">Rapper::HtmlTags::Tag</a></span></li>
+          
+            <li class="next">Rapper::HtmlTags::Tag::JsTag</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/rapper/html_tags.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+  
+  
+  
+  
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#templates-class_method" title="templates (class method)">+ (Object) <strong>templates</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="../Tag.html" title="Rapper::HtmlTags::Tag (class)">Rapper::HtmlTags::Tag</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../Tag.html#for-class_method" title="Rapper::HtmlTags::Tag.for (method)">for</a></span></p>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="templates-class_method">
+  
+    + (<tt>Object</tt>) <strong>templates</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+68
+69
+70
+71
+72
+73
+74</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/rapper/html_tags.rb', line 68</span>
+
+<span class='def def kw'>def</span> <span class='templates identifier id'>templates</span>
+  <span class='lbrace token'>{</span>
+    <span class='symbol val'>:html</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'&lt;script type=&quot;text/javascript&quot; src=&quot;&lt;%= path %&gt;&quot;&gt;&lt;/script&gt;'</span><span class='comma token'>,</span>
+    <span class='symbol val'>:html5</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;&lt;script src=\&quot;&lt;%= path %&gt;\&quot;&gt;&lt;/script&gt;&quot;</span><span class='comma token'>,</span>
+    <span class='symbol val'>:xhtml</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'&lt;script type=&quot;text/javascript&quot; src=&quot;&lt;%= path %&gt;&quot;&gt;&lt;/script&gt;'</span>
+  <span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Wed Mar  9 01:53:06 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.4 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

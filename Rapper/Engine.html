@@ -71,7 +71,7 @@
   
     
       <dt class="r2">Includes:</dt>
-      <dd class="r2"><span class='object_link'><a href="Compressors.html" title="Rapper::Compressors (module)">Compressors</a></span>, <span class='object_link'><a href="Config.html" title="Rapper::Config (module)">Config</a></span>, <span class='object_link'><a href="Logging.html" title="Rapper::Logging (module)">Logging</a></span>, <span class='object_link'><a href="Utils.html" title="Rapper::Utils (module)">Utils</a></span>, <span class='object_link'><a href="Versioning.html" title="Rapper::Versioning (module)">Versioning</a></span></dd>
+      <dd class="r2"><span class='object_link'><a href="Compressors.html" title="Rapper::Compressors (module)">Compressors</a></span>, <span class='object_link'><a href="Config.html" title="Rapper::Config (module)">Config</a></span>, <span class='object_link'><a href="HelperSetup.html" title="Rapper::HelperSetup (module)">HelperSetup</a></span>, <span class='object_link'><a href="HtmlTags.html" title="Rapper::HtmlTags (module)">HtmlTags</a></span>, <span class='object_link'><a href="Logging.html" title="Rapper::Logging (module)">Logging</a></span>, <span class='object_link'><a href="Utils.html" title="Rapper::Utils (module)">Utils</a></span>, <span class='object_link'><a href="Versioning.html" title="Rapper::Versioning (module)">Versioning</a></span></dd>
       
     
   
@@ -99,6 +99,14 @@ The main Rapper class. Handles, well, everything.
   
 
 
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -184,6 +192,26 @@ Package assets according to the loaded config and definitions.
     </ul>
   
 
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="HelperSetup.html" title="Rapper::HelperSetup (module)">HelperSetup</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="HelperSetup.html#setup_helpers-instance_method" title="Rapper::HelperSetup#setup_helpers (method)">#setup_helpers</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="HtmlTags.html" title="Rapper::HtmlTags (module)">HtmlTags</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="HtmlTags.html#css_tag-instance_method" title="Rapper::HtmlTags#css_tag (method)">#css_tag</a></span>, <span class='object_link'><a href="HtmlTags.html#get_tag-instance_method" title="Rapper::HtmlTags#get_tag (method)">#get_tag</a></span>, <span class='object_link'><a href="HtmlTags.html#js_tag-instance_method" title="Rapper::HtmlTags#js_tag (method)">#js_tag</a></span>, <span class='object_link'><a href="HtmlTags.html#tag_method_for_type-instance_method" title="Rapper::HtmlTags#tag_method_for_type (method)">#tag_method_for_type</a></span></p>
 
   
   
@@ -300,22 +328,24 @@ Rapper configuration file.
       <pre class="lines">
 
 
-27
-28
-29
-30
 31
 32
-33</pre>
+33
+34
+35
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper.rb', line 31</span>
 
 <span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span> <span class='config_path identifier id'>config_path</span><span class='comma token'>,</span> <span class='environment identifier id'>environment</span> <span class='rparen token'>)</span>
   <span class='@environment ivar id'>@environment</span> <span class='assign token'>=</span> <span class='environment identifier id'>environment</span>
   <span class='@config ivar id'>@config</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
   <span class='@definitions ivar id'>@definitions</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
   <span class='load_config identifier id'>load_config</span><span class='lparen token'>(</span> <span class='config_path identifier id'>config_path</span> <span class='rparen token'>)</span>
+  <span class='setup_helpers identifier id'>setup_helpers</span>
   <span class='log identifier id'>log</span> <span class='symbol val'>:verbose</span><span class='comma token'>,</span> <span class='dstring node'>&quot;Loaded rappper with #{environment} environment from #{config_path}&quot;</span>
 <span class='end end kw'>end</span>
 </pre>
@@ -377,11 +407,6 @@ Asset types to refresh versions for.
       <pre class="lines">
 
 
-39
-40
-41
-42
-43
 44
 45
 46
@@ -405,10 +430,15 @@ Asset types to refresh versions for.
 64
 65
 66
-67</pre>
+67
+68
+69
+70
+71
+72</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper.rb', line 44</span>
 
 <span class='def def kw'>def</span> <span class='package identifier id'>package</span><span class='lparen token'>(</span> <span class='mult op'>*</span><span class='types identifier id'>types</span> <span class='rparen token'>)</span>
   <span class='types identifier id'>types</span> <span class='assign token'>=</span> <span class='types identifier id'>types</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span> <span class='integer val'>? </span><span class='asset_types identifier id'>asset_types</span> <span class='colon op'>:</span> <span class='types identifier id'>types</span>
@@ -416,14 +446,14 @@ Asset types to refresh versions for.
   
   <span class='types identifier id'>types</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='type identifier id'>type</span><span class='bitor op'>|</span>
     <span class='definition identifier id'>definition</span> <span class='assign token'>=</span> <span class='@definitions ivar id'>@definitions</span><span class='lbrack token'>[</span><span class='type identifier id'>type</span><span class='rbrack token'>]</span>
-    <span class='source identifier id'>source</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='expand_path identifier id'>expand_path</span><span class='lparen token'>(</span> <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='source_root identifier id'>source_root</span> <span class='rparen token'>)</span>
+    <span class='source identifier id'>source</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='expand_path identifier id'>expand_path</span><span class='lparen token'>(</span> <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='root identifier id'>root</span> <span class='rparen token'>)</span>
     <span class='destination identifier id'>destination</span> <span class='assign token'>=</span> <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='destination_root identifier id'>destination_root</span>
     <span class='suffix identifier id'>suffix</span> <span class='assign token'>=</span> <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='suffix identifier id'>suffix</span>
     
     <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='assets identifier id'>assets</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='spec identifier id'>spec</span><span class='bitor op'>|</span>
       <span class='next next kw'>next</span> <span class='unless unless_mod kw'>unless</span> <span class='needs_packaging? fid id'>needs_packaging?</span><span class='lparen token'>(</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
       
-      <span class='source_files identifier id'>source_files</span> <span class='assign token'>=</span> <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='asset_component_paths identifier id'>asset_component_paths</span><span class='lparen token'>(</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
+      <span class='source_files identifier id'>source_files</span> <span class='assign token'>=</span> <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='component_paths identifier id'>component_paths</span><span class='lparen token'>(</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
       <span class='destination_file identifier id'>destination_file</span> <span class='assign token'>=</span> <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='asset_path identifier id'>asset_path</span><span class='lparen token'>(</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
       
       <span class='log identifier id'>log</span> <span class='symbol val'>:verbose</span><span class='comma token'>,</span> <span class='dstring node'>&quot;Joining #{source_files.size} files to #{name}&quot;</span>
@@ -450,7 +480,7 @@ Asset types to refresh versions for.
 </div>
     
     <div id="footer">
-  Generated on Sat Feb 19 01:03:10 2011 by 
+  Generated on Wed Mar  9 01:53:07 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>

@@ -112,45 +112,29 @@
 
 <p>The <code>definition_root</code> setting in the rapper config is a path to a folder containing more YAML files that define the various types of bundles you want to build (eg. <code>stylesheets.yml</code>, <code>javascripts.yml</code>) Example definition file:</p>
 
-<pre class="code"><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span> 
-<span class='minus op'>-</span> <span class='source_root identifier id'>source_root</span><span class='colon op'>:</span> <span class='public identifier id'>public</span><span class='div op'>/</span><span class='javascripts identifier id'>javascripts</span>
-<span class='minus op'>-</span> <span class='destination_root identifier id'>destination_root</span><span class='colon op'>:</span> <span class='public identifier id'>public</span><span class='div op'>/</span><span class='assets identifier id'>assets</span><span class='div op'>/</span><span class='javascripts identifier id'>javascripts</span>
-<span class='minus op'>-</span> <span class='suffix identifier id'>suffix</span><span class='colon op'>:</span> <span class='js identifier id'>js</span>
-<span class='minus op'>-</span> <span class='assets identifier id'>assets</span><span class='colon op'>:</span> 
-  <span class='minus op'>-</span> <span class='base identifier id'>base</span><span class='colon op'>:</span> 
-    <span class='minus op'>-</span> <span class='files identifier id'>files</span><span class='colon op'>:</span> 
-      <span class='minus op'>-</span> <span class='mootools identifier id'>mootools</span>
-  <span class='minus op'>-</span> <span class='stats identifier id'>stats</span><span class='colon op'>:</span> 
-    <span class='minus op'>-</span> <span class='files identifier id'>files</span><span class='colon op'>:</span> 
-      <span class='minus op'>-</span> <span class='protovis identifier id'>protovis</span>
-      <span class='minus op'>-</span> <span class='ext_js_full identifier id'>ext_js_full</span>
-</pre>
+<pre class="code"><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span> <span class='notop op'>!</span><span class='omap identifier id'>omap</span>
+<span class='minus op'>-</span> <span class='root identifier id'>root</span><span class='colon op'>:</span> <span class='public identifier id'>public</span><span class='div op'>/</span><span class='javascripts identifier id'>javascripts</span>
+<span class='minus op'>-</span> <span class='tag_root identifier id'>tag_root</span><span class='colon op'>:</span> <span class='regexp val'>/javascripts
+- suffix: js
+- assets: !omap
+    - base: !omap
+        - files: 
+          - mootools
+        - version: 7b06
+    - stats: !omap
+        - files: 
+          - protovis
+          - ext_js_full
+        - version: db62
+</span></pre>
 
-<p>The above definition will create two asset files: <code>public/assets/javascripts/base.js</code> and <code>public/assets/javascripts/stats.js</code> from the component files in <code>public/javascripts</code> (in this case: <code>public/javascripts/protovis.js</code> and <code>public/javascripts/ext_js_full.js</code>).</p>
+<p>The above definition will create two asset files: <code>public/javascripts/assets/base.js</code> and <code>public/javascripts/assets/stats.js</code> from the component files in <code>public/javascripts</code> (in this case: <code>public/javascripts/protovis.js</code> and <code>public/javascripts/ext_js_full.js</code>).</p>
 
-<p><strong>Note:</strong> Definition files are YAML ordered mapping documents. This is so that version updates (which involves rapper updating the version numbers and writing out the updated definition as YAML) don't change the order of the file. This is especially useful when using git and working with many branches because it prevents nasty merge conflicts.</p>
+<p><strong>Note:</strong> Definition files are YAML ordered mapping documents. This is so that version updates (which involves rapper updating the version numbers and writing out the updated definition as YAML) don't change the order of the file. This is especially useful when using git and merging branches because it prevents nasty merge conflicts.</p>
 
 <h2>Versioning</h2>
 
-<p>If versioning is turned on in your config, version strings will be used to enforce better browser caching of assets. (Version numbers are always used in definition files.)</p>
-
-<pre class="code"><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span> 
-<span class='minus op'>-</span> <span class='source_root identifier id'>source_root</span><span class='colon op'>:</span> <span class='public identifier id'>public</span><span class='div op'>/</span><span class='javascripts identifier id'>javascripts</span>
-<span class='minus op'>-</span> <span class='destination_root identifier id'>destination_root</span><span class='colon op'>:</span> <span class='public identifier id'>public</span><span class='div op'>/</span><span class='assets identifier id'>assets</span><span class='div op'>/</span><span class='javascripts identifier id'>javascripts</span>
-<span class='minus op'>-</span> <span class='suffix identifier id'>suffix</span><span class='colon op'>:</span> <span class='js identifier id'>js</span>
-<span class='minus op'>-</span> <span class='assets identifier id'>assets</span><span class='colon op'>:</span> 
-  <span class='minus op'>-</span> <span class='base identifier id'>base</span><span class='colon op'>:</span> 
-    <span class='minus op'>-</span> <span class='files identifier id'>files</span><span class='colon op'>:</span> 
-      <span class='minus op'>-</span> <span class='mootools identifier id'>mootools</span>
-    <span class='minus op'>-</span> <span class='version identifier id'>version</span><span class='colon op'>:</span> <span class='integer val'>7</span><span class='b06 identifier id'>b06</span>
-  <span class='minus op'>-</span> <span class='stats identifier id'>stats</span><span class='colon op'>:</span> 
-    <span class='minus op'>-</span> <span class='files identifier id'>files</span><span class='colon op'>:</span> 
-      <span class='minus op'>-</span> <span class='protovis identifier id'>protovis</span>
-      <span class='minus op'>-</span> <span class='ext_js_full identifier id'>ext_js_full</span>
-    <span class='minus op'>-</span> <span class='version identifier id'>version</span><span class='colon op'>:</span> <span class='db62 identifier id'>db62</span>
-</pre>
-
-<p>Version strings are short hashes of the pre-compression asset file. This means that they will only change when the contents of the component files for an asset change and time-consuming compression will only happen when a bundle needs to be re-packaged.</p>
+<p>Version strings are short hashes of the before-compression asset file. This means that they will only change when the contents of the component files for an asset change and time-consuming compression will only happen when a bundle needs to be re-packaged.</p>
 
 <p>Version strings are also used to enforce good browser caching habits, especially when you have a far-future expires header configured on your web server. For example, suppose you had the following asset:</p>
 
@@ -164,27 +148,29 @@
 
 <p>Browsers will automatically re-download and cache the new asset.</p>
 
-<h2>To do soon</h2>
+<h1>Development</h1>
+
+<p>Rapper's got a Gemfile. You know what to do.</p>
+
+<pre class="code"><span class='bundle identifier id'>bundle</span> <span class='install identifier id'>install</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='path identifier id'>path</span> <span class='vendor identifier id'>vendor</span>
+<span class='bundle identifier id'>bundle</span> <span class='exec identifier id'>exec</span> <span class='rake identifier id'>rake</span> <span class='spec identifier id'>spec</span>
+</pre>
+
+<h2>Wishlist</h2>
 
 <ul>
-<li>Merb view helpers</li>
-<li>Sinatra helpers</li>
-</ul>
-
-
-<h2>To do later</h2>
-
-<ul>
-<li>Per-asset configuration overrides</li>
-<li>Rails helpers</li>
 <li>Watch for CoffeeScript changes and automatically compile</li>
 <li>Watch for Sass changes and automatically compile</li>
+<li>Per-asset configuration overrides</li>
+<li>Sinatra helpers</li>
+<li>Rails helpers</li>
 </ul>
 
 
 <h2>Version history</h2>
 
 <ul>
+<li><strong>0.1.0</strong> - View helpers.</li>
 <li><strong>0.0.3</strong> - New <code>Definition</code> object to make working with definitions significantly easier, don't re-package assets that don't need re-packaging.</li>
 <li><strong>0.0.2</strong> - Compression now works and is specced.</li>
 <li><strong>0.0.1</strong> - Initial release. Functioning bundler, minus the view helpers.</li>
@@ -209,7 +195,7 @@
 <p>Copyright (c) 2011 Tyson Tate. See LICENSE.txt for further details.</p></div></div>
     
     <div id="footer">
-  Generated on Sat Feb 19 01:03:08 2011 by 
+  Generated on Wed Mar  9 01:53:05 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>
