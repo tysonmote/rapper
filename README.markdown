@@ -45,23 +45,9 @@ Rapper is configured using a YAML file that defines the settings to be used in v
 
 The only required setting is `definition_root`. (Of course, you'll still need definition files to define the asset packages that you want build. More on that below.)
 
-The minimum settings needed for a configuration file is:
-
-    base:
-      definition_root: config/assets
-
-The following defaults are applied if not defined in your configuration:
-
-    bundle: true
-    compress: true
-    tag_style: html5
-    version: true
-    closure_compiler:
-      compilation_level: SIMPLE_OPTIMIZATIONS
-
 ## Rapper definitions
 
-The `definition_root` setting in the rapper config is a path to a folder containing more YAML files that define the various types of bundles you want to build (eg. `stylesheets.yml`, `javascripts.yml`) Example definition file:
+The `definition_root` setting in the rapper config is a path to a folder containing more YAML files that define the various types of bundles you want to build (eg. `stylesheets.yml`, `javascripts.yml`). For example, JavaScripts:
 
     --- !omap
     - root: public/javascripts
