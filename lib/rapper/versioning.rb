@@ -44,7 +44,7 @@ module Rapper
     # 
     # @return [String] A four-character version hash for the given asset.
     def version( type, name )
-      source_files = @definitions[type].asset_component_paths( name )
+      source_files = @definitions[type].component_paths( name )
       destination_file = Tempfile.new( 'rapper' )
       join_files( source_files, destination_file.path )
       version = Digest::MD5.file( destination_file.path ).to_s[0,4]

@@ -1,5 +1,5 @@
 base: &base
-  definition_root: spec/fixtures/config/assets/base
+  definition_root: spec/fixtures/config/asset_definitions/base
 test:
   <<: *base
   bundle: true
@@ -23,3 +23,19 @@ test_logging_verbose:
 test_logging_file:
   <<: *base
   log: tmp/test_logging_file.log
+test_no_bundle:
+  <<: *base
+  version: false
+  bundle: false
+xhtml_tags:
+  <<: *base
+  version: false
+  tag_style: xhtml
+html5_tags:
+  <<: *base
+  version: false
+  tag_style: html5
+versions:
+  <<: *base
+  version: true
+  

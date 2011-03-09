@@ -12,11 +12,15 @@ module Rapper
   # The main Rapper class. Handles, well, everything.
   class Engine
     
+    # Base
     include Rapper::Config
     include Rapper::Logging
     include Rapper::Utils
     include Rapper::Compressors
     include Rapper::Versioning
+    # View helpers
+    include Rapper::HtmlTags
+    include Rapper::HelperSetup
     
     # Load the configuration YAML file and set the current environment.
     # 
@@ -29,6 +33,7 @@ module Rapper
       @config = {}
       @definitions = {}
       load_config( config_path )
+      setup_helpers
       log :verbose, "Loaded rappper with #{environment} environment from #{config_path}"
     end
     
@@ -42,14 +47,14 @@ module Rapper
       
       types.each do |type|
         definition = @definitions[type]
-        source = File.expand_path( definition.source_root )
+        source = File.expand_path( definition.root )
         destination = definition.destination_root
         suffix = definition.suffix
         
         definition.assets.each do |name, spec|
           next unless needs_packaging?( type, name )
           
-          source_files = definition.asset_component_paths( name )
+          source_files = definition.component_paths( name )
           destination_file = definition.asset_path( name )
           
           log :verbose, "Joining #{source_files.size} files to #{name}"

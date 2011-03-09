@@ -1,14 +1,14 @@
 --- 
-- source_root: spec/fixtures/javascripts
-- destination_root: tmp
+- root: spec/fixtures/javascripts
+- tag_root: /javascripts
 - suffix: js
 - assets: 
   - single_file: 
     - files: 
       - simple_1
-    - version: 0
+    - version: abcd
   - multiple_files: 
     - files: 
       - simple_1
       - simple_2
-    - version: 0
+    - version: efgh

@@ -6,14 +6,10 @@ require 'fileutils'
 
 Spec::Runner.configure do |config|
   
-  # Setup and tear down tmp files.
-  
-  config.before :all do
-    Dir::mkdir( "tmp" ) unless FileTest::directory?( "tmp" )
-  end
-  
+  # Tear down test case assets folders
   config.after :each do
-    Dir[ "tmp/*" ].each { |f| FileUtils.rm( f ) }
+    FileUtils.rm_r( Dir[ "tmp/*" ] )
+    FileUtils.rm_r( Dir[ "spec/fixtures/*/assets" ] )
   end
 end
 

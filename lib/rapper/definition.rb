@@ -7,6 +7,8 @@ module Rapper
       @path = path
       @type = File.basename( path, ".yml" )
       @definition = YAML.load_file( @path )
+      # Create asset destination folder, if needed
+      Dir.mkdir( destination_root ) unless File.directory?( destination_root )
     end
     
     # =======================
@@ -14,18 +16,28 @@ module Rapper
     # =======================
     
     # @return [String] The root for asset component files.
-    def source_root
-      first_key_value( "source_root", @definition ) || ""
+    def root
+      definition_value( "root" )
     end
     
-    # @return [String] The root for packaged asset files.
     def destination_root
-      first_key_value( "destination_root", @definition ) || ""
+      definition_value( "root" ).gsub( /\/$/, '' ) + "/assets"
+    end
+    
+    # @return [String] The public url root for the asset component files (used
+    # when bundling is off).
+    def component_tag_root
+      definition_value( "tag_root" )
+    end
+    
+    # @return [String] The public url root for packaged asset files.
+    def asset_tag_root
+      definition_value( "tag_root" ).gsub( /\/$/, '' ) + "/assets"
     end
     
     # @return [String] The suffix of files used in this definition.
     def suffix
-      first_key_value( "suffix", @definition )
+      definition_value( "suffix" )
     end
     
     # ==========
@@ -36,7 +48,7 @@ module Rapper
     def assets
       assets = {}
       
-      first_key_value( "assets", @definition ).each do |spec|
+      definition_value( "assets" ).each do |spec|
         assets[spec.keys.first] = spec.values.first.inject({}) do |memo, item|
           memo.merge( item )
         end
@@ -51,13 +63,27 @@ module Rapper
     # 
     # @param [String] version New version string for the asset.
     def set_version( name, version )
-      first_key_value( "assets", @definition ).each do |spec|
+      name = name.to_s
+      definition_value( "assets" ).each do |spec|
         next unless spec[name]
         spec[name].each do |setting|
           next unless setting["version"]
           setting["version"] = version
         end
       end
+    end 
+    
+    def get_version( name )
+      name = name.to_s
+      definition_value( "assets" ).each do |spec|
+        next unless spec[name]
+        spec[name].each do |setting|
+          next unless setting["version"]
+          return setting["version"]
+        end
+      end
+      
+      false
     end
     
     # ==========
@@ -78,17 +104,19 @@ module Rapper
     # @param [String] name The asset's name.
     # 
     # @return [String] Path to the packaged asset file.
-    def asset_path( name )
+    def asset_path( name, root=nil )
+      root ||= self.destination_root
       file_name = "#{name}.#{self.suffix}"
-      File.join( self.destination_root, file_name )
+      File.join( root, file_name )
     end
     
     # @param [String] name Name of the asset.
     # 
     # @return [Array<String>] Ordered list of the files that comprise the given
     #   asset.
-    def asset_component_paths( name )
-      spec = self.assets[name]
+    def component_paths( name, root=nil )
+      root ||= self.root
+      spec = self.assets[name.to_s]
       
       if spec.nil?
         raise Rapper::Errors::InvalidAssetName,
@@ -97,7 +125,7 @@ module Rapper
       
       ( spec["files"] || [] ).map do |file|
         file_name = "#{file}.#{self.suffix}"
-        File.join( self.source_root, file_name )
+        File.join( root, file_name )
       end
     end
     
@@ -109,9 +137,9 @@ module Rapper
     # 
     # @return [Object,nil] The first value found for the key or nil of nothing
     #   was found.
-    def first_key_value( key, array )
-      hash = array.find { |h| h.keys.include? key }
-      hash ? hash[key] : nil
+    def definition_value( key )
+      hash = @definition.find { |h| h.keys.include? key }
+      hash ? hash[key] : ""
     end
   end
 end
