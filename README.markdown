@@ -63,18 +63,18 @@ The following defaults are applied if not defined in your configuration:
 
 The `definition_root` setting in the rapper config is a path to a folder containing more YAML files that define the various types of bundles you want to build (eg. `stylesheets.yml`, `javascripts.yml`) Example definition file:
 
-    --- 
+    --- !omap
     - root: public/javascripts
     - tag_root: /javascripts
     - suffix: js
-    - assets: 
-      - base: 
-        - files: 
-          - mootools
-      - stats: 
-        - files: 
-          - protovis
-          - ext_js_full
+    - assets: !omap
+        - base: !omap
+          - files: 
+            - mootools
+        - stats: !omap
+          - files: 
+            - protovis
+            - ext_js_full
 
 The above definition will create two asset files: `public/assets/javascripts/base.js` and `public/assets/javascripts/stats.js` from the component files in `public/javascripts` (in this case: `public/javascripts/protovis.js` and `public/javascripts/ext_js_full.js`).
 
@@ -84,20 +84,20 @@ The above definition will create two asset files: `public/assets/javascripts/bas
 
 If versioning is turned on in your config, version strings will be used to enforce better browser caching of assets. (Version numbers are always used in definition files.)
 
-    --- 
+    --- !omap
     - root: public/javascripts
     - tag_root: /javascripts
     - suffix: js
-    - assets: 
-      - base: 
-        - files: 
-          - mootools
-        - version: 7b06
-      - stats: 
-        - files: 
-          - protovis
-          - ext_js_full
-        - version: db62
+    - assets: !omap 
+        - base: !omap
+            - files: 
+              - mootools
+            - version: 7b06
+        - stats: !omap 
+            - files: 
+              - protovis
+              - ext_js_full
+            - version: db62
 
 Version strings are short hashes of the pre-compression asset file. This means that they will only change when the contents of the component files for an asset change and time-consuming compression will only happen when a bundle needs to be re-packaged.
 

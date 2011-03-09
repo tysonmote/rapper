@@ -55,16 +55,17 @@ describe Rapper do
       rapper.definitions["javascripts"].component_tag_root.should == "/javascripts"
       rapper.definitions["javascripts"].asset_tag_root.should == "/javascripts/assets"
       rapper.definitions["javascripts"].suffix.should == "js"
-      rapper.definitions["javascripts"].assets.should == {
-        "single_file"=>{
-          "files"=>["simple_1"],
-          "version"=>"abcd"
-        },
-        "multiple_files"=>{
-          "files"=>["simple_1", "simple_2"],
-          "version"=>"efgh"
-        }
-      }
+      rapper.definitions["javascripts"].assets.should be_a( YAML::Omap )
+      rapper.definitions["javascripts"].assets.should == [
+        ["single_file", [
+          ["files", ["simple_1"]],
+          ["version", "98bc"]]
+        ],
+        ["multiple_files", [
+          ["files", ["simple_1", "simple_2"]],
+          ["version", "f3d9"]]
+        ]
+      ]
     end
   end
   
@@ -107,19 +108,18 @@ describe Rapper do
     it "uses the concatenated file to calculate versions" do
       rapper = Rapper::Engine.new( "spec/fixtures/config/assets.yml", "test" )
       rapper.send( :refresh_versions )
-      rapper.definitions["javascripts"].assets["single_file"].should == {
-        "files"=>["simple_1"],
-        "version"=>"98bc"
-      }
-      rapper.definitions["javascripts"].assets["multiple_files"].should == {
-        "files"=>["simple_1", "simple_2"],
-        "version"=>"f3d9"
-      }
+      rapper.definitions["javascripts"].assets["single_file"].should == [
+        ["files", ["simple_1"]],
+        ["version", "98bc"]
+      ]
+      rapper.definitions["javascripts"].assets["multiple_files"].should == [
+        ["files", ["simple_1", "simple_2"]],
+        ["version", "f3d9"]
+      ]
     end
     
     it "doesn't re-package assets that don't need re-packaging" do
       rapper = Rapper::Engine.new( "spec/fixtures/config/assets.yml", "test" )
-      rapper.stub!( :update_definitions ).and_return( nil ) # Block definition updating
       rapper.package
       
       rapper.should_not_receive( :compress )
@@ -211,8 +211,8 @@ describe Rapper do
     
     it "adds a version number if versioning is on" do
       Rapper::Engine.new( "spec/fixtures/config/assets.yml", "versions" )
-      @controller.rapper_stylesheets_tag( :single_file ).should == "<link rel=\"stylesheet\" href=\"/stylesheets/assets/single_file.css?v=abcd\">"
-      @controller.rapper_javascripts_tag( :single_file ).should == "<script src=\"/javascripts/assets/single_file.js?v=abcd\"></script>"
+      @controller.rapper_stylesheets_tag( :single_file ).should == "<link rel=\"stylesheet\" href=\"/stylesheets/assets/single_file.css?v=1e17\">"
+      @controller.rapper_javascripts_tag( :single_file ).should == "<script src=\"/javascripts/assets/single_file.js?v=98bc\"></script>"
     end
   end
 end

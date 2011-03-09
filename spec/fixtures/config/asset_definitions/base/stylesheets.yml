@@ -1,14 +1,14 @@
---- 
+--- !omap 
 - root: spec/fixtures/stylesheets
 - tag_root: /stylesheets
 - suffix: css
-- assets: 
-  - single_file: 
-    - files: 
-      - simple_1
-    - version: abcd
-  - multiple_files: 
-    - files: 
-      - simple_1
-      - simple_2
-    - version: efgh
+- assets: !omap 
+    - single_file: !omap 
+        - files: 
+          - simple_1
+        - version: 1e17
+    - multiple_files: !omap 
+        - files: 
+          - simple_1
+          - simple_2
+        - version: 683e

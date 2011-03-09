@@ -1,15 +1,15 @@
---- 
+--- !omap
 - root: spec/fixtures/javascripts
 - tag_root: /javascripts
 - suffix: js
-- assets: 
-  - base: 
-    - files: 
-      - simple_1
-      - simple_2
-    - version: 7b06
-  - base_reversed: 
-    - files: 
-      - simple_2
-      - simple_1
-    - version: db62
+- assets: !omap
+    - base: !omap
+        - files: 
+          - simple_1
+          - simple_2
+        - version: 683e
+    - base_reversed: !omap
+        - files: 
+          - simple_2
+          - simple_1
+        - version: 4a04

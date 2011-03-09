@@ -1,15 +1,15 @@
---- 
+--- !omap 
 - root: spec/fixtures/stylesheets
 - tag_root: /stylesheets
 - suffix: css
-- assets: 
-  - base: 
-    - files: 
-      - simple_1
-      - simple_2
-    - version: 683e
-  - base_reversed: 
-    - files: 
-      - simple_2
-      - simple_1
-    - version: 4a04
+- assets: !omap 
+    - base: !omap 
+        - files: 
+          - simple_1
+          - simple_2
+        - version: 683e
+    - base_reversed: !omap 
+        - files: 
+          - simple_2
+          - simple_1
+        - version: 4a04
