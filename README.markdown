@@ -118,20 +118,17 @@ Rapper's got a Gemfile. You know what to do.
     bundle install --path vendor
     bundle exec rake spec
 
-## To do soon
+## Wishlist
 
-* Merb view helpers
-* Sinatra helpers
-
-## To do later
-
-* Per-asset configuration overrides
-* Rails helpers
 * Watch for CoffeeScript changes and automatically compile
 * Watch for Sass changes and automatically compile
+* Per-asset configuration overrides
+* Sinatra helpers
+* Rails helpers
 
 ## Version history
 
+* **0.1.0** - View helpers.
 * **0.0.3** - New `Definition` object to make working with definitions significantly easier, don't re-package assets that don't need re-packaging.
 * **0.0.2** - Compression now works and is specced.
 * **0.0.1** - Initial release. Functioning bundler, minus the view helpers.
