@@ -5,7 +5,6 @@ require 'rapper'
 require 'fileutils'
 
 Spec::Runner.configure do |config|
-  
   # Tear down test case assets folders
   config.after :each do
     FileUtils.rm_r( Dir[ "tmp/*" ] )

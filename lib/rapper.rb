@@ -1,8 +1,9 @@
 require 'yaml'
 
-Dir[File.expand_path( File.dirname( __FILE__ ) + "/rapper/*.rb" )].each do |file|
+Dir[File.expand_path( "#{File.dirname( __FILE__ )}/rapper/*.rb" )].each do |file|
   require file
 end
+require File.dirname( __FILE__ ) + "/tasks.rb"
 
 # No batteries included, and no strings attached /
 # No holds barred, no time for move fakin' /
