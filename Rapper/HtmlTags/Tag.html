@@ -79,7 +79,18 @@
 </dl>
 <div class="clear"></div>
 
-<div id="subclasses">
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+Represents an HTML tag.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><div id="subclasses">
   <h2>Direct Known Subclasses</h2>
   <p class="children"><span class='object_link'><a href="Tag/CssTag.html" title="Rapper::HtmlTags::Tag::CssTag (class)">CssTag</a></span>, <span class='object_link'><a href="Tag/JsTag.html" title="Rapper::HtmlTags::Tag::JsTag (class)">JsTag</a></span></p>
 </div>
@@ -107,7 +118,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#for-class_method" title="for (class method)">+ (Object) <strong>for</strong>(path, version, style) </a>
+      <a href="#for-class_method" title="for (class method)">+ (String) <strong>for</strong>(path, version, style) </a>
     
 
     
@@ -120,7 +131,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Build an HTML tag for a given resource in a given HTML style.
+</p>
+</div></span>
   
 </li>
 
@@ -128,7 +142,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#templates-class_method" title="templates (class method)">+ (Object) <strong>templates</strong> </a>
+      <a href="#templates-class_method" title="templates (class method)">+ (Hash) <strong>templates</strong> </a>
     
 
     
@@ -141,7 +155,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+tag template strings.
+</p>
+</div></span>
   
 </li>
 
@@ -158,33 +175,124 @@
       <div class="method_details first">
   <p class="signature first" id="for-class_method">
   
-    + (<tt>Object</tt>) <strong>for</strong>(path, version, style) 
+    + (<tt>String</tt>) <strong>for</strong>(path, version, style) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Build an HTML tag for a given resource in a given HTML style.
+</p>
+<p>
+string.
+</p>
+<p>
+`:xhtml`.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>path</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Publically accessible path to the asset file.
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>, <tt>nil</tt>)</span>
+      
+      
+        <span class='name'>version</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Version string to append as a query
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+        <span class='name'>style</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+HTML tag style. One of `:html`, `:html5`, or
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The appropriate HTML tag to include the resource.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62</pre>
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/html_tags.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/html_tags.rb', line 85</span>
 
 <span class='def def kw'>def</span> <span class='for for kw'>for</span><span class='lparen token'>(</span> <span class='path identifier id'>path</span><span class='comma token'>,</span> <span class='version identifier id'>version</span><span class='comma token'>,</span> <span class='style identifier id'>style</span> <span class='rparen token'>)</span>
   <span class='@cache ivar id'>@cache</span> <span class='opasgn op'>||=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
@@ -209,25 +317,55 @@
       <div class="method_details ">
   <p class="signature " id="templates-class_method">
   
-    + (<tt>Object</tt>) <strong>templates</strong> 
+    + (<tt>Hash</tt>) <strong>templates</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+tag template strings.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+A mapping of HTML styles to their appropriate HTML
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-45
-46
-47</pre>
+70
+71
+72</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/html_tags.rb', line 45</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/html_tags.rb', line 70</span>
 
 <span class='def def kw'>def</span> <span class='templates identifier id'>templates</span>
-  <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+  <span class='lbrace token'>{</span> <span class='symbol val'>:html</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>''</span><span class='comma token'>,</span> <span class='symbol val'>:html5</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>''</span><span class='comma token'>,</span> <span class='symbol val'>:xhtml</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>''</span> <span class='rbrace token'>}</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -240,7 +378,7 @@
 </div>
     
     <div id="footer">
-  Generated on Wed Mar  9 01:53:07 2011 by 
+  Generated on Wed Mar 23 11:53:04 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>

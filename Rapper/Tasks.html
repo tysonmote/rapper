@@ -1,0 +1,347 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: Rapper::Tasks</title>
+<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (T)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../Rapper.html" title="Rapper (module)">Rapper</a></span></span>
+     &raquo; 
+    <span class="title">Tasks</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: Rapper::Tasks
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Rapper::Tasks</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/tasks.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+Rake tasks for building / refreshing packages
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#define-instance_method" title="#define (instance method)">- (Object) <strong>define</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Creates all rapper rake tasks: package all assets, package assets for each
+type.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Tasks) <strong>initialize</strong>(namespace = :rapper) {|config| ... }</a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Set up rapper asset packaging Rake tasks.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="Rapper::Tasks (class)">Tasks</a></span></tt>) <strong>initialize</strong>(namespace = :rapper) {|config| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Set up rapper asset packaging Rake tasks.
+</p>
+<p>
+tasks under.
+</p>
+<p>
+configuration YAML file. `:env` is the optional environment. Defaults to
+`:production`.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+        <span class='name'>namespace</span>
+      
+      
+        <em class="default">(defaults to: <tt>:rapper</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The Rake namespace to put the generated
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+        <span class='type'>(<tt>config</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Configuration hash. `:path` should be the path to the
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+14
+15
+16
+17
+18
+19
+20
+21</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/tasks.rb', line 14</span>
+
+<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span> <span class='namespace identifier id'>namespace</span> <span class='assign token'>=</span> <span class='symbol val'>:rapper</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span> <span class='rparen token'>)</span>
+  <span class='@namespace ivar id'>@namespace</span> <span class='assign token'>=</span> <span class='namespace identifier id'>namespace</span>
+  <span class='@config ivar id'>@config</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+  <span class='yield yield kw'>yield</span> <span class='@config ivar id'>@config</span>
+  <span class='@config ivar id'>@config</span><span class='lbrack token'>[</span><span class='symbol val'>:env</span><span class='rbrack token'>]</span> <span class='opasgn op'>||=</span> <span class='symbol val'>:production</span>
+  <span class='@rapper ivar id'>@rapper</span> <span class='assign token'>=</span> <span class='Rapper constant id'>Rapper</span><span class='colon2 op'>::</span><span class='Engine constant id'>Engine</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span> <span class='@config ivar id'>@config</span><span class='lbrack token'>[</span><span class='symbol val'>:path</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='@config ivar id'>@config</span><span class='lbrack token'>[</span><span class='symbol val'>:env</span><span class='rbrack token'>]</span> <span class='rparen token'>)</span>
+  <span class='define identifier id'>define</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="define-instance_method">
+  
+    - (<tt>Object</tt>) <strong>define</strong>  <span class="extras">(private)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Creates all rapper rake tasks: package all assets, package assets for each
+type.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/tasks.rb', line 27</span>
+
+<span class='def def kw'>def</span> <span class='define identifier id'>define</span>
+  <span class='namespace identifier id'>namespace</span> <span class='@namespace ivar id'>@namespace</span> <span class='do do kw'>do</span>
+    <span class='desc identifier id'>desc</span> <span class='string val'>&quot;Package all assets that need re-packaging&quot;</span>
+    <span class='task identifier id'>task</span> <span class='symbol val'>:package</span> <span class='do do kw'>do</span>
+      <span class='@rapper ivar id'>@rapper</span><span class='dot token'>.</span><span class='package identifier id'>package</span>
+    <span class='end end kw'>end</span>
+    
+    <span class='namespace identifier id'>namespace</span> <span class='symbol val'>:package</span> <span class='do do kw'>do</span>
+      <span class='@rapper ivar id'>@rapper</span><span class='dot token'>.</span><span class='definitions identifier id'>definitions</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='definition identifier id'>definition</span><span class='bitor op'>|</span>
+        <span class='desc identifier id'>desc</span> <span class='dstring node'>&quot;Package all #{type} assets that need re-packaging&quot;</span>
+        <span class='task identifier id'>task</span> <span class='key identifier id'>key</span> <span class='do do kw'>do</span>
+          <span class='@rapper ivar id'>@rapper</span><span class='dot token'>.</span><span class='package identifier id'>package</span><span class='lparen token'>(</span> <span class='type identifier id'>type</span> <span class='rparen token'>)</span>
+        <span class='end end kw'>end</span>
+      <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Wed Mar 23 11:53:06 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.4 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

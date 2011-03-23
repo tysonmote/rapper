@@ -71,17 +71,8 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     <p>
-Set up view helpers for various web frameworks. Currently supported:
+Helpers for setting up view helpers.
 </p>
-<pre class="code">
-  <span class='mult op'>*</span> <span class='Merb constant id'>Merb</span>
-</pre>
-<p>
-To do:
-</p>
-<pre class="code">
-  <span class='mult op'>*</span> <span class='Sinatra constant id'>Sinatra</span>
-</pre>
 
 
   </div>
@@ -157,6 +148,9 @@ Refactor.
       <pre class="lines">
 
 
+7
+8
+9
 10
 11
 12
@@ -164,13 +158,10 @@ Refactor.
 14
 15
 16
-17
-18
-19
-20</pre>
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/helpers.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/helpers.rb', line 7</span>
 
 <span class='def def kw'>def</span> <span class='setup_helpers identifier id'>setup_helpers</span>
   <span class='if if kw'>if</span> <span class='Rapper constant id'>Rapper</span><span class='colon2 op'>::</span><span class='ViewHelpers constant id'>ViewHelpers</span><span class='dot token'>.</span><span class='const_defined? fid id'>const_defined?</span><span class='lparen token'>(</span> <span class='symbol val'>:RAPPER</span> <span class='rparen token'>)</span>
@@ -194,7 +185,7 @@ Refactor.
 </div>
     
     <div id="footer">
-  Generated on Wed Mar  9 01:53:06 2011 by 
+  Generated on Wed Mar 23 11:53:06 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>

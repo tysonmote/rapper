@@ -153,7 +153,7 @@ The public url root for packaged asset files.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#assets-instance_method" title="#assets (instance method)">- (Object) <strong>assets</strong> </a>
+      <a href="#assets-instance_method" title="#assets (instance method)">- (YAML::Omap) <strong>assets</strong> </a>
     
 
     
@@ -166,9 +166,9 @@ The public url root for packaged asset files.
   
 
   
-    <span class="summary_desc"><div class='inline'><h6>====</h6>
-<h1>Assets =</h1>
-<h6>====.</h6>
+    <span class="summary_desc"><div class='inline'><p>
+configuration (as a `YAML::Omap`).
+</p>
 </div></span>
   
 </li>
@@ -511,14 +511,14 @@ Path to the packaged asset file.
       <pre class="lines">
 
 
-82
-83
 84
 85
-86</pre>
+86
+87
+88</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 84</span>
 
 <span class='def def kw'>def</span> <span class='asset_path identifier id'>asset_path</span><span class='lparen token'>(</span> <span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='root identifier id'>root</span><span class='assign token'>=</span><span class='nil nil kw'>nil</span> <span class='rparen token'>)</span>
   <span class='root identifier id'>root</span> <span class='opasgn op'>||=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='destination_root identifier id'>destination_root</span>
@@ -593,33 +593,52 @@ The public url root for packaged asset files.
       <div class="method_details ">
   <p class="signature " id="assets-instance_method">
   
-    - (<tt>Object</tt>) <strong>assets</strong> 
+    - (<tt>YAML::Omap</tt>) <strong>assets</strong> 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
-    <h6>====</h6>
-<h1>Assets =</h1>
-<h6>====</h6>
+    <p>
+configuration (as a `YAML::Omap`).
+</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
   
+    <li>
+      
+        <span class='type'>(<tt>YAML::Omap</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Ordered mapping of definition keys to definition
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-47
-48
-49</pre>
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 47</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 49</span>
 
 <span class='def def kw'>def</span> <span class='assets identifier id'>assets</span>
   <span class='@definition ivar id'>@definition</span><span class='lbrack token'>[</span><span class='string val'>&quot;assets&quot;</span><span class='rbrack token'>]</span>
@@ -694,8 +713,6 @@ Ordered list of the files that comprise the given asset.
       <pre class="lines">
 
 
-92
-93
 94
 95
 96
@@ -707,10 +724,12 @@ Ordered list of the files that comprise the given asset.
 102
 103
 104
-105</pre>
+105
+106
+107</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 92</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 94</span>
 
 <span class='def def kw'>def</span> <span class='component_paths identifier id'>component_paths</span><span class='lparen token'>(</span> <span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='root identifier id'>root</span><span class='assign token'>=</span><span class='nil nil kw'>nil</span> <span class='rparen token'>)</span>
   <span class='root identifier id'>root</span> <span class='opasgn op'>||=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='root identifier id'>root</span>
@@ -833,15 +852,15 @@ The public url root for the asset component files (used
       <pre class="lines">
 
 
-60
-61
-62</pre>
+62
+63
+64</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 62</span>
 
 <span class='def def kw'>def</span> <span class='get_version identifier id'>get_version</span><span class='lparen token'>(</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
-  <span class='@definition ivar id'>@definition</span><span class='lbrack token'>[</span><span class='string val'>&quot;assets&quot;</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='string val'>&quot;version&quot;</span><span class='rbrack token'>]</span>
+  <span class='assets identifier id'>assets</span><span class='lbrack token'>[</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='string val'>&quot;version&quot;</span><span class='rbrack token'>]</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -970,15 +989,15 @@ New version string for the asset.
       <pre class="lines">
 
 
-56
-57
-58</pre>
+58
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 56</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 58</span>
 
 <span class='def def kw'>def</span> <span class='set_version identifier id'>set_version</span><span class='lparen token'>(</span> <span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='version identifier id'>version</span> <span class='rparen token'>)</span>
-  <span class='@definition ivar id'>@definition</span><span class='lbrack token'>[</span><span class='string val'>&quot;assets&quot;</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='string val'>&quot;version&quot;</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='version identifier id'>version</span>
+  <span class='assets identifier id'>assets</span><span class='lbrack token'>[</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='string val'>&quot;version&quot;</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='version identifier id'>version</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -1069,14 +1088,14 @@ Writes the in-memory definition out to disk.
       <pre class="lines">
 
 
-69
-70
 71
 72
-73</pre>
+73
+74
+75</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 69</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/definition.rb', line 71</span>
 
 <span class='def def kw'>def</span> <span class='update identifier id'>update</span>
   <span class='File constant id'>File</span><span class='dot token'>.</span><span class='open identifier id'>open</span><span class='lparen token'>(</span> <span class='@path ivar id'>@path</span><span class='comma token'>,</span> <span class='string val'>&quot;w&quot;</span> <span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='file identifier id'>file</span><span class='bitor op'>|</span>
@@ -1094,7 +1113,7 @@ Writes the in-memory definition out to disk.
 </div>
     
     <div id="footer">
-  Generated on Wed Mar  9 01:53:08 2011 by 
+  Generated on Wed Mar 23 11:53:05 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>
