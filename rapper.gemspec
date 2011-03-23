@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rapper}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tyson Tate"]
-  s.date = %q{2011-03-09}
-  s.description = %q{Static asset packager and compressor with versioning and built-in view helpers. Easy to configure, easy to use, and easy to ignore when you want to. No crazy JavaScript comment DSLs, either.}
+  s.date = %q{2011-03-23}
+  s.description = %q{Static asset packager and compressor with versioning and built-in view helpers. Compresses files only when they need compressing.}
   s.email = %q{tyson@tysontate.com}
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -35,6 +35,7 @@ Gem::Specification.new do |s|
     "lib/rapper/logging.rb",
     "lib/rapper/utils.rb",
     "lib/rapper/versioning.rb",
+    "lib/tasks.rb",
     "lib/yui/css_compressor.rb",
     "rapper.gemspec",
     "spec/fixtures/config/asset_definitions/base/javascripts.yml",
@@ -137,6 +138,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<bluecloth>, ["~> 2.0.10"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
+      s.add_development_dependency(%q<rake>, ["~> 0.8.7"])
     else
       s.add_dependency(%q<closure-compiler>, ["~> 1.0.0"])
       s.add_dependency(%q<rspec>, ["~> 1.3.1"])
@@ -144,6 +146,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<bluecloth>, ["~> 2.0.10"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
+      s.add_dependency(%q<rake>, ["~> 0.8.7"])
     end
   else
     s.add_dependency(%q<closure-compiler>, ["~> 1.0.0"])
@@ -152,6 +155,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<bluecloth>, ["~> 2.0.10"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
+    s.add_dependency(%q<rake>, ["~> 0.8.7"])
   end
 end
 
