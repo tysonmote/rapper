@@ -82,6 +82,21 @@ When the contents of the asset change, the version will change in the query stri
 
 Browsers will automatically re-download and cache the new asset.
 
+# Rake tasks
+
+Rapper includes Rake tasks for packaging assets. Set this up in your `Rakefile`:
+
+    Rapper::Tasks.new do |config|
+      config[:path] = "config/assets.yml"
+      config[:env] = "production"
+    end
+
+Default namespace is `rapper`. The namespace can be changed as the first param:
+
+    Rapper::Tasks.new :assets do ...
+
+Both config options are required.
+
 # Development
 
 Rapper's got a Gemfile. You know what to do.
