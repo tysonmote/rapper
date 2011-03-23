@@ -3,6 +3,14 @@ module Rapper
   # Rake tasks for building / refreshing packages
   class Tasks
     
+    # Set up rapper asset packaging Rake tasks.
+    # 
+    # @param [Symbol] namespace The Rake namespace to put the generated
+    # tasks under.
+    # 
+    # @yield [config] Configuration hash. `:path` should be the path to the
+    # configuration YAML file. `:env` is the optional environment. Defaults to
+    # `:production`.
     def initialize( namespace = :rapper, &block )
       @namespace = namespace
       @config = {}
@@ -14,6 +22,8 @@ module Rapper
     
     private
     
+    # Creates all rapper rake tasks: package all assets, package assets for
+    # each type.
     def define
       namespace @namespace do
         desc "Package all assets that need re-packaging"

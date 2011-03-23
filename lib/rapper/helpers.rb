@@ -1,8 +1,5 @@
 module Rapper
-  # Set up view helpers for various web frameworks. Currently supported:
-  #   * Merb
-  # To do:
-  #   * Sinatra
+  # Helpers for setting up view helpers.
   module HelperSetup
     
     # Loads view helpers for any/all available web frameworks available.
@@ -22,8 +19,8 @@ module Rapper
     private
   end
   
+  # View helpers.
   module ViewHelpers
-    
     RAPPER = nil
     
     def self.included( klass )
@@ -41,5 +38,4 @@ module Rapper
       end
     end
   end
-  
 end

@@ -14,7 +14,7 @@ module Rapper
     #     period in it).
     # 
     # @param [Symbol] level Log level. :info or :verbose. :verbose level log
-    #   messages are only emitted if the "verbose_logging" setting is truthy.
+    # messages are only emitted if the "verbose_logging" setting is truthy.
     # 
     # @param [String] message Message to be logged.
     def log( level, message )

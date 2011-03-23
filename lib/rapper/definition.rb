@@ -44,6 +44,8 @@ module Rapper
     # = Assets =
     # ==========
     
+    # @return [YAML::Omap] Ordered mapping of definition keys to definition
+    # configuration (as a `YAML::Omap`).
     def assets
       @definition["assets"]
     end
@@ -54,11 +56,11 @@ module Rapper
     # 
     # @param [String] version New version string for the asset.
     def set_version( name, version )
-      @definition["assets"][name.to_s]["version"] = version
+      assets[name.to_s]["version"] = version
     end 
     
     def get_version( name )
-      @definition["assets"][name.to_s]["version"]
+      assets[name.to_s]["version"]
     end
     
     # ==========

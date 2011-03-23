@@ -9,7 +9,6 @@ require File.dirname( __FILE__ ) + "/tasks.rb"
 # No holds barred, no time for move fakin' /
 # Gots to get the loot so I can bring home the bacon
 module Rapper
-  
   # The main Rapper class. Handles, well, everything.
   class Engine
     
@@ -27,8 +26,8 @@ module Rapper
     # 
     # @param [String] config_path Path to the configuration YAML file.
     # 
-    # @param [String,Symbol] environment The current environment. This must
-    #   map to an environment configured in the Rapper configuration file.
+    # @param [String,Symbol] environment The current environment. This must map
+    # to an environment configured in the Rapper configuration file.
     def initialize( config_path, environment )
       @environment = environment
       @config = {}
