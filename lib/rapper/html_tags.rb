@@ -60,11 +60,12 @@ module Rapper
     
     # Same as `tag_files`, but includes version query string if needed.
     def tag_paths( type, name )
+      definition = @definitions[type]
       if self.get_config( 'version' )
         version = definition.get_version( name )
-        tag_paths( type, name ).map{|path| "#{path}?v=#{version}"}
+        tag_files( type, name ).map{|path| "#{path}?v=#{version}"}
       else
-        tag_paths( type, name )
+        tag_files( type, name )
       end
     end
     

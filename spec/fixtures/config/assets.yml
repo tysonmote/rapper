@@ -32,6 +32,14 @@ test_custom_destination:
   definition_root: spec/fixtures/config/asset_definitions/custom_destination
   bundle: true
   compress: false
+test_tag_paths:
+  <<: *base
+  bundle: true
+  version: true
+test_tag_paths_no_bundle:
+  <<: *base
+  bundle: false
+  version: true
 xhtml_tags:
   <<: *base
   version: false

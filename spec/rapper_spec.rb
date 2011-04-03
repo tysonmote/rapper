@@ -68,12 +68,14 @@ describe Rapper do
       ]
     end
     
-    it "provides tag files" do
-      rapper = Rapper::Engine.new( "spec/fixtures/config/assets.yml", "test" )
+    it "provides tag files and paths" do
+      rapper = Rapper::Engine.new( "spec/fixtures/config/assets.yml", "test_tag_paths" )
       rapper.tag_files( "javascripts", "multiple_files" ).should == ["/javascripts/assets/multiple_files.js"]
+      rapper.tag_paths( "javascripts", "multiple_files" ).should == ["/javascripts/assets/multiple_files.js?v=f3d9"]
       
-      rapper = Rapper::Engine.new( "spec/fixtures/config/assets.yml", "test_no_bundle" )
+      rapper = Rapper::Engine.new( "spec/fixtures/config/assets.yml", "test_tag_paths_no_bundle" )
       rapper.tag_files( "javascripts", "multiple_files" ).should == ["/javascripts/simple_1.js", "/javascripts/simple_2.js"]
+      rapper.tag_paths( "javascripts", "multiple_files" ).should == ["/javascripts/simple_1.js?v=f3d9", "/javascripts/simple_2.js?v=f3d9"]
     end
   end
   
