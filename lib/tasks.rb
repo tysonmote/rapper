@@ -34,7 +34,7 @@ module Rapper
         namespace :package do
           @rapper.definitions.each do |type, definition|
             desc "Package all #{type} assets that need re-packaging"
-            task key do
+            task type do
               @rapper.package( type )
             end
           end
