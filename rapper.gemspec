@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rapper}
-  s.version = "0.1.1"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tyson Tate"]
-  s.date = %q{2011-03-23}
+  s.date = %q{2011-04-02}
   s.description = %q{Static asset packager and compressor with versioning and built-in view helpers. Compresses files only when they need compressing.}
   s.email = %q{tyson@tysontate.com}
   s.extra_rdoc_files = [
@@ -40,6 +40,7 @@ Gem::Specification.new do |s|
     "rapper.gemspec",
     "spec/fixtures/config/asset_definitions/base/javascripts.yml",
     "spec/fixtures/config/asset_definitions/base/stylesheets.yml",
+    "spec/fixtures/config/asset_definitions/custom_destination/javascripts.yml",
     "spec/fixtures/config/assets.yml",
     "spec/fixtures/javascripts/simple_1.js",
     "spec/fixtures/javascripts/simple_2.js",
