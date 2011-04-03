@@ -51,6 +51,7 @@ The `definition_root` setting in the rapper config is a path to a folder contain
 
     --- !omap
     - root: public/javascripts
+    - destination_root: public/assets # optional, default: root + "/assets"
     - tag_root: /javascripts
     - suffix: js
     - assets: !omap
@@ -64,7 +65,7 @@ The `definition_root` setting in the rapper config is a path to a folder contain
               - ext_js_full
             - version: db62
 
-The above definition will create two asset files: `public/javascripts/assets/base.js` and `public/javascripts/assets/stats.js` from the component files in `public/javascripts` (in this case: `public/javascripts/protovis.js` and `public/javascripts/ext_js_full.js`).
+The above definition will create two asset files: `public/assets/base.js` and `public/assets/stats.js` from the component files in `public/javascripts` (in this case: `public/javascripts/protovis.js` and `public/javascripts/ext_js_full.js`).
 
 **Note:** Definition files are YAML ordered mapping documents. This is so that version updates (which involves rapper updating the version numbers and writing out the updated definition as YAML) don't change the order of the file. This is especially useful when using git and merging branches because it prevents nasty merge conflicts.
 
