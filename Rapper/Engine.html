@@ -436,8 +436,7 @@ Asset types to refresh versions for.
 68
 69
 70
-71
-72</pre>
+71</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/rapper.rb', line 44</span>
@@ -449,7 +448,6 @@ Asset types to refresh versions for.
   <span class='types identifier id'>types</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='type identifier id'>type</span><span class='bitor op'>|</span>
     <span class='definition identifier id'>definition</span> <span class='assign token'>=</span> <span class='@definitions ivar id'>@definitions</span><span class='lbrack token'>[</span><span class='type identifier id'>type</span><span class='rbrack token'>]</span>
     <span class='source identifier id'>source</span> <span class='assign token'>=</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='expand_path identifier id'>expand_path</span><span class='lparen token'>(</span> <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='root identifier id'>root</span> <span class='rparen token'>)</span>
-    <span class='destination identifier id'>destination</span> <span class='assign token'>=</span> <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='destination_root identifier id'>destination_root</span>
     <span class='suffix identifier id'>suffix</span> <span class='assign token'>=</span> <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='suffix identifier id'>suffix</span>
     
     <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='assets identifier id'>assets</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='spec identifier id'>spec</span><span class='bitor op'>|</span>
@@ -458,7 +456,7 @@ Asset types to refresh versions for.
       <span class='source_files identifier id'>source_files</span> <span class='assign token'>=</span> <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='component_paths identifier id'>component_paths</span><span class='lparen token'>(</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
       <span class='destination_file identifier id'>destination_file</span> <span class='assign token'>=</span> <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='asset_path identifier id'>asset_path</span><span class='lparen token'>(</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
       
-      <span class='log identifier id'>log</span> <span class='symbol val'>:verbose</span><span class='comma token'>,</span> <span class='dstring node'>&quot;Joining #{source_files.size} files to #{name}&quot;</span>
+      <span class='log identifier id'>log</span> <span class='symbol val'>:verbose</span><span class='comma token'>,</span> <span class='dstring node'>&quot;Joining #{source_files.size} files to #{destination_file}&quot;</span>
       <span class='join_files identifier id'>join_files</span><span class='lparen token'>(</span> <span class='source_files identifier id'>source_files</span><span class='comma token'>,</span> <span class='destination_file identifier id'>destination_file</span> <span class='rparen token'>)</span>
       
       <span class='if if kw'>if</span> <span class='get_config identifier id'>get_config</span><span class='lparen token'>(</span> <span class='string val'>&quot;compress&quot;</span> <span class='rparen token'>)</span>
@@ -482,7 +480,7 @@ Asset types to refresh versions for.
 </div>
     
     <div id="footer">
-  Generated on Wed Mar 23 11:53:07 2011 by 
+  Generated on Sat Apr  2 20:28:35 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>

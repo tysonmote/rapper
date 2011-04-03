@@ -98,6 +98,7 @@
 
 <pre class="code"><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span> <span class='notop op'>!</span><span class='omap identifier id'>omap</span>
 <span class='minus op'>-</span> <span class='root identifier id'>root</span><span class='colon op'>:</span> <span class='public identifier id'>public</span><span class='div op'>/</span><span class='javascripts identifier id'>javascripts</span>
+<span class='minus op'>-</span> <span class='destination_root identifier id'>destination_root</span><span class='colon op'>:</span> <span class='public identifier id'>public</span><span class='div op'>/</span><span class='assets identifier id'>assets</span> <span class='comment val'># optional, default: root + &quot;/assets&quot;</span>
 <span class='minus op'>-</span> <span class='tag_root identifier id'>tag_root</span><span class='colon op'>:</span> <span class='regexp val'>/javascripts
 - suffix: js
 - assets: !omap
@@ -112,9 +113,21 @@
         - version: db62
 </span></pre>
 
-<p>The above definition will create two asset files: <code>public/javascripts/assets/base.js</code> and <code>public/javascripts/assets/stats.js</code> from the component files in <code>public/javascripts</code> (in this case: <code>public/javascripts/protovis.js</code> and <code>public/javascripts/ext_js_full.js</code>).</p>
+<p>The above definition will create two asset files: <code>public/assets/base.js</code> and <code>public/assets/stats.js</code> from the component files in <code>public/javascripts</code> (in this case: <code>public/javascripts/protovis.js</code> and <code>public/javascripts/ext_js_full.js</code>).</p>
 
 <p><strong>Note:</strong> Definition files are YAML ordered mapping documents. This is so that version updates (which involves rapper updating the version numbers and writing out the updated definition as YAML) don't change the order of the file. This is especially useful when using git and merging branches because it prevents nasty merge conflicts.</p>
+
+<h2>View helpers</h2>
+
+<p>Rapper provides helper methods to generate HTML include tags for your assets in the <code>Rapper::ViewHelpers</code> module. Simply <code>include</code> it in the appropriate place for your web app / framework / widget / spaceship / row boat / whatever. It's automaticallly included for Merb because Merb people are notoriously lazy.</p>
+
+<p>Rapper's view helpers respect your <code>bundle</code> setting. If it is <code>true</code>, a singe include tag for the joined asset will be returned. If bundling is <code>false</code>, it will return include tags for every component file of the asset (as a single string).</p>
+
+<p>Rapper provides helper methods for each definition type. For instance, if you have "javascripts.yml" and "stylesheets.yml" definition files, Rapper will provide <code>rapper_javascripts_tag</code> and <code>rapper_stylesheets_tag</code> helper methods. Just pass the name of the asset to the helper method as a symbol and the correct HTML will be returned:</p>
+
+<pre class="code"><span class='rapper_stylesheets_tag identifier id'>rapper_stylesheets_tag</span> <span class='symbol val'>:mootools</span>
+<span class='comment val'># &lt;script src=&quot;/javascripts/assets/mootools.js&quot;&gt;&lt;/script&gt;</span>
+</pre>
 
 <h2>Versioning</h2>
 
@@ -163,14 +176,16 @@
 <li>Watch for CoffeeScript changes and automatically compile</li>
 <li>Watch for Sass changes and automatically compile</li>
 <li>Per-asset configuration overrides</li>
-<li>Sinatra helpers</li>
-<li>Rails helpers</li>
+<li>Auto-setup Sinatra helpers (?)</li>
+<li>Auto-setup Rails helpers (?)</li>
 </ul>
 
 
 <h2>Version history</h2>
 
 <ul>
+<li><strong>0.2.0</strong> - Custom asset destination roots, fix Rake task.</li>
+<li><strong>0.1.1</strong> - Rake tasks.</li>
 <li><strong>0.1.0</strong> - View helpers.</li>
 <li><strong>0.0.3</strong> - New <code>Definition</code> object to make working with definitions significantly easier, don't re-package assets that don't need re-packaging.</li>
 <li><strong>0.0.2</strong> - Compression now works and is specced.</li>
@@ -196,7 +211,7 @@
 <p>Copyright (c) 2011 Tyson Tate. See LICENSE.txt for further details.</p></div></div>
     
     <div id="footer">
-  Generated on Wed Mar 23 11:53:04 2011 by 
+  Generated on Sat Apr  2 20:28:33 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>
