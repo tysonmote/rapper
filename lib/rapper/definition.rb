@@ -33,7 +33,8 @@ module Rapper
     
     # @return [String] The public url root for packaged asset files.
     def asset_tag_root
-      @definition["tag_root"].gsub( /\/$/, '' ) + "/assets"
+      @default_asset_tag_root ||= @definition["tag_root"].gsub( /\/$/, '' )
+      @definition["destination_root"] ? @default_asset_tag_root : @default_asset_tag_root + "/assets"
     end
     
     # @return [String] The suffix of files used in this definition.

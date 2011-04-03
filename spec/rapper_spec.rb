@@ -136,10 +136,17 @@ describe Rapper do
   end
   
   describe "custom definition destination" do
+    before :each do
+      @rapper = Rapper::Engine.new( "spec/fixtures/config/assets.yml", "test_custom_destination" )
+      @rapper.package
+    end
+    
     it "works" do
-      rapper = Rapper::Engine.new( "spec/fixtures/config/assets.yml", "test_custom_destination" )
-      rapper.package
       Dir[ "tmp/custom_destination/*" ].should == ["tmp/custom_destination/multiple_files.js"]
+    end
+    
+    it "doesn't use the defaut .../assets tag root" do
+      @rapper.js_tag( "javascripts", "multiple_files" ).should == "<script src=\"/javascripts/multiple_files.js?v=f3d9\"></script>"
     end
   end
   

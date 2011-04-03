@@ -126,6 +126,7 @@ Rapper's got a Gemfile. You know what to do.
 
 ## Version history
 
+* **0.2.2** - Change tag_root behavior to not add `.../assets` path suffix when a `destination_root` is defined.
 * **0.2.1** - Add tag_files() to get all file paths for a given asset.
 * **0.2.0** - Custom asset destination roots, fix Rake task.
 * **0.1.1** - Rake tasks.
