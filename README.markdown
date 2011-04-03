@@ -69,6 +69,10 @@ The above definition will create two asset files: `public/assets/base.js` and `p
 
 **Note:** Definition files are YAML ordered mapping documents. This is so that version updates (which involves rapper updating the version numbers and writing out the updated definition as YAML) don't change the order of the file. This is especially useful when using git and merging branches because it prevents nasty merge conflicts.
 
+## View helpers
+
+Rapper provides helper methods to generate HTML include tags for your assets in the `Rapper::ViewHelpers`. Simply `include` it in the appropriate place for your web app / framework / widget / whatever. It's automaticallly included for Merb.
+
 ## Versioning
 
 Version strings are short hashes of the before-compression asset file. This means that they will only change when the contents of the component files for an asset change and time-consuming compression will only happen when a bundle needs to be re-packaged.
