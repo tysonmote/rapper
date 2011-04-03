@@ -30,7 +30,7 @@ module Rapper
     
     # Build a CSS tag for an asset.
     # 
-    # @param [Symbol] name Name of the asset to build a `<link>` tag for.
+    # @param [Symbol] type Definition type.
     # 
     # @param [Symbol] name Name of the asset to build a `<link>` tag for.
     # 
@@ -38,6 +38,24 @@ module Rapper
     # HTML style.
     def css_tag( type, name )
       self.get_tag( CssTag, type, name )
+    end
+    
+    # Get all paths for a given asset. If bundling is turned on, a one-item
+    # array is returned containing the path to the asset file. Otherwise, an
+    # array of all component paths for the asset are returned.
+    # 
+    # @param [Symbol] type Definition type.
+    # 
+    # @param [Symbol] name Name of the asset to get paths for.
+    # 
+    # @return [String<Array>] All files that comprise the given asset.
+    def tag_files( type, name )
+      definition = @definitions[type]
+      if self.get_config( "bundle" )
+        Array( definition.asset_path( name, definition.asset_tag_root ) )
+      else
+        definition.component_paths( name, definition.component_tag_root )
+      end
     end
     
     protected
@@ -50,15 +68,9 @@ module Rapper
         version = definition.get_version( name )
       end
       
-      if self.get_config( "bundle" )
-        path = definition.asset_path( name, definition.asset_tag_root )
+      tag_files( type, name ).map do |path|
         klass.send( :for, path, version, style )
-      else
-        paths = definition.component_paths( name, definition.component_tag_root )
-        paths.map do |path|
-          klass.send( :for, path, version, style )
-        end.join( "\n" )
-      end
+      end.join( "\n" )
     end
     
     # Represents an HTML tag.
