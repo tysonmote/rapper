@@ -127,6 +127,14 @@ describe Rapper do
     end
   end
   
+  describe "custom definition destination" do
+    it "works" do
+      rapper = Rapper::Engine.new( "spec/fixtures/config/assets.yml", "test_custom_destination" )
+      rapper.package
+      Dir[ "tmp/custom_destination/*" ].should == ["tmp/custom_destination/multiple_files.js"]
+    end
+  end
+  
   describe "packaging test cases" do
     Dir["spec/fixtures/test_cases/*"].each do |folder|
       next unless File.directory?( folder )

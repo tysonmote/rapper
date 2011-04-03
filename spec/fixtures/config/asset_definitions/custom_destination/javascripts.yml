@@ -1,0 +1,11 @@
+--- !omap 
+- root: spec/fixtures/javascripts
+- destination_root: tmp/custom_destination
+- tag_root: /javascripts
+- suffix: js
+- assets: !omap 
+    - multiple_files: !omap 
+        - files: 
+          - simple_1
+          - simple_2
+        - version: f3d9

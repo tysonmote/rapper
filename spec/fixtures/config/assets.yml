@@ -27,6 +27,11 @@ test_no_bundle:
   <<: *base
   version: false
   bundle: false
+test_custom_destination:
+  <<: *base
+  definition_root: spec/fixtures/config/asset_definitions/custom_destination
+  bundle: true
+  compress: false
 xhtml_tags:
   <<: *base
   version: false

@@ -21,7 +21,8 @@ module Rapper
     end
     
     def destination_root
-      @definition["root"].gsub( /\/$/, '' ) + "/assets"
+      @default_destination_root ||= @definition["root"].gsub( /\/$/, '' ) + "/assets"
+      @definition["destination_root"] || @default_destination_root
     end
     
     # @return [String] The public url root for the asset component files (used

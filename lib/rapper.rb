@@ -48,7 +48,6 @@ module Rapper
       types.each do |type|
         definition = @definitions[type]
         source = File.expand_path( definition.root )
-        destination = definition.destination_root
         suffix = definition.suffix
         
         definition.assets.each do |name, spec|
@@ -57,7 +56,7 @@ module Rapper
           source_files = definition.component_paths( name )
           destination_file = definition.asset_path( name )
           
-          log :verbose, "Joining #{source_files.size} files to #{name}"
+          log :verbose, "Joining #{source_files.size} files to #{destination_file}"
           join_files( source_files, destination_file )
           
           if get_config( "compress" )
