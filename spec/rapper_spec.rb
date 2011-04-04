@@ -176,7 +176,6 @@ describe Rapper do
         rapper.package
         
         paths.each do |path|
-        
           # Produces the same exact individual files
           file_names( path[:results] ).should == file_names( path[:expecteds] )
           # Contents are all the same
@@ -194,7 +193,13 @@ describe Rapper do
   end
   
   describe "bundling" do
-    it "raises an error if a file doesn't exist"
+    it "raises an error if a file doesn't exist" do
+      rapper = Rapper::Engine.new( "spec/fixtures/config/assets.yml", "test_missing_file" )
+      
+      lambda do
+        rapper.package
+      end.should raise_error( Rapper::Errors::MissingComponentFile )
+    end
   end
   
   describe "view helpers" do

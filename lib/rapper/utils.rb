@@ -15,8 +15,11 @@ module Rapper
     # 
     # @param [String] destination_file Destination for concatenated output.
     def join_files( source_files, destination_file )
-      source_files = Array( source_files ).uniq.join( " " )
-      system "cat #{source_files} > #{destination_file}"
+      source_files = Array( source_files ).uniq
+      raise Rapper::Errors::MissingComponentFile if source_files.any? do |f|
+        !File.exists?( f )
+      end
+      system "cat #{source_files.join( " " )} > #{destination_file}"
     end
     
   end

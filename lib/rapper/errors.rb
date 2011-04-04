@@ -17,5 +17,8 @@ module Rapper
     # Raised when attempting to compress a file with an extension that Rapper
     # doesn't recognize.
     class UnknownFileExtension < StandardError; end
+    
+    # Raised when an asset definition refers to a file that doesn't exist.
+    class MissingComponentFile < StandardError; end
   end
 end

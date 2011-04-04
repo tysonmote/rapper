@@ -32,6 +32,9 @@ test_custom_destination:
   definition_root: spec/fixtures/config/asset_definitions/custom_destination
   bundle: true
   compress: false
+test_missing_file:
+  <<: *base
+  definition_root: spec/fixtures/config/asset_definitions/missing_file
 test_tag_paths:
   <<: *base
   bundle: true
