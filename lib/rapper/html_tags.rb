@@ -40,6 +40,19 @@ module Rapper
       self.get_tag( CssTag, type, name )
     end
     
+    # Same as `tag_files`, but includes version query string if needed.
+    def tag_paths( type, name )
+      definition = @definitions[type]
+      if self.get_config( 'version' )
+        version = definition.get_version( name )
+        tag_files( type, name ).map{|path| "#{path}?v=#{version}"}
+      else
+        tag_files( type, name )
+      end
+    end
+    
+    protected
+    
     # Get all paths for a given asset. If bundling is turned on, a one-item
     # array is returned containing the path to the asset file. Otherwise, an
     # array of all component paths for the asset are returned.
@@ -58,19 +71,13 @@ module Rapper
       end
     end
     
-    # Same as `tag_files`, but includes version query string if needed.
-    def tag_paths( type, name )
-      definition = @definitions[type]
-      if self.get_config( 'version' )
-        version = definition.get_version( name )
-        tag_files( type, name ).map{|path| "#{path}?v=#{version}"}
-      else
-        tag_files( type, name )
-      end
-    end
-    
-    protected
-    
+    # Get the HTML for an asset.
+    # 
+    # @param [Rapper::HtmlTags::Tag] klass The HTML generator class to use.
+    # 
+    # @param [String] type Asset type.
+    # 
+    # @param [String] name Asset name.
     def get_tag( klass, type, name )
       definition = @definitions[type]
       style = self.get_config( 'tag_style' ).to_sym
