@@ -3,7 +3,7 @@ module Rapper
   module HelperSetup
     
     # Loads view helpers for any/all available web frameworks available.
-    # TODO: Refactor.
+    # TODO: Clean up.
     def setup_helpers
       if Rapper::ViewHelpers.const_defined?( :RAPPER )
         Rapper::ViewHelpers.send( :remove_const, :RAPPER )
@@ -25,13 +25,13 @@ module Rapper
     
     def self.included( klass )
       klass.class_eval do
-        # Define a "rapper_FOO_tag" method for each definition type. For
-        # example, if you have "stylesheets" and "javascripts" definitions,
-        # you'll have "rapper_stylesheets_tag( name )" and
-        # "rapper_javascripts_tag( name )" methods.
+        # Define a "include_FOO" method for each definition type. For example,
+        # if you have "stylesheets" and "javascripts" definitions, you'll have
+        # "include_stylesheets( name )" and "include_javascripts( name )"
+        # methods.
         RAPPER.definitions.each do |type, definition|
           tag_method = RAPPER.tag_method_for_type( type )
-          define_method "rapper_#{type}_tag".to_sym do |name|
+          define_method "include_#{type}".to_sym do |name|
             RAPPER.send( tag_method, type, name )
           end
         end
