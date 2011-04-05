@@ -79,6 +79,8 @@ module Rapper
       register ".css"
       
       def self.do_compress( file_path, opts={} )
+        return unless compressor_available?
+        
         css = read_file( file_path )
         css = YUI::CSS.compress( css )
         destination = writable_file( file_path )
@@ -86,6 +88,12 @@ module Rapper
         destination.write( css )
         destination.write "\n"
         destination.close
+      end
+      
+      def self.compressor_available?
+        Module.const_get( "YUI::CSS" ).is_a?( Class )
+      rescue NameError
+        false
       end
     end
     
@@ -95,6 +103,8 @@ module Rapper
       register ".js"
       
       def self.do_compress( file_path, opts={} )
+        return unless closure_available?
+        
         closure = Closure::Compiler.new( opts )
         
         js = read_file( file_path )
@@ -103,6 +113,12 @@ module Rapper
         destination.write( closure.compile( js ) )
         destination.write "\n"
         destination.close
+      end
+      
+      def self.closure_available?
+        Module.const_get( "Closure::Compiler" ).is_a?( Class )
+      rescue NameError
+        false
       end
     end
     
