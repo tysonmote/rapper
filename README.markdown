@@ -126,6 +126,7 @@ Rapper's got a Gemfile. You know what to do.
 
 ## Version history
 
+* **0.3.0** - Remove hard Closure Compiler dependency (it will still need to be installed to compress JS), shorter view helper method names.
 * **0.2.4** - Add tag_paths() to get all file paths for a given asset.
 * **0.2.2** - Change tag_root behavior to not add `.../assets` path suffix when a `destination_root` is defined.
 * **0.2.1** - Add tag_files() to get all file paths for a given asset.
