@@ -1,6 +1,8 @@
 require File.expand_path( File.dirname( __FILE__ ) + "/../yui/css_compressor.rb" )
-require "closure-compiler"
 require 'fileutils'
+begin
+  require "closure-compiler"
+rescue LoadError; end
 
 module Rapper
   # Compression handlers for various types of assets. And by "various" I mean
@@ -91,7 +93,7 @@ module Rapper
       end
       
       def self.compressor_available?
-        Module.const_get( "YUI::CSS" ).is_a?( Class )
+        YUI::CSS.is_a?( Class )
       rescue NameError
         false
       end
@@ -116,7 +118,7 @@ module Rapper
       end
       
       def self.closure_available?
-        Module.const_get( "Closure::Compiler" ).is_a?( Class )
+        Closure::Compiler.is_a?( Class )
       rescue NameError
         false
       end

@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tyson Tate"]
-  s.date = %q{2011-04-02}
+  s.date = %q{2011-04-05}
   s.description = %q{Static asset packager and compressor with versioning and built-in view helpers. Compresses files only when they need compressing.}
   s.email = %q{tyson@tysontate.com}
   s.extra_rdoc_files = [
@@ -41,6 +41,7 @@ Gem::Specification.new do |s|
     "spec/fixtures/config/asset_definitions/base/javascripts.yml",
     "spec/fixtures/config/asset_definitions/base/stylesheets.yml",
     "spec/fixtures/config/asset_definitions/custom_destination/javascripts.yml",
+    "spec/fixtures/config/asset_definitions/missing_file/stylesheets.yml",
     "spec/fixtures/config/assets.yml",
     "spec/fixtures/javascripts/simple_1.js",
     "spec/fixtures/javascripts/simple_2.js",
@@ -133,7 +134,7 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<closure-compiler>, ["~> 1.0.0"])
+      s.add_development_dependency(%q<closure-compiler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<rspec>, ["~> 1.3.1"])
       s.add_development_dependency(%q<yard>, ["~> 0.6.4"])
       s.add_development_dependency(%q<bluecloth>, ["~> 2.0.10"])

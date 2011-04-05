@@ -75,9 +75,9 @@ Rapper provides helper methods to generate HTML include tags for your assets in 
 
 Rapper's view helpers respect your `bundle` setting. If it is `true`, a singe include tag for the joined asset will be returned. If bundling is `false`, it will return include tags for every component file of the asset (as a single string).
 
-Rapper provides helper methods for each definition type. For instance, if you have "javascripts.yml" and "stylesheets.yml" definition files, Rapper will provide `rapper_javascripts_tag` and `rapper_stylesheets_tag` helper methods. Just pass the name of the asset to the helper method as a symbol and the correct HTML will be returned:
+Rapper provides helper methods for each definition type. For instance, if you have "javascripts.yml" and "stylesheets.yml" definition files, Rapper will provide `include_javascripts` and `include_stylesheets` helper methods. Just pass the name of the asset to the helper method as a symbol and the correct HTML will be returned:
 
-    rapper_stylesheets_tag :mootools
+    include_stylesheets :mootools
     # <script src="/javascripts/assets/mootools.js"></script>
 
 ## Versioning

@@ -212,57 +212,57 @@ describe Rapper do
     
     it "returns tags for component files when bundling is off" do
       Rapper::Engine.new( "spec/fixtures/config/assets.yml", "test_no_bundle" )
-      @controller.rapper_stylesheets_tag( :single_file ).should ==
+      @controller.include_stylesheets( :single_file ).should ==
         "<link rel=\"stylesheet\" href=\"/stylesheets/simple_1.css\">"
-      @controller.rapper_stylesheets_tag( :multiple_files ).should ==
+      @controller.include_stylesheets( :multiple_files ).should ==
         "<link rel=\"stylesheet\" href=\"/stylesheets/simple_1.css\">\n<link rel=\"stylesheet\" href=\"/stylesheets/simple_2.css\">"
-      @controller.rapper_javascripts_tag( :single_file ).should ==
+      @controller.include_javascripts( :single_file ).should ==
         "<script src=\"/javascripts/simple_1.js\"></script>"
-      @controller.rapper_javascripts_tag( :multiple_files ).should ==
+      @controller.include_javascripts( :multiple_files ).should ==
         "<script src=\"/javascripts/simple_1.js\"></script>\n<script src=\"/javascripts/simple_2.js\"></script>"
     end
     
     it "returns tags for asset when bundling is on" do
       Rapper::Engine.new( "spec/fixtures/config/assets.yml", "test" )
-      @controller.rapper_stylesheets_tag( :single_file ).should ==
+      @controller.include_stylesheets( :single_file ).should ==
         "<link type=\"text/css\" rel=\"stylesheet\" href=\"/stylesheets/assets/single_file.css\">"
-      @controller.rapper_stylesheets_tag( :multiple_files ).should ==
+      @controller.include_stylesheets( :multiple_files ).should ==
         "<link type=\"text/css\" rel=\"stylesheet\" href=\"/stylesheets/assets/multiple_files.css\">"
-      @controller.rapper_javascripts_tag( :single_file ).should ==
+      @controller.include_javascripts( :single_file ).should ==
         "<script type=\"text/javascript\" src=\"/javascripts/assets/single_file.js\"></script>"
-      @controller.rapper_javascripts_tag( :multiple_files ).should ==
+      @controller.include_javascripts( :multiple_files ).should ==
         "<script type=\"text/javascript\" src=\"/javascripts/assets/multiple_files.js\"></script>"
     end
     
     it "can return xhtml tags" do
       Rapper::Engine.new( "spec/fixtures/config/assets.yml", "xhtml_tags" )
-      @controller.rapper_stylesheets_tag( :single_file ).should ==
+      @controller.include_stylesheets( :single_file ).should ==
         "<link type=\"text/css\" rel=\"stylesheet\" href=\"/stylesheets/assets/single_file.css\" />"
-      @controller.rapper_stylesheets_tag( :multiple_files ).should ==
+      @controller.include_stylesheets( :multiple_files ).should ==
         "<link type=\"text/css\" rel=\"stylesheet\" href=\"/stylesheets/assets/multiple_files.css\" />"
-      @controller.rapper_javascripts_tag( :single_file ).should ==
+      @controller.include_javascripts( :single_file ).should ==
         "<script type=\"text/javascript\" src=\"/javascripts/assets/single_file.js\"></script>"
-      @controller.rapper_javascripts_tag( :multiple_files ).should ==
+      @controller.include_javascripts( :multiple_files ).should ==
         "<script type=\"text/javascript\" src=\"/javascripts/assets/multiple_files.js\"></script>"
     end
     
     it "can return html5 tags" do
       Rapper::Engine.new( "spec/fixtures/config/assets.yml", "html5_tags" )
-      @controller.rapper_stylesheets_tag( :single_file ).should ==
+      @controller.include_stylesheets( :single_file ).should ==
         "<link rel=\"stylesheet\" href=\"/stylesheets/assets/single_file.css\">"
-      @controller.rapper_stylesheets_tag( :multiple_files ).should ==
+      @controller.include_stylesheets( :multiple_files ).should ==
         "<link rel=\"stylesheet\" href=\"/stylesheets/assets/multiple_files.css\">"
-      @controller.rapper_javascripts_tag( :single_file ).should ==
+      @controller.include_javascripts( :single_file ).should ==
         "<script src=\"/javascripts/assets/single_file.js\"></script>"
-      @controller.rapper_javascripts_tag( :multiple_files ).should ==
+      @controller.include_javascripts( :multiple_files ).should ==
         "<script src=\"/javascripts/assets/multiple_files.js\"></script>"
     end
     
     it "adds a version number if versioning is on" do
       Rapper::Engine.new( "spec/fixtures/config/assets.yml", "versions" )
-      @controller.rapper_stylesheets_tag( :single_file ).should ==
+      @controller.include_stylesheets( :single_file ).should ==
         "<link rel=\"stylesheet\" href=\"/stylesheets/assets/single_file.css?v=1e17\">"
-      @controller.rapper_javascripts_tag( :single_file ).should ==
+      @controller.include_javascripts( :single_file ).should ==
         "<script src=\"/javascripts/assets/single_file.js?v=98bc\"></script>"
     end
   end
