@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rapper}
-  s.version = "0.3.0"
+  s.version = "0.4.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tyson Tate"]
-  s.date = %q{2011-04-05}
+  s.date = %q{2011-04-08}
   s.description = %q{Static asset packager and compressor with versioning and built-in view helpers. Compresses files only when they need compressing.}
   s.email = %q{tyson@tysontate.com}
   s.extra_rdoc_files = [
@@ -140,7 +140,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_development_dependency(%q<rake>, ["~> 0.8.7"])
-      s.add_development_dependency(%q<closure-compiler>, ["~> 1.0.0"])
+      s.add_development_dependency(%q<yui-compressor>, ["~> 0.9.4"])
     else
       s.add_dependency(%q<rspec>, ["~> 1.3.1"])
       s.add_dependency(%q<yard>, ["~> 0.6.4"])
@@ -148,7 +148,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_dependency(%q<rake>, ["~> 0.8.7"])
-      s.add_dependency(%q<closure-compiler>, ["~> 1.0.0"])
+      s.add_dependency(%q<yui-compressor>, ["~> 0.9.4"])
     end
   else
     s.add_dependency(%q<rspec>, ["~> 1.3.1"])
@@ -157,7 +157,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
     s.add_dependency(%q<rake>, ["~> 0.8.7"])
-    s.add_dependency(%q<closure-compiler>, ["~> 1.0.0"])
+    s.add_dependency(%q<yui-compressor>, ["~> 0.9.4"])
   end
 end
 
