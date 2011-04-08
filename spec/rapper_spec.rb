@@ -62,7 +62,7 @@ describe Rapper do
           ["version", "98bc"]]
         ],
         ["multiple_files", [
-          ["files", ["simple_1", "simple_2"]],
+          ["files", ["simple_1", "subfolder/simple_2"]],
           ["version", "f3d9"]]
         ]
       ]
@@ -113,7 +113,7 @@ describe Rapper do
         ["version", "98bc"]
       ]
       rapper.definitions["javascripts"].assets["multiple_files"].should == [
-        ["files", ["simple_1", "simple_2"]],
+        ["files", ["simple_1", "subfolder/simple_2"]],
         ["version", "f3d9"]
       ]
     end
@@ -155,7 +155,7 @@ describe Rapper do
     
     it "doesn't use the defaut '/assets' tag root" do
       @rapper.js_tag( "javascripts", "multiple_files" ).should ==
-        "<script src=\"/javascripts/components/simple_1.js?v=f3d9\"></script>\n<script src=\"/javascripts/components/simple_2.js?v=f3d9\"></script>"
+        "<script src=\"/javascripts/components/simple_1.js?v=f3d9\"></script>\n<script src=\"/javascripts/components/subfolder/simple_2.js?v=f3d9\"></script>"
     end
   end
   
@@ -167,7 +167,7 @@ describe Rapper do
       
       rapper = Rapper::Engine.new( "spec/fixtures/config/assets.yml", "test_tag_paths_no_bundle" )
       rapper.tag_paths( "javascripts", "multiple_files" ).should ==
-        ["/javascripts/simple_1.js?v=f3d9", "/javascripts/simple_2.js?v=f3d9"]
+        ["/javascripts/simple_1.js?v=f3d9", "/javascripts/subfolder/simple_2.js?v=f3d9"]
     end
   end
   
@@ -235,7 +235,7 @@ describe Rapper do
       @controller.include_javascripts( :single_file ).should ==
         "<script src=\"/javascripts/simple_1.js\"></script>"
       @controller.include_javascripts( :multiple_files ).should ==
-        "<script src=\"/javascripts/simple_1.js\"></script>\n<script src=\"/javascripts/simple_2.js\"></script>"
+        "<script src=\"/javascripts/simple_1.js\"></script>\n<script src=\"/javascripts/subfolder/simple_2.js\"></script>"
     end
     
     it "returns tags for asset when bundling is on" do

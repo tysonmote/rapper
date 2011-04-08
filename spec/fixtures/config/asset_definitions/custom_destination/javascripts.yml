@@ -8,5 +8,5 @@
     - multiple_files: !omap 
         - files: 
           - simple_1
-          - simple_2
+          - subfolder/simple_2
         - version: f3d9
