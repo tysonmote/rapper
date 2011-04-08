@@ -1,6 +1,7 @@
 --- !omap 
 - root: spec/fixtures/javascripts
-- tag_root: /javascripts
+- asset_tag_root: /javascripts/assets
+- component_tag_root: /javascripts
 - suffix: js
 - assets: !omap 
     - base: !omap 

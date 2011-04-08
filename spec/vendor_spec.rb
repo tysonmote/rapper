@@ -1,23 +1,10 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
-describe Closure::Compiler do
+describe YUI::JavaScriptCompressor do
   it "shoud be available" do
-    closure = Closure::Compiler.new
-    closure.compile( "var x = 1; var y = 2;" ).should == "var x=1,y=2;\n"
+    closure = YUI::JavaScriptCompressor.new
+    closure.compress( "var x = 1; var y = 2;" ).should == "var x=1;var y=2;"
   end
-    
-    it "provides whitespace-only, simple, and advanced compression" do
-      # https://github.com/documentcloud/closure-compiler/blob/master/test/unit/test_closure_compiler.rb
-      
-      original = "window.hello = function(name) { return console.log('hello ' + name ); }; hello.squared = function(num) { return num * num; }; hello('world');"
-      compiled_whitespace = "window.hello=function(name){return console.log(\"hello \"+name)};hello.squared=function(num){return num*num};hello(\"world\");\n"
-      compiled_simple = "window.hello=function(a){return console.log(\"hello \"+a)};hello.squared=function(a){return a*a};hello(\"world\");\n"
-      compiled_advanced = "window.a=function(b){return console.log(\"hello \"+b)};hello.b=function(b){return b*b};hello(\"world\");\n"
-      
-      Closure::Compiler.new( :compilation_level => "WHITESPACE_ONLY" ).compile(original).should == compiled_whitespace
-      Closure::Compiler.new.compile(original).should == compiled_simple
-      Closure::Compiler.new( :compilation_level => "ADVANCED_OPTIMIZATIONS" ).compile(original).should == compiled_advanced
-    end
 end
 
 describe YUI::CSS do

@@ -39,9 +39,11 @@ Rapper is configured using a YAML file that defines the settings to be used in v
       compress: true
       version: true
       # optional, passed to Google Closure Compiler
-      closure_compiler:
-        # default: SIMPLE_OPTIMIZATIONS
-        compilation_level: ADVANCED_OPTIMIZATIONS
+      yui_compressor:
+        line_break: 2000           # default: 2000
+        munge: false               # default: false
+        optimize: true             # default: true
+        preserve_semicolons: false # default: false
 
 The only required setting is `definition_root`. (Of course, you'll still need definition files to define the asset packages that you want build. More on that below.)
 
@@ -52,7 +54,8 @@ The `definition_root` setting in the rapper config is a path to a folder contain
     --- !omap
     - root: public/javascripts
     - destination_root: public/assets # optional, default: root + "/assets"
-    - tag_root: /javascripts
+    - component_tag_root: /javascripts
+    - asset_tag_root: /javascripts/assets
     - suffix: js
     - assets: !omap
         - base: !omap
@@ -126,6 +129,7 @@ Rapper's got a Gemfile. You know what to do.
 
 ## Version history
 
+* **0.4.0** - Switching to YUI Compressor for JavaScript compression due to its better handling of local variable compressing in scopes with eval() usage (I'm looking at you, ExtJS). Adding `component_tag_root` and `asset_tag_root` options to allow better control over URLs.
 * **0.3.0** - Remove hard Closure Compiler dependency (it will still need to be installed to compress JS), shorter view helper method names.
 * **0.2.4** - Add tag_paths() to get all file paths for a given asset.
 * **0.2.2** - Change tag_root behavior to not add `.../assets` path suffix when a `destination_root` is defined.

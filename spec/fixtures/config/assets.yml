@@ -6,9 +6,8 @@ test:
   compress: true
   tag_style: html
   version: false
-  closure_compiler:
-    compilation_level: ADVANCED_OPTIMIZATIONS
-    formatting: pretty_print
+  yui_compressor:
+    line_break: 0
 test_empty:
   <<: *base
 test_no_definition_root:
@@ -31,6 +30,11 @@ test_custom_destination:
   <<: *base
   definition_root: spec/fixtures/config/asset_definitions/custom_destination
   bundle: true
+  compress: false
+test_custom_destination_no_bundle:
+  <<: *base
+  definition_root: spec/fixtures/config/asset_definitions/custom_destination
+  bundle: false
   compress: false
 test_missing_file:
   <<: *base

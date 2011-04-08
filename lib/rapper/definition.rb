@@ -20,6 +20,8 @@ module Rapper
       @definition["root"]
     end
     
+    # @return [String] The root for packaged asset files. Defaults to root +
+    #   "/assets".
     def destination_root
       @default_destination_root ||= @definition["root"].gsub( /\/$/, '' ) + "/assets"
       @definition["destination_root"] || @default_destination_root
@@ -28,13 +30,12 @@ module Rapper
     # @return [String] The public url root for the asset component files (used
     # when bundling is off).
     def component_tag_root
-      @definition["tag_root"]
+      @definition["component_tag_root"]
     end
     
     # @return [String] The public url root for packaged asset files.
     def asset_tag_root
-      @default_asset_tag_root ||= @definition["tag_root"].gsub( /\/$/, '' )
-      @definition["destination_root"] ? @default_asset_tag_root : @default_asset_tag_root + "/assets"
+      @definition["asset_tag_root"]
     end
     
     # @return [String] The suffix of files used in this definition.

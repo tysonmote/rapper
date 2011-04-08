@@ -73,8 +73,8 @@ module Rapper
         "compress" => true,
         "tag_style" => "html5",
         "version" => true,
-        "closure_compiler" => {
-          "compilation_level" => "SIMPLE_OPTIMIZATIONS"
+        "yui_compressor" => {
+          "line_break" => 2000
         }
       }
     end

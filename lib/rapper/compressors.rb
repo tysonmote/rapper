@@ -1,7 +1,7 @@
 require File.expand_path( File.dirname( __FILE__ ) + "/../yui/css_compressor.rb" )
 require 'fileutils'
 begin
-  require "closure-compiler"
+  require "yui/compressor"
 rescue LoadError; end
 
 module Rapper
@@ -15,7 +15,7 @@ module Rapper
     def compress( file )
       opts = {}
       # TODO: Someday this goes away.
-      opts = get_config( "closure_compiler" ) if file =~ /\.js/
+      opts = get_config( "yui_compressor" ) if file =~ /\.js/
       Rapper::Compressors::Compressor.compress( file, opts )
     end
     
@@ -99,26 +99,26 @@ module Rapper
       end
     end
     
-    # Uses Google's Closure Compiler (via DocumentCloud's closure-compiler gem)
-    # to compress JavaScrpt.
+    # Uses YUI Compressor (via Sam Stephenson's yui-compressor gem) to compress
+    # JavaScrpt.
     class JSCompressor < Compressor
       register ".js"
       
       def self.do_compress( file_path, opts={} )
-        return unless closure_available?
+        return unless compressor_available?
         
-        closure = Closure::Compiler.new( opts )
+        compressor = YUI::JavaScriptCompressor.new( opts )
         
         js = read_file( file_path )
         destination = writable_file( file_path )
         
-        destination.write( closure.compile( js ) )
+        destination.write( compressor.compress( js ) )
         destination.write "\n"
         destination.close
       end
       
-      def self.closure_available?
-        Closure::Compiler.is_a?( Class )
+      def self.compressor_available?
+        YUI::JavaScriptCompressor.is_a?( Class )
       rescue NameError
         false
       end

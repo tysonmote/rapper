@@ -7,5 +7,5 @@ group :development do
   gem "bundler", "~> 1.0.0"
   gem "jeweler", "~> 1.5.2"
   gem "rake", "~> 0.8.7"
-  gem "closure-compiler", "~> 1.0.0"
+  gem "yui-compressor", "~> 0.9.4"
 end

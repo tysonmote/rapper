@@ -41,8 +41,8 @@ describe Rapper do
       rapper.send( :get_config, "bundle" ).should be_true
       rapper.send( :get_config, "compress" ).should be_true
       rapper.send( :get_config, "version" ).should be_true
-      rapper.send( :get_config, "closure_compiler" ).should == {
-        "compilation_level" => "SIMPLE_OPTIMIZATIONS"
+      rapper.send( :get_config, "yui_compressor" ).should == {
+        "line_break" => 2000
       }
     end
     
@@ -137,9 +137,25 @@ describe Rapper do
       Dir[ "tmp/custom_destination/*" ].should == ["tmp/custom_destination/multiple_files.js"]
     end
     
+    it "uses the asset tag root" do
+      @rapper.js_tag( "javascripts", "multiple_files" ).should ==
+        "<script src=\"/javascripts/compiled/multiple_files.js?v=f3d9\"></script>"
+    end
+  end
+  
+  describe "custom definition destination, without bundling" do
+    before :each do
+      @rapper = Rapper::Engine.new( "spec/fixtures/config/assets.yml", "test_custom_destination_no_bundle" )
+      @rapper.package
+    end
+    
+    it "works" do
+      Dir[ "tmp/custom_destination/*" ].should == ["tmp/custom_destination/multiple_files.js"]
+    end
+    
     it "doesn't use the defaut '/assets' tag root" do
       @rapper.js_tag( "javascripts", "multiple_files" ).should ==
-        "<script src=\"/javascripts/multiple_files.js?v=f3d9\"></script>"
+        "<script src=\"/javascripts/components/simple_1.js?v=f3d9\"></script>\n<script src=\"/javascripts/components/simple_2.js?v=f3d9\"></script>"
     end
   end
   
