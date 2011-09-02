@@ -180,20 +180,20 @@ Path to the file to compress.
       <pre class="lines">
 
 
-13
-14
 15
 16
 17
-18</pre>
+18
+19
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/compressors.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/compressors.rb', line 15</span>
 
 <span class='def def kw'>def</span> <span class='compress identifier id'>compress</span><span class='lparen token'>(</span> <span class='file identifier id'>file</span> <span class='rparen token'>)</span>
   <span class='opts identifier id'>opts</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
   <span class='comment val'># TODO: Someday this goes away.</span>
-  <span class='opts identifier id'>opts</span> <span class='assign token'>=</span> <span class='get_config identifier id'>get_config</span><span class='lparen token'>(</span> <span class='string val'>&quot;closure_compiler&quot;</span> <span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='file identifier id'>file</span> <span class='match op'>=~</span> <span class='regexp val'>/\.js/</span>
+  <span class='opts identifier id'>opts</span> <span class='assign token'>=</span> <span class='get_config identifier id'>get_config</span><span class='lparen token'>(</span> <span class='string val'>&quot;yui_compressor&quot;</span> <span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='file identifier id'>file</span> <span class='match op'>=~</span> <span class='regexp val'>/\.js/</span>
   <span class='Rapper constant id'>Rapper</span><span class='colon2 op'>::</span><span class='Compressors constant id'>Compressors</span><span class='colon2 op'>::</span><span class='Compressor constant id'>Compressor</span><span class='dot token'>.</span><span class='compress identifier id'>compress</span><span class='lparen token'>(</span> <span class='file identifier id'>file</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span> <span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
@@ -207,7 +207,7 @@ Path to the file to compress.
 </div>
     
     <div id="footer">
-  Generated on Sat Apr  2 20:28:33 2011 by 
+  Generated on Fri Sep  2 12:59:25 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>

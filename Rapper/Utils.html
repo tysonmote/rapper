@@ -191,14 +191,24 @@ Destination for concatenated output.
 17
 18
 19
-20</pre>
+20
+21
+22
+23
+24
+25</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/rapper/utils.rb', line 17</span>
 
 <span class='def def kw'>def</span> <span class='join_files identifier id'>join_files</span><span class='lparen token'>(</span> <span class='source_files identifier id'>source_files</span><span class='comma token'>,</span> <span class='destination_file identifier id'>destination_file</span> <span class='rparen token'>)</span>
-  <span class='source_files identifier id'>source_files</span> <span class='assign token'>=</span> <span class='Array constant id'>Array</span><span class='lparen token'>(</span> <span class='source_files identifier id'>source_files</span> <span class='rparen token'>)</span><span class='dot token'>.</span><span class='uniq identifier id'>uniq</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span> <span class='string val'>&quot; &quot;</span> <span class='rparen token'>)</span>
-  <span class='system identifier id'>system</span> <span class='dstring node'>&quot;cat #{source_files} &gt; #{destination_file}&quot;</span>
+  <span class='source_files identifier id'>source_files</span> <span class='assign token'>=</span> <span class='Array constant id'>Array</span><span class='lparen token'>(</span> <span class='source_files identifier id'>source_files</span> <span class='rparen token'>)</span>
+  <span class='source_files identifier id'>source_files</span><span class='dot token'>.</span><span class='any? fid id'>any?</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='path identifier id'>path</span><span class='bitor op'>|</span>
+    <span class='unless unless kw'>unless</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='exists? fid id'>exists?</span><span class='lparen token'>(</span> <span class='path identifier id'>path</span> <span class='rparen token'>)</span>
+      <span class='raise identifier id'>raise</span> <span class='Rapper constant id'>Rapper</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='colon2 op'>::</span><span class='MissingComponentFile constant id'>MissingComponentFile</span><span class='comma token'>,</span> <span class='dstring node'>&quot;#{path} doesn't exist.&quot;</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+  <span class='system identifier id'>system</span> <span class='dstring node'>&quot;cat #{source_files.join( &quot; &quot; )} &gt; #{destination_file}&quot;</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -211,7 +221,7 @@ Destination for concatenated output.
 </div>
     
     <div id="footer">
-  Generated on Sat Apr  2 20:28:33 2011 by 
+  Generated on Fri Sep  2 12:59:25 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>

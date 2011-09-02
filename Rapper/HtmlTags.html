@@ -140,7 +140,10 @@ Build a CSS tag for an asset.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Get the HTML for an asset.
+</p>
+</div></span>
   
 </li>
 
@@ -169,6 +172,30 @@ Build a JS tag for an asset.
 </li>
 
       
+        <li class="protected ">
+  <span class="summary_signature">
+    
+      <a href="#tag_files-instance_method" title="#tag_files (instance method)">- (String&lt;Array&gt;) <strong>tag_files</strong>(type, name) </a>
+    
+
+    
+  </span>
+  
+  
+  <span class="note title protected">protected</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Get all paths for a given asset.
+</p>
+</div></span>
+  
+</li>
+
+      
         <li class="public ">
   <span class="summary_signature">
     
@@ -187,6 +214,30 @@ Build a JS tag for an asset.
   
     <span class="summary_desc"><div class='inline'><p>
 or `:js_tag`.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#tag_paths-instance_method" title="#tag_paths (instance method)">- (Object) <strong>tag_paths</strong>(type, name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Same as `tag_files`, but includes version query string if needed.
 </p>
 </div></span>
   
@@ -230,13 +281,13 @@ HTML style.
         <span class='type'>(<tt>Symbol</tt>)</span>
       
       
-        <span class='name'>name</span>
+        <span class='name'>type</span>
       
       
       
         &mdash;
         <div class='inline'><p>
-Name of the asset to build a `&lt;link&gt;` tag for.
+Definition type.
 </p>
 </div>
       
@@ -309,33 +360,93 @@ A `&lt;link&gt;` tag for the given asset in the configured
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Get the HTML for an asset.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="HtmlTags/Tag.html" title="Rapper::HtmlTags::Tag (class)">Rapper::HtmlTags::Tag</a></span></tt>)</span>
+      
+      
+        <span class='name'>klass</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The HTML generator class to use.
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>type</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Asset type.
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>name</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Asset name.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62</pre>
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/html_tags.rb', line 45</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/html_tags.rb', line 81</span>
 
 <span class='def def kw'>def</span> <span class='get_tag identifier id'>get_tag</span><span class='lparen token'>(</span> <span class='klass identifier id'>klass</span><span class='comma token'>,</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
   <span class='definition identifier id'>definition</span> <span class='assign token'>=</span> <span class='@definitions ivar id'>@definitions</span><span class='lbrack token'>[</span><span class='type identifier id'>type</span><span class='rbrack token'>]</span>
@@ -345,15 +456,9 @@ A `&lt;link&gt;` tag for the given asset in the configured
     <span class='version identifier id'>version</span> <span class='assign token'>=</span> <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='get_version identifier id'>get_version</span><span class='lparen token'>(</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
   <span class='end end kw'>end</span>
   
-  <span class='if if kw'>if</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='get_config identifier id'>get_config</span><span class='lparen token'>(</span> <span class='string val'>&quot;bundle&quot;</span> <span class='rparen token'>)</span>
-    <span class='path identifier id'>path</span> <span class='assign token'>=</span> <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='asset_path identifier id'>asset_path</span><span class='lparen token'>(</span> <span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='asset_tag_root identifier id'>asset_tag_root</span> <span class='rparen token'>)</span>
+  <span class='tag_files identifier id'>tag_files</span><span class='lparen token'>(</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span><span class='dot token'>.</span><span class='map identifier id'>map</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='path identifier id'>path</span><span class='bitor op'>|</span>
     <span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span> <span class='symbol val'>:for</span><span class='comma token'>,</span> <span class='path identifier id'>path</span><span class='comma token'>,</span> <span class='version identifier id'>version</span><span class='comma token'>,</span> <span class='style identifier id'>style</span> <span class='rparen token'>)</span>
-  <span class='else else kw'>else</span>
-    <span class='paths identifier id'>paths</span> <span class='assign token'>=</span> <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='component_paths identifier id'>component_paths</span><span class='lparen token'>(</span> <span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='component_tag_root identifier id'>component_tag_root</span> <span class='rparen token'>)</span>
-    <span class='paths identifier id'>paths</span><span class='dot token'>.</span><span class='map identifier id'>map</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='path identifier id'>path</span><span class='bitor op'>|</span>
-      <span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span> <span class='symbol val'>:for</span><span class='comma token'>,</span> <span class='path identifier id'>path</span><span class='comma token'>,</span> <span class='version identifier id'>version</span><span class='comma token'>,</span> <span class='style identifier id'>style</span> <span class='rparen token'>)</span>
-    <span class='end end kw'>end</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span> <span class='string val'>&quot;\n&quot;</span> <span class='rparen token'>)</span>
-  <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span> <span class='string val'>&quot;\n&quot;</span> <span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -462,6 +567,115 @@ A `&lt;script&gt;` tag for the given asset in the configured
 </div>
     
       <div class="method_details ">
+  <p class="signature " id="tag_files-instance_method">
+  
+    - (<tt>String&lt;Array&gt;</tt>) <strong>tag_files</strong>(type, name)  <span class="extras">(protected)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Get all paths for a given asset. If bundling is turned on, a one-item array
+is returned containing the path to the asset file. Otherwise, an array of
+all component paths for the asset are returned.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+        <span class='name'>type</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Definition type.
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+        <span class='name'>name</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Name of the asset to get paths for.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String&lt;Array&gt;</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+All files that comprise the given asset.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+65
+66
+67
+68
+69
+70
+71
+72</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/rapper/html_tags.rb', line 65</span>
+
+<span class='def def kw'>def</span> <span class='tag_files identifier id'>tag_files</span><span class='lparen token'>(</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
+  <span class='definition identifier id'>definition</span> <span class='assign token'>=</span> <span class='@definitions ivar id'>@definitions</span><span class='lbrack token'>[</span><span class='type identifier id'>type</span><span class='rbrack token'>]</span>
+  <span class='if if kw'>if</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='get_config identifier id'>get_config</span><span class='lparen token'>(</span> <span class='string val'>&quot;bundle&quot;</span> <span class='rparen token'>)</span>
+    <span class='Array constant id'>Array</span><span class='lparen token'>(</span> <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='asset_path identifier id'>asset_path</span><span class='lparen token'>(</span> <span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='asset_tag_root identifier id'>asset_tag_root</span> <span class='rparen token'>)</span> <span class='rparen token'>)</span>
+  <span class='else else kw'>else</span>
+    <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='component_paths identifier id'>component_paths</span><span class='lparen token'>(</span> <span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='component_tag_root identifier id'>component_tag_root</span> <span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <p class="signature " id="tag_method_for_type-instance_method">
   
     - (<tt>Symbol</tt>) <strong>tag_method_for_type</strong>(type) 
@@ -549,12 +763,64 @@ Tag type for the given definition type. One of `:css_tag`
 </table>
 </div>
     
+      <div class="method_details ">
+  <p class="signature " id="tag_paths-instance_method">
+  
+    - (<tt>Object</tt>) <strong>tag_paths</strong>(type, name) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Same as `tag_files`, but includes version query string if needed.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+44
+45
+46
+47
+48
+49
+50
+51
+52</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/rapper/html_tags.rb', line 44</span>
+
+<span class='def def kw'>def</span> <span class='tag_paths identifier id'>tag_paths</span><span class='lparen token'>(</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
+  <span class='definition identifier id'>definition</span> <span class='assign token'>=</span> <span class='@definitions ivar id'>@definitions</span><span class='lbrack token'>[</span><span class='type identifier id'>type</span><span class='rbrack token'>]</span>
+  <span class='if if kw'>if</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='get_config identifier id'>get_config</span><span class='lparen token'>(</span> <span class='string val'>'version'</span> <span class='rparen token'>)</span>
+    <span class='version identifier id'>version</span> <span class='assign token'>=</span> <span class='definition identifier id'>definition</span><span class='dot token'>.</span><span class='get_version identifier id'>get_version</span><span class='lparen token'>(</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
+    <span class='tag_files identifier id'>tag_files</span><span class='lparen token'>(</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span><span class='dot token'>.</span><span class='map identifier id'>map</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='path identifier id'>path</span><span class='bitor op'>|</span> <span class='dstring node'>&quot;#{path}?v=#{version}&quot;</span><span class='rbrace token'>}</span>
+  <span class='else else kw'>else</span>
+    <span class='tag_files identifier id'>tag_files</span><span class='lparen token'>(</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
 
 </div>
     
     <div id="footer">
-  Generated on Sat Apr  2 20:28:34 2011 by 
+  Generated on Fri Sep  2 12:59:23 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>

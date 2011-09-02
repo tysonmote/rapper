@@ -85,9 +85,11 @@
   <span class='compress identifier id'>compress</span><span class='colon op'>:</span> <span class='true true kw'>true</span>
   <span class='version identifier id'>version</span><span class='colon op'>:</span> <span class='true true kw'>true</span>
   <span class='comment val'># optional, passed to Google Closure Compiler</span>
-  <span class='closure_compiler identifier id'>closure_compiler</span><span class='colon op'>:</span>
-    <span class='comment val'># default: SIMPLE_OPTIMIZATIONS</span>
-    <span class='compilation_level identifier id'>compilation_level</span><span class='colon op'>:</span> <span class='ADVANCED_OPTIMIZATIONS constant id'>ADVANCED_OPTIMIZATIONS</span>
+  <span class='yui_compressor identifier id'>yui_compressor</span><span class='colon op'>:</span>
+    <span class='line_break identifier id'>line_break</span><span class='colon op'>:</span> <span class='integer val'>2000</span>           <span class='comment val'># default: 2000</span>
+    <span class='munge identifier id'>munge</span><span class='colon op'>:</span> <span class='false false kw'>false</span>               <span class='comment val'># default: false</span>
+    <span class='optimize identifier id'>optimize</span><span class='colon op'>:</span> <span class='true true kw'>true</span>             <span class='comment val'># default: true</span>
+    <span class='preserve_semicolons identifier id'>preserve_semicolons</span><span class='colon op'>:</span> <span class='false false kw'>false</span> <span class='comment val'># default: false</span>
 </pre>
 
 <p>The only required setting is <code>definition_root</code>. (Of course, you'll still need definition files to define the asset packages that you want build. More on that below.)</p>
@@ -99,23 +101,46 @@
 <pre class="code"><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span> <span class='notop op'>!</span><span class='omap identifier id'>omap</span>
 <span class='minus op'>-</span> <span class='root identifier id'>root</span><span class='colon op'>:</span> <span class='public identifier id'>public</span><span class='div op'>/</span><span class='javascripts identifier id'>javascripts</span>
 <span class='minus op'>-</span> <span class='destination_root identifier id'>destination_root</span><span class='colon op'>:</span> <span class='public identifier id'>public</span><span class='div op'>/</span><span class='assets identifier id'>assets</span> <span class='comment val'># optional, default: root + &quot;/assets&quot;</span>
-<span class='minus op'>-</span> <span class='tag_root identifier id'>tag_root</span><span class='colon op'>:</span> <span class='regexp val'>/javascripts
-- suffix: js
-- assets: !omap
-    - base: !omap
-        - files: 
-          - mootools
-        - version: 7b06
-    - stats: !omap
-        - files: 
-          - protovis
-          - ext_js_full
-        - version: db62
-</span></pre>
+<span class='minus op'>-</span> <span class='component_tag_root identifier id'>component_tag_root</span><span class='colon op'>:</span> <span class='regexp val'>/javascripts
+- asset_tag_root: /</span><span class='javascripts identifier id'>javascripts</span><span class='div op'>/</span><span class='assets identifier id'>assets</span>
+<span class='minus op'>-</span> <span class='suffix identifier id'>suffix</span><span class='colon op'>:</span> <span class='js identifier id'>js</span>
+<span class='minus op'>-</span> <span class='assets identifier id'>assets</span><span class='colon op'>:</span> <span class='notop op'>!</span><span class='omap identifier id'>omap</span>
+    <span class='minus op'>-</span> <span class='base identifier id'>base</span><span class='colon op'>:</span> <span class='notop op'>!</span><span class='omap identifier id'>omap</span>
+        <span class='minus op'>-</span> <span class='files identifier id'>files</span><span class='colon op'>:</span> 
+          <span class='minus op'>-</span> <span class='mootools identifier id'>mootools</span>
+        <span class='minus op'>-</span> <span class='version identifier id'>version</span><span class='colon op'>:</span> <span class='integer val'>7</span><span class='b06 identifier id'>b06</span>
+    <span class='minus op'>-</span> <span class='stats identifier id'>stats</span><span class='colon op'>:</span> <span class='notop op'>!</span><span class='omap identifier id'>omap</span>
+        <span class='minus op'>-</span> <span class='files identifier id'>files</span><span class='colon op'>:</span> 
+          <span class='minus op'>-</span> <span class='protovis identifier id'>protovis</span>
+          <span class='minus op'>-</span> <span class='ext_js_full identifier id'>ext_js_full</span>
+        <span class='minus op'>-</span> <span class='version identifier id'>version</span><span class='colon op'>:</span> <span class='db62 identifier id'>db62</span>
+</pre>
 
 <p>The above definition will create two asset files: <code>public/assets/base.js</code> and <code>public/assets/stats.js</code> from the component files in <code>public/javascripts</code> (in this case: <code>public/javascripts/protovis.js</code> and <code>public/javascripts/ext_js_full.js</code>).</p>
 
 <p><strong>Note:</strong> Definition files are YAML ordered mapping documents. This is so that version updates (which involves rapper updating the version numbers and writing out the updated definition as YAML) don't change the order of the file. This is especially useful when using git and merging branches because it prevents nasty merge conflicts.</p>
+
+<h2>Combining bundles</h2>
+
+<p>Rapper allows you to combine bundles by referring to the other bundle with a "+"
+prefix in the files list:</p>
+
+<pre class="code"><span class='minus op'>-</span> <span class='assets identifier id'>assets</span><span class='colon op'>:</span> <span class='notop op'>!</span><span class='omap identifier id'>omap</span>
+    <span class='minus op'>-</span> <span class='base identifier id'>base</span><span class='colon op'>:</span> <span class='notop op'>!</span><span class='omap identifier id'>omap</span>
+        <span class='minus op'>-</span> <span class='files identifier id'>files</span><span class='colon op'>:</span> 
+          <span class='minus op'>-</span> <span class='mootools identifier id'>mootools</span>
+        <span class='minus op'>-</span> <span class='version identifier id'>version</span><span class='colon op'>:</span> <span class='integer val'>7</span><span class='b06 identifier id'>b06</span>
+    <span class='minus op'>-</span> <span class='extras identifier id'>extras</span><span class='colon op'>:</span> <span class='notop op'>!</span><span class='omap identifier id'>omap</span>
+        <span class='minus op'>-</span> <span class='files identifier id'>files</span><span class='colon op'>:</span> 
+          <span class='minus op'>-</span> <span class='mootools identifier id'>mootools</span><span class='minus op'>-</span><span class='more identifier id'>more</span>
+          <span class='minus op'>-</span> <span class='protovis identifier id'>protovis</span>
+        <span class='minus op'>-</span> <span class='version identifier id'>version</span><span class='colon op'>:</span> <span class='integer val'>25</span><span class='c1 identifier id'>c1</span>
+    <span class='minus op'>-</span> <span class='full identifier id'>full</span><span class='colon op'>:</span> <span class='notop op'>!</span><span class='omap identifier id'>omap</span>
+        <span class='minus op'>-</span> <span class='files identifier id'>files</span><span class='colon op'>:</span> 
+          <span class='minus op'>-</span> <span class='plus op'>+</span><span class='base identifier id'>base</span>
+          <span class='minus op'>-</span> <span class='plus op'>+</span><span class='extras identifier id'>extras</span>
+        <span class='minus op'>-</span> <span class='version identifier id'>version</span><span class='colon op'>:</span> <span class='db62 identifier id'>db62</span>
+</pre>
 
 <h2>View helpers</h2>
 
@@ -123,9 +148,9 @@
 
 <p>Rapper's view helpers respect your <code>bundle</code> setting. If it is <code>true</code>, a singe include tag for the joined asset will be returned. If bundling is <code>false</code>, it will return include tags for every component file of the asset (as a single string).</p>
 
-<p>Rapper provides helper methods for each definition type. For instance, if you have "javascripts.yml" and "stylesheets.yml" definition files, Rapper will provide <code>rapper_javascripts_tag</code> and <code>rapper_stylesheets_tag</code> helper methods. Just pass the name of the asset to the helper method as a symbol and the correct HTML will be returned:</p>
+<p>Rapper provides helper methods for each definition type. For instance, if you have "javascripts.yml" and "stylesheets.yml" definition files, Rapper will provide <code>include_javascripts</code> and <code>include_stylesheets</code> helper methods. Just pass the name of the asset to the helper method as a symbol and the correct HTML will be returned:</p>
 
-<pre class="code"><span class='rapper_stylesheets_tag identifier id'>rapper_stylesheets_tag</span> <span class='symbol val'>:mootools</span>
+<pre class="code"><span class='include_stylesheets identifier id'>include_stylesheets</span> <span class='symbol val'>:mootools</span>
 <span class='comment val'># &lt;script src=&quot;/javascripts/assets/mootools.js&quot;&gt;&lt;/script&gt;</span>
 </pre>
 
@@ -184,6 +209,12 @@
 <h2>Version history</h2>
 
 <ul>
+<li><strong>0.5.0</strong> - Added ability to nest bundles.</li>
+<li><strong>0.4.0</strong> - Switching to YUI Compressor for JavaScript compression due to its better handling of local variable compressing in scopes with eval() usage (I'm looking at you, ExtJS). Adding <code>component_tag_root</code> and <code>asset_tag_root</code> options to allow better control over URLs.</li>
+<li><strong>0.3.0</strong> - Remove hard Closure Compiler dependency (it will still need to be installed to compress JS), shorter view helper method names.</li>
+<li><strong>0.2.4</strong> - Add tag_paths() to get all file paths for a given asset.</li>
+<li><strong>0.2.2</strong> - Change tag_root behavior to not add <code>.../assets</code> path suffix when a <code>destination_root</code> is defined.</li>
+<li><strong>0.2.1</strong> - Add tag_files() to get all file paths for a given asset.</li>
 <li><strong>0.2.0</strong> - Custom asset destination roots, fix Rake task.</li>
 <li><strong>0.1.1</strong> - Rake tasks.</li>
 <li><strong>0.1.0</strong> - View helpers.</li>
@@ -211,7 +242,7 @@
 <p>Copyright (c) 2011 Tyson Tate. See LICENSE.txt for further details.</p></div></div>
     
     <div id="footer">
-  Generated on Sat Apr  2 20:28:33 2011 by 
+  Generated on Fri Sep  2 12:59:23 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>

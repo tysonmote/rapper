@@ -111,6 +111,27 @@ the contents of a CSS file.
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#compressor_available%3F-class_method" title="compressor_available? (class method)">+ (Boolean) <strong>compressor_available?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#do_compress-class_method" title="do_compress (class method)">+ (Object) <strong>do_compress</strong>(file_path, opts = {}) </a>
     
 
@@ -149,7 +170,61 @@ the contents of a CSS file.
     
     
       <div class="method_details first">
-  <p class="signature first" id="do_compress-class_method">
+  <p class="signature first" id="compressor_available?-class_method">
+  
+    + (<tt>Boolean</tt>) <strong>compressor_available?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+95
+96
+97
+98
+99</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/rapper/compressors.rb', line 95</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='compressor_available? fid id'>compressor_available?</span>
+  <span class='YUI constant id'>YUI</span><span class='colon2 op'>::</span><span class='CSS constant id'>CSS</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span> <span class='Class constant id'>Class</span> <span class='rparen token'>)</span>
+<span class='rescue rescue kw'>rescue</span> <span class='NameError constant id'>NameError</span>
+  <span class='false false kw'>false</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="do_compress-class_method">
   
     + (<tt>Object</tt>) <strong>do_compress</strong>(file_path, opts = {}) 
   
@@ -161,20 +236,24 @@ the contents of a CSS file.
       <pre class="lines">
 
 
-81
-82
 83
 84
 85
 86
 87
 88
-89</pre>
+89
+90
+91
+92
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/compressors.rb', line 81</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/compressors.rb', line 83</span>
 
 <span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='do_compress identifier id'>do_compress</span><span class='lparen token'>(</span> <span class='file_path identifier id'>file_path</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span> <span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='unless unless_mod kw'>unless</span> <span class='compressor_available? fid id'>compressor_available?</span>
+  
   <span class='css identifier id'>css</span> <span class='assign token'>=</span> <span class='read_file identifier id'>read_file</span><span class='lparen token'>(</span> <span class='file_path identifier id'>file_path</span> <span class='rparen token'>)</span>
   <span class='css identifier id'>css</span> <span class='assign token'>=</span> <span class='YUI constant id'>YUI</span><span class='colon2 op'>::</span><span class='CSS constant id'>CSS</span><span class='dot token'>.</span><span class='compress identifier id'>compress</span><span class='lparen token'>(</span> <span class='css identifier id'>css</span> <span class='rparen token'>)</span>
   <span class='destination identifier id'>destination</span> <span class='assign token'>=</span> <span class='writable_file identifier id'>writable_file</span><span class='lparen token'>(</span> <span class='file_path identifier id'>file_path</span> <span class='rparen token'>)</span>
@@ -194,7 +273,7 @@ the contents of a CSS file.
 </div>
     
     <div id="footer">
-  Generated on Sat Apr  2 20:28:36 2011 by 
+  Generated on Fri Sep  2 12:59:26 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>

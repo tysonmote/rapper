@@ -162,13 +162,13 @@ View helpers.
 
 <span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='included identifier id'>included</span><span class='lparen token'>(</span> <span class='klass identifier id'>klass</span> <span class='rparen token'>)</span>
   <span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='class_eval identifier id'>class_eval</span> <span class='do do kw'>do</span>
-    <span class='comment val'># Define a &quot;rapper_FOO_tag&quot; method for each definition type. For</span>
-    <span class='comment val'># example, if you have &quot;stylesheets&quot; and &quot;javascripts&quot; definitions,</span>
-    <span class='comment val'># you'll have &quot;rapper_stylesheets_tag( name )&quot; and</span>
-    <span class='comment val'># &quot;rapper_javascripts_tag( name )&quot; methods.</span>
+    <span class='comment val'># Define a &quot;include_FOO&quot; method for each definition type. For example,</span>
+    <span class='comment val'># if you have &quot;stylesheets&quot; and &quot;javascripts&quot; definitions, you'll have</span>
+    <span class='comment val'># &quot;include_stylesheets( name )&quot; and &quot;include_javascripts( name )&quot;</span>
+    <span class='comment val'># methods.</span>
     <span class='RAPPER constant id'>RAPPER</span><span class='dot token'>.</span><span class='definitions identifier id'>definitions</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='definition identifier id'>definition</span><span class='bitor op'>|</span>
       <span class='tag_method identifier id'>tag_method</span> <span class='assign token'>=</span> <span class='RAPPER constant id'>RAPPER</span><span class='dot token'>.</span><span class='tag_method_for_type identifier id'>tag_method_for_type</span><span class='lparen token'>(</span> <span class='type identifier id'>type</span> <span class='rparen token'>)</span>
-      <span class='define_method identifier id'>define_method</span> <span class='dstring node'>&quot;rapper_#{type}_tag&quot;</span><span class='dot token'>.</span><span class='to_sym identifier id'>to_sym</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='name identifier id'>name</span><span class='bitor op'>|</span>
+      <span class='define_method identifier id'>define_method</span> <span class='dstring node'>&quot;include_#{type}&quot;</span><span class='dot token'>.</span><span class='to_sym identifier id'>to_sym</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='name identifier id'>name</span><span class='bitor op'>|</span>
         <span class='RAPPER constant id'>RAPPER</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span> <span class='tag_method identifier id'>tag_method</span><span class='comma token'>,</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='rparen token'>)</span>
       <span class='end end kw'>end</span>
     <span class='end end kw'>end</span>
@@ -185,7 +185,7 @@ View helpers.
 </div>
     
     <div id="footer">
-  Generated on Sat Apr  2 20:28:33 2011 by 
+  Generated on Fri Sep  2 12:59:23 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>

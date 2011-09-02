@@ -84,8 +84,8 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     <p>
-Uses Google&#8217;s Closure Compiler (via DocumentCloud&#8217;s
-closure-compiler gem) to compress JavaScrpt.
+Uses YUI Compressor (via Sam Stephenson&#8217;s yui-compressor gem) to
+compress JavaScrpt.
 </p>
 
 
@@ -107,6 +107,27 @@ closure-compiler gem) to compress JavaScrpt.
     </h2>
 
     <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#compressor_available%3F-class_method" title="compressor_available? (class method)">+ (Boolean) <strong>compressor_available?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
       
         <li class="public ">
   <span class="summary_signature">
@@ -149,7 +170,61 @@ closure-compiler gem) to compress JavaScrpt.
     
     
       <div class="method_details first">
-  <p class="signature first" id="do_compress-class_method">
+  <p class="signature first" id="compressor_available?-class_method">
+  
+    + (<tt>Boolean</tt>) <strong>compressor_available?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+120
+121
+122
+123
+124</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/rapper/compressors.rb', line 120</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='compressor_available? fid id'>compressor_available?</span>
+  <span class='YUI constant id'>YUI</span><span class='colon2 op'>::</span><span class='JavaScriptCompressor constant id'>JavaScriptCompressor</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span> <span class='Class constant id'>Class</span> <span class='rparen token'>)</span>
+<span class='rescue rescue kw'>rescue</span> <span class='NameError constant id'>NameError</span>
+  <span class='false false kw'>false</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="do_compress-class_method">
   
     + (<tt>Object</tt>) <strong>do_compress</strong>(file_path, opts = {}) 
   
@@ -161,27 +236,31 @@ closure-compiler gem) to compress JavaScrpt.
       <pre class="lines">
 
 
-97
-98
-99
-100
-101
-102
-103
-104
-105
-106</pre>
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapper/compressors.rb', line 97</span>
+      <pre class="code"><span class="info file"># File 'lib/rapper/compressors.rb', line 107</span>
 
 <span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='do_compress identifier id'>do_compress</span><span class='lparen token'>(</span> <span class='file_path identifier id'>file_path</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span> <span class='rparen token'>)</span>
-  <span class='closure identifier id'>closure</span> <span class='assign token'>=</span> <span class='Closure constant id'>Closure</span><span class='colon2 op'>::</span><span class='Compiler constant id'>Compiler</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span> <span class='opts identifier id'>opts</span> <span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='unless unless_mod kw'>unless</span> <span class='compressor_available? fid id'>compressor_available?</span>
+  
+  <span class='compressor identifier id'>compressor</span> <span class='assign token'>=</span> <span class='YUI constant id'>YUI</span><span class='colon2 op'>::</span><span class='JavaScriptCompressor constant id'>JavaScriptCompressor</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span> <span class='opts identifier id'>opts</span> <span class='rparen token'>)</span>
   
   <span class='js identifier id'>js</span> <span class='assign token'>=</span> <span class='read_file identifier id'>read_file</span><span class='lparen token'>(</span> <span class='file_path identifier id'>file_path</span> <span class='rparen token'>)</span>
   <span class='destination identifier id'>destination</span> <span class='assign token'>=</span> <span class='writable_file identifier id'>writable_file</span><span class='lparen token'>(</span> <span class='file_path identifier id'>file_path</span> <span class='rparen token'>)</span>
   
-  <span class='destination identifier id'>destination</span><span class='dot token'>.</span><span class='write identifier id'>write</span><span class='lparen token'>(</span> <span class='closure identifier id'>closure</span><span class='dot token'>.</span><span class='compile identifier id'>compile</span><span class='lparen token'>(</span> <span class='js identifier id'>js</span> <span class='rparen token'>)</span> <span class='rparen token'>)</span>
+  <span class='destination identifier id'>destination</span><span class='dot token'>.</span><span class='write identifier id'>write</span><span class='lparen token'>(</span> <span class='compressor identifier id'>compressor</span><span class='dot token'>.</span><span class='compress identifier id'>compress</span><span class='lparen token'>(</span> <span class='js identifier id'>js</span> <span class='rparen token'>)</span> <span class='rparen token'>)</span>
   <span class='destination identifier id'>destination</span><span class='dot token'>.</span><span class='write identifier id'>write</span> <span class='string val'>&quot;\n&quot;</span>
   <span class='destination identifier id'>destination</span><span class='dot token'>.</span><span class='close identifier id'>close</span>
 <span class='end end kw'>end</span>
@@ -196,7 +275,7 @@ closure-compiler gem) to compress JavaScrpt.
 </div>
     
     <div id="footer">
-  Generated on Sat Apr  2 20:28:33 2011 by 
+  Generated on Fri Sep  2 12:59:25 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>
