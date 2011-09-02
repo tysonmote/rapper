@@ -2,8 +2,8 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe YUI::JavaScriptCompressor do
   it "shoud be available" do
-    closure = YUI::JavaScriptCompressor.new
-    closure.compress( "var x = 1; var y = 2;" ).should == "var x=1;var y=2;"
+    yui = YUI::JavaScriptCompressor.new
+    yui.compress( "var x = 1; var y = 2;" ).should == "var x=1;var y=2;"
   end
 end
 

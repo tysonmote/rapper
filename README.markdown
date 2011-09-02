@@ -38,7 +38,7 @@ Rapper is configured using a YAML file that defines the settings to be used in v
       bundle: true
       compress: true
       version: true
-      # optional, passed to Google Closure Compiler
+      # optional, passed to YUI Compressor
       yui_compressor:
         line_break: 2000           # default: 2000
         munge: false               # default: false
