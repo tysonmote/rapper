@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rapper}
-  s.version = "0.4.0"
+  s.version = "0.5.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tyson Tate"]
-  s.date = %q{2011-04-08}
+  s.date = %q{2011-09-02}
   s.description = %q{Static asset packager and compressor with versioning and built-in view helpers. Compresses files only when they need compressing.}
   s.email = %q{tyson@tysontate.com}
   s.extra_rdoc_files = [
@@ -44,9 +44,16 @@ Gem::Specification.new do |s|
     "spec/fixtures/config/asset_definitions/missing_file/stylesheets.yml",
     "spec/fixtures/config/assets.yml",
     "spec/fixtures/javascripts/simple_1.js",
-    "spec/fixtures/javascripts/simple_2.js",
+    "spec/fixtures/javascripts/subfolder/simple_2.js",
     "spec/fixtures/stylesheets/simple_1.css",
     "spec/fixtures/stylesheets/simple_2.css",
+    "spec/fixtures/test_cases/combination/assets.yml",
+    "spec/fixtures/test_cases/combination/definitions/css.yml",
+    "spec/fixtures/test_cases/combination/definitions/js.yml",
+    "spec/fixtures/test_cases/combination/expected/javascripts/base.js",
+    "spec/fixtures/test_cases/combination/expected/javascripts/base_combined.js",
+    "spec/fixtures/test_cases/combination/expected/stylesheets/base.css",
+    "spec/fixtures/test_cases/combination/expected/stylesheets/base_combined.css",
     "spec/fixtures/test_cases/compression/assets.yml",
     "spec/fixtures/test_cases/compression/definitions/css.yml",
     "spec/fixtures/test_cases/compression/definitions/js.yml",
