@@ -2,7 +2,7 @@
 
 Static asset packager and compressor with versioning and built-in view helpers. Easy to configure, easy to use, and easy to ignore when you want to. No crazy JavaScript comment DSLs, either.
 
-Merb and Sinatra view helpers are coming soon, as well as pluggable compression backends (YUI Compressor, Google Closure Compiler, etc.) `rapper` currently only includes Google Closure Compiler.
+Merb and Sinatra view helpers are coming soon, as well as pluggable compression backends (YUI Compressor, Google Closure Compiler, etc.) `rapper` currently only includes YUI Compressor.
 
 ## Packaging assets without wanting to claw your eyes out
 
