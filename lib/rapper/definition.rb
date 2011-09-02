@@ -3,6 +3,8 @@ module Rapper
   # easier.
   class Definition
     
+    COMBINATION_PREFIX = /^\+/
+    
     def initialize( path )
       @path = path
       @type = File.basename( path, ".yml" )
@@ -104,9 +106,14 @@ module Rapper
       end
       
       ( spec["files"] || [] ).map do |file|
-        file_name = "#{file}.#{self.suffix}"
-        File.join( root, file_name )
-      end
+        if file =~ COMBINATION_PREFIX
+          asset_name = file.sub( COMBINATION_PREFIX, "" )
+          self.component_paths( asset_name, root )
+        else
+          file_name = "#{file}.#{self.suffix}"
+          File.join( root, file_name )
+        end
+      end.flatten
     end
   end
 end

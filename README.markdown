@@ -72,6 +72,27 @@ The above definition will create two asset files: `public/assets/base.js` and `p
 
 **Note:** Definition files are YAML ordered mapping documents. This is so that version updates (which involves rapper updating the version numbers and writing out the updated definition as YAML) don't change the order of the file. This is especially useful when using git and merging branches because it prevents nasty merge conflicts.
 
+## Combining bundles
+
+Rapper allows you to combine bundles by referring to the other bundle with a "+"
+prefix in the files list:
+
+    - assets: !omap
+        - base: !omap
+            - files: 
+              - mootools
+            - version: 7b06
+        - extras: !omap
+            - files: 
+              - mootools-more
+              - protovis
+            - version: 25c1
+        - full: !omap
+            - files: 
+              - +base
+              - +extras
+            - version: db62
+
 ## View helpers
 
 Rapper provides helper methods to generate HTML include tags for your assets in the `Rapper::ViewHelpers` module. Simply `include` it in the appropriate place for your web app / framework / widget / spaceship / row boat / whatever. It's automaticallly included for Merb because Merb people are notoriously lazy.
