@@ -5,6 +5,10 @@ require 'rapper'
 require 'fileutils'
 
 Spec::Runner.configure do |config|
+  config.before :suite do
+    `mkdir tmp/`
+  end
+  
   # Tear down test case assets folders
   config.after :each do
     FileUtils.rm_r( Dir[ "tmp/*" ] )
