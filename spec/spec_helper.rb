@@ -6,7 +6,7 @@ require 'fileutils'
 
 Spec::Runner.configure do |config|
   config.before :suite do
-    `mkdir tmp/`
+    `mkdir tmp/` unless FileTest::directory?( "tmp" )
   end
   
   # Tear down test case assets folders
