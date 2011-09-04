@@ -56,16 +56,16 @@ describe Rapper do
       rapper.definitions["javascripts"].asset_tag_root.should == "/javascripts/assets"
       rapper.definitions["javascripts"].suffix.should == "js"
       rapper.definitions["javascripts"].assets.should be_a( YAML::Omap )
-      rapper.definitions["javascripts"].assets.should == [
-        ["single_file", [
-          ["files", ["simple_1"]],
-          ["version", "98bc"]]
-        ],
-        ["multiple_files", [
-          ["files", ["simple_1", "subfolder/simple_2"]],
-          ["version", "f3d9"]]
-        ]
-      ]
+      rapper.definitions["javascripts"].assets.should == {
+        "single_file" => {
+          "files" => ["simple_1"],
+          "version" => "98bc"
+        },
+        "multiple_files" => {
+          "files" => ["simple_1", "subfolder/simple_2"],
+          "version" => "f3d9"
+        }
+      }
     end
   end
   
@@ -108,14 +108,14 @@ describe Rapper do
     it "uses the concatenated file to calculate versions" do
       rapper = Rapper::Engine.new( "spec/fixtures/config/assets.yml", "test" )
       rapper.send( :refresh_versions )
-      rapper.definitions["javascripts"].assets["single_file"].should == [
-        ["files", ["simple_1"]],
-        ["version", "98bc"]
-      ]
-      rapper.definitions["javascripts"].assets["multiple_files"].should == [
-        ["files", ["simple_1", "subfolder/simple_2"]],
-        ["version", "f3d9"]
-      ]
+      rapper.definitions["javascripts"].assets["single_file"].should == {
+        "files" => ["simple_1"],
+        "version" => "98bc"
+      }
+      rapper.definitions["javascripts"].assets["multiple_files"].should == {
+        "files" => ["simple_1", "subfolder/simple_2"],
+        "version" => "f3d9"
+      }
     end
     
     it "doesn't re-package assets that don't need re-packaging" do
