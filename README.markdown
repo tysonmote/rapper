@@ -150,6 +150,7 @@ Rapper's got a Gemfile. You know what to do.
 
 ## Version history
 
+* **0.5.1** - Remove rake DSL deprecation warnings.
 * **0.5.0** - Added ability to nest bundles.
 * **0.4.0** - Switching to YUI Compressor for JavaScript compression due to its better handling of local variable compressing in scopes with eval() usage (I'm looking at you, ExtJS). Adding `component_tag_root` and `asset_tag_root` options to allow better control over URLs.
 * **0.3.0** - Remove hard Closure Compiler dependency (it will still need to be installed to compress JS), shorter view helper method names.
