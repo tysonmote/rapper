@@ -1,7 +1,12 @@
+require 'rubygems'
+require 'rake/dsl_definition'
+
 module Rapper
   
   # Rake tasks for building / refreshing packages
   class Tasks
+    
+    include Rake::DSL
     
     # Set up rapper asset packaging Rake tasks.
     # 
