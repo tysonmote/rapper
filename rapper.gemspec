@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rapper}
-  s.version = "0.5.0"
+  s.version = "0.5.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tyson Tate"]
-  s.date = %q{2011-09-02}
+  s.date = %q{2011-12-02}
   s.description = %q{Static asset packager and compressor with versioning and built-in view helpers. Compresses files only when they need compressing.}
   s.email = %q{tyson@tysontate.com}
   s.extra_rdoc_files = [
